@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ProjetoControleSalas</string>
+    <string name="hint_name">Nome</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Senha</string>
+
+    <string name="hint_login_email">E-mail de login</string>
+    <string name="recover_password">Recuperar senha</string>
+    <string name="recover_password_going">Enviando&#8230;</string>
+    <string name="invalid_login_email">
+        E-mail não encontrado em nossa base de dados.
+    </string>
+
+
+    <!-- Login/Cadastro -->
+    <string name="title_activity_sign_up">
+        Cadastro
+    </string>
+
+    <string name="hint_email_to_login">E-mail (para login)</string>
+    <string name="hint_confirm_password">Confirmar senha</string>
+    <string name="do_login">Realizar login</string>
+    <string name="sign_up">Cadastrar</string>
+    <string name="sign_up_going">Cadastrando</string>
+    <string name="invalid_sign_up_email">
+        E-mail já cadastrado.
+    </string>
+    <string name="invalid_confirmed_password">
+        Confirme a senha informada no campo acima.
+    </string>
+
+</resources>
