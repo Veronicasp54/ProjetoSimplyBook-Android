@@ -5,6 +5,7 @@ public class Empresa {
     private int id;
     private String nomeEmpresa;
     private String emailEmpresa;
+    private Cep cep;
 
     public Empresa(int id, String nomeEmpresa, String emailEmpresa) {
         this.id = id;

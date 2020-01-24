@@ -8,11 +8,19 @@
     android:orientation="vertical"
     tools:context=".ui.Login">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login Usuário"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"></TextView>
     <ImageView
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:contentDescription="Icone Usuario"
         app:layout_constraintBottom_toTopOf="@+id/ll_container_fields"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,14 +28,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.63"
-        app:srcCompat="@drawable/icon_user_black_blue"></ImageView>
+        android:src="@drawable/ic_account_circle_black"></ImageView>
 
     <LinearLayout
         android:id="@+id/ll_container_fields"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
