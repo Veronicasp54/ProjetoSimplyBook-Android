@@ -33,5 +33,7 @@
     <string name="quantidadeReunioes">4 reuniões</string>
     <string name="dataDia">sexta-feira, 24</string>
     <string name="meudia">Meu Dia</string>
+    <string name="salas">SALAS</string>
+    <string name="nome_empresa">Empresa: Nome empresa</string>
 
 </resources>

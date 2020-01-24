@@ -4,21 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@android:color/white"
     android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/lista_salas_listview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:dividerHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lista_banner_inicial"
+        tools:listitem="@layout/list_item_sala" />
 
     <ImageView
         android:id="@+id/lista_banner_inicial"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:contentDescription=""
+        android:src="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@color/colorPrimary" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewSalas"
@@ -26,9 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_margin="20dp"
-        android:text="Salas Existentes"
+        android:text="@string/salas"
         android:textColor="@android:color/white"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/lista_banner_inicial"
         app:layout_constraintEnd_toEndOf="@+id/lista_banner_inicial"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,23 +53,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Empresa"
+        android:text="@string/nome_empresa"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textViewSalas"
         app:layout_constraintTop_toBottomOf="@+id/textViewSalas" />
 
-    <ListView
-        android:id="@+id/lista_salas_listview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/salas_filter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="18dp"
+        android:src="@drawable/ic_filter_list"
+        app:layout_constraintBottom_toTopOf="@+id/lista_salas_listview"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lista_banner_inicial"
-        tools:listitem="@layout/list_item_sala" />
-
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/textViewSalas"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"></ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>
