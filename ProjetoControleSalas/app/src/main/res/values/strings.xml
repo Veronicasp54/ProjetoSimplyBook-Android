@@ -29,5 +29,7 @@
         Confirme a senha informada no campo acima.
     </string>
     <string name="hint_cadastro_cep">CEP</string>
+    <string name="quantidadeReunioes">4 reuniores</string>
+    <string name="dataDia">sexta-feira, 24</string>
 
 </resources>
