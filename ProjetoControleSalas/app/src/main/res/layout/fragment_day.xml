@@ -11,11 +11,11 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
         android:text="MEU DIA"
         android:textColor="@android:color/black"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textQuantReunioes"
@@ -37,26 +37,25 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="80dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="4dp"
-            android:src="@drawable/traco_layout_desing"></ImageView>
+            android:src="@drawable/traco_desing"
+            android:layout_height="1dp"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="REUNIÕES"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"></TextView>
+            android:layout_margin="8dp"
+            android:text="@string/reunioes"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"></TextView>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="80dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="4dp"
-            android:src="@drawable/traco_layout_desing"></ImageView>
+            android:src="@drawable/traco_desing"
+            android:layout_height="1dp"></ImageView>
 
     </LinearLayout>
 
@@ -69,6 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:foregroundGravity="bottom"
+        android:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/ic_add_black_24dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </LinearLayout>

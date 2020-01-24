@@ -11,6 +11,7 @@
         E-mail não encontrado em nossa base de dados.
     </string>
 
+    <string name="reunioes">REUNIÕES</string>
 
     <!-- Login/Cadastro -->
     <string name="title_activity_sign_up">
