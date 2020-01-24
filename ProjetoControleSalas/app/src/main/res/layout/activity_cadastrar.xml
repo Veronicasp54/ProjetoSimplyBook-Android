@@ -4,36 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo_login"
-    tools:context=".ui.Cadastro"
+    android:background="@drawable/fundo_telas"
     android:orientation="vertical"
-    >
+    tools:context=".ui.Cadastro">
 
+    <ImageButton
+        android:id="@+id/imageButtonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="20dp"
+        android:background="@null"
+        android:src="@mipmap/ic_back_class"
+        android:tint="@null" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="Cadastro Usuário"
-        android:textColor="@color/colorPrimaryDark"></TextView>
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"></TextView>
 
     <ImageView
-        android:layout_marginTop="20dp"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center|top"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Icone Usuario"
+        android:src="@drawable/ic_account_circle_black"
         app:layout_constraintBottom_toTopOf="@+id/ll_container_fields"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63"
-        android:src="@drawable/ic_account_circle_black"
-        android:contentDescription="Icone Usuario"></ImageView>
+        app:layout_constraintVertical_bias="0.63"></ImageView>
 
     <LinearLayout
         android:id="@+id/ll_container_fields"
@@ -50,44 +58,44 @@
         <EditText
             android:id="@+id/nome_cadastrar"
             style="@style/EditTextFormField"
+            android:autofillHints=""
             android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_name"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName"
-            android:autofillHints="" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/email_cadastrar"
             style="@style/EditTextFormField"
             android:layout_marginTop="8dp"
+            android:autofillHints=""
             android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_email_to_login"
             android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:autofillHints="" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/senha_cadastrar"
             style="@style/EditTextFormField"
             android:layout_marginTop="8dp"
+            android:autofillHints=""
             android:background="@drawable/bg_form_field_sqr"
             android:hint="@string/hint_password"
             android:imeOptions="actionNext"
-            android:inputType="textPassword"
-            android:autofillHints="" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/senha_confirmar"
             style="@style/EditTextFormField"
             android:layout_marginTop="8dp"
+            android:autofillHints=""
             android:background="@drawable/bg_form_field_bottom"
             android:hint="@string/hint_confirm_password"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:autofillHints="" />
+            android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnCadastro"
             style="@style/ButtonForm"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
@@ -98,5 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
 
     </LinearLayout>
+
+
 
 </LinearLayout>

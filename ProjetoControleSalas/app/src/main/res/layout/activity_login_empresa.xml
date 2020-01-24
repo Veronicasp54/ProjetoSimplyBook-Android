@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context=".ui.Cadastro">
 
+    <ImageButton
+        android:id="@+id/imageButtonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        android:background="@null"
+        android:src="@drawable/icons_user"
+        android:tint="@null" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

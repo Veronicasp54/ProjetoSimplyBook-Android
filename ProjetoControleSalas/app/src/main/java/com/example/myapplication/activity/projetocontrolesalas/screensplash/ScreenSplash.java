@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
 import com.example.myapplication.activity.projetocontrolesalas.ui.MainActivity;
 
 public class ScreenSplash extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class ScreenSplash extends AppCompatActivity {
     }
 
     private void abrirTelaInicial() {
-        Intent intent = new Intent(ScreenSplash.this, MainActivity.class);
+        Intent intent = new Intent(ScreenSplash.this, Login.class);
         startActivity(intent);
         finish();
     }
