@@ -28,5 +28,6 @@
     <string name="invalid_confirmed_password">
         Confirme a senha informada no campo acima.
     </string>
+    <string name="hint_cadastro_cep">CEP</string>
 
 </resources>
