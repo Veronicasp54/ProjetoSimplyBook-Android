@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorAccent"
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/lista_pacotes_banner_inicial"
+        android:id="@+id/lista_banner_inicial"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:contentDescription=""
@@ -18,45 +18,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@color/colorPrimary"  />
+        app:srcCompat="@color/colorPrimary" />
 
     <TextView
-        android:id="@+id/lista_pacotes_especiais"
+        android:id="@+id/textViewSalas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_margin="20dp"
         android:text="Salas Existentes"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/lista_banner_inicial"
+        app:layout_constraintEnd_toEndOf="@+id/lista_banner_inicial"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintBottom_toBottomOf="lista_pacotes_banner_inicial"
-        app:layout_constraintEnd_toEndOf="lista_pacotes_banner_inicial"
-        app:layout_constraintStart_toStartOf="@+id/lista_pacotes_banner_inicial"
-        app:layout_constraintTop_toTopOf="lista_pacotes_banner_inicial" />
+        app:layout_constraintStart_toStartOf="@+id/lista_banner_inicial"
+        app:layout_constraintTop_toTopOf="@+id/lista_banner_inicial"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/lista_pacotes_pais"
-        app:layout_constraintStart_toStartOf="@+id/lista_pacotes_especiais"
-        app:layout_constraintTop_toBottomOf="@+id/lista_pacotes_especiais"
+        android:id="@+id/textViewNomeEmpresa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Empresa"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textViewSalas"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSalas" />
 
     <ListView
-        android:id="@+id/lista_pacotes_listview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lista_pacotes_banner_inicial"
-        tools:listitem="@layout/list_item_sala"
+        android:id="@+id/lista_salas_listview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lista_banner_inicial"
+        tools:listitem="@layout/list_item_sala" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
