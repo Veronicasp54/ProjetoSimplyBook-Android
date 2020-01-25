@@ -35,5 +35,10 @@
     <string name="meudia">Meu Dia</string>
     <string name="salas">SALAS</string>
     <string name="nome_empresa">Empresa: Nome empresa</string>
+    <string name="conta">CONTA</string>
+    <string name="empresa">EMPRESA</string>
+    <string name="empresa_nome_empresa">Empresa: Nome empresa</string>
+    <string name="todo">TODO</string>
+    <string name="tema">TEMA</string>
 
 </resources>
