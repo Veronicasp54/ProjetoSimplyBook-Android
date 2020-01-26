@@ -3,70 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:layout_gravity="center_vertical">
+    android:background="@android:color/white">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutTitle"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:text="@string/perfil"
-            android:textColor="@android:color/black"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/textViewNome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/nome_user"></TextView>
-
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/email_user"></TextView>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_height="1dp"
-                android:src="@drawable/traco_desing"></ImageView>
+                android:id="@+id/icon_user"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/icons_user_orange"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
+
             <TextView
+                android:id="@+id/textViewUser"
                 android:layout_width="wrap_content"
-                android:layout_margin="8dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:gravity="left"
+                android:text="@string/usuario"
                 android:textColor="@color/colorPrimary"
-                android:text="@string/conta"></TextView>
+                android:textSize="24sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/icon_user"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
+
 
             <ImageView
-                android:layout_width="100dp"
+                android:id="@+id/risco_desing_inicio"
+                android:layout_width="420dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/traco_desing"></ImageView>
-        </LinearLayout>
+                android:src="@drawable/traco_desing"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUser"></ImageView>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:text="@string/nome_user"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/risco_desing_inicio"></TextView>
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+
+                android:text="@string/email_user"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNome"></TextView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -75,7 +90,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutTitle">
+        app:layout_constraintTop_toBottomOf="@id/cardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_empresa"

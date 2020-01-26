@@ -50,5 +50,6 @@
     <string name="nome_user"> Nome Usuário </string>
     <string name="email_user">user@email.com</string>
     <string name="conta">CONTA</string>
+    <string name="usuario">USUÁRIO</string>
 
 </resources>
