@@ -6,7 +6,7 @@
     <!--
         Definindo a cor de background - azul claro.
     -->
-    <solid android:color="@color/colorAccent" />
+    <solid android:color="@android:color/white" />
 
     <!--
         Definindo bordas de 1dp de espessura e na cor

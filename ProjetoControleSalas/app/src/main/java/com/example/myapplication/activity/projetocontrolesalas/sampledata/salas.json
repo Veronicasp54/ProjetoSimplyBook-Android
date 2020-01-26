@@ -1,9 +1,0 @@
-{
-  "sala": [
-    {
-      "nome": "Conselho Jedi",
-      "descricao": "Pequena Sala",
-      "imagem": "@drawable/conselho_jedi"
-    }
-  ]
-}

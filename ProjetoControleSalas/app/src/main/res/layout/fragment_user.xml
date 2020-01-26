@@ -9,23 +9,23 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent">
+            android:background="@android:color/white">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/icon_user"
+                android:src="@drawable/icons_user_orange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
@@ -36,7 +36,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12dp"
                 android:text="Nome User"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,33 +48,48 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="12dp"
                 android:text="User@email.com"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNome" />
+
+            <ImageView
+                android:id="@+id/risco_desing_user"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/traco_desing"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"></ImageView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_empresa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_margin="20dp"
             android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/icon_empresa"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="6dp"
                 android:foregroundGravity="center_horizontal"
@@ -91,7 +106,7 @@
                 android:gravity="left"
                 android:text="@string/empresa"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -115,9 +130,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
-                android:layout_marginTop="6dp"
-                android:textSize="16sp"
+                android:layout_marginTop="12dp"
                 android:text="@string/empresa_nome_empresa"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/risco_desing"></TextView>
@@ -125,10 +140,10 @@
 
             <ImageView
                 android:id="@+id/icon_conta"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:contentDescription="@string/todo"
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/icon_account"
@@ -140,12 +155,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:foregroundGravity="center_vertical"
                 android:gravity="left"
                 android:text="@string/conta"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -170,8 +185,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="38dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/shape_button_ligth"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_button"
                 android:text="ATUALIZAR"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
@@ -184,9 +199,9 @@
                 android:id="@+id/buttonSair"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/shape_button_ligth"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_button"
                 android:text="SAIR"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
@@ -197,10 +212,10 @@
 
             <ImageView
                 android:id="@+id/icon_theme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginLeft="4dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:contentDescription="@string/todo"
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/icon_theme"
@@ -212,12 +227,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:foregroundGravity="center_vertical"
                 android:gravity="left"
                 android:text="@string/tema"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -242,9 +257,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:text="Escuro"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -254,11 +269,11 @@
                 android:id="@+id/icon_theme_escuro"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/icon_claro"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toEndOf="@+id/textEscuro"
                 app:layout_constraintTop_toTopOf="@+id/risco_desing3"></ImageView>
 
@@ -269,7 +284,7 @@
                 android:layout_marginTop="12dp"
                 android:gravity="center_vertical"
                 android:text="Claro"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/textEscuro"
@@ -279,11 +294,11 @@
                 android:id="@+id/icon_theme_claro"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="24dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/ic_escuro"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.30"
                 app:layout_constraintStart_toEndOf="@+id/textLigth"
                 app:layout_constraintTop_toBottomOf="@+id/icon_theme_escuro"></ImageView>
 

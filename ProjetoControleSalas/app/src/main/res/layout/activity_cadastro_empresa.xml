@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo_login"
+    android:background="@drawable/fundo_iniciais"
     android:orientation="vertical"
     tools:context=".ui.Cadastro">
 
@@ -79,7 +79,7 @@
             style="@style/EditTextFormField"
             android:layout_marginTop="8dp"
             android:autofillHints=""
-            android:background="@drawable/bg_form_field_sqr"
+            android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_password"
             android:imeOptions="actionNext"
             android:inputType="textPassword" />
@@ -89,7 +89,7 @@
             style="@style/EditTextFormField"
             android:layout_marginTop="8dp"
             android:autofillHints=""
-            android:background="@drawable/bg_form_field_bottom"
+            android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_confirm_password"
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
@@ -99,7 +99,7 @@
             style="@style/ButtonForm"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:background="@drawable/shape_button"
+            android:background="@drawable/shape_button_ligth"
             android:text="@string/sign_up"
             android:textColor="@android:color/black"
             app:layout_constraintRight_toRightOf="@+id/ll_container_fields"

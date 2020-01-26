@@ -4,28 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo_login"
+    android:background="@drawable/fundo_iniciais"
     android:orientation="vertical"
     tools:context=".ui.Login">
-
-    <ImageButton
-        android:id="@+id/imageButtonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="20dp"
-        android:background="@null"
-        android:src="@mipmap/ic_back_square"
-        android:tint="@null" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="60dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="Login Usuário"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="80dp"
+        android:text="LOGIN USUÁRIO"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"></TextView>
 
@@ -36,7 +25,7 @@
         android:layout_gravity="center|top"
         android:layout_marginTop="40dp"
         android:contentDescription="Icone Usuario"
-        android:src="@drawable/ic_account_circle_black"
+        android:src="@drawable/ic_account_white"
         app:layout_constraintBottom_toTopOf="@+id/ll_container_fields"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
@@ -85,6 +74,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="2dp"
             android:clickable="true"
+            android:textColor="@android:color/black"
+            android:layout_margin="6dp"
             android:text="Não possui conta? Cadastre-se aqui"></TextView>
 
 
@@ -93,7 +84,7 @@
             style="@style/ButtonForm"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:background="@drawable/shape_button"
+            android:background="@android:drawable/screen_background_light_transparent"
             android:text="@string/do_login"
             android:textColor="@android:color/black"
             app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
