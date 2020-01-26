@@ -5,4 +5,5 @@
     <color name="colorPrimary"> #ff9933</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorFundo">#e6eeff</color>
+    <color name="colorPink">#dd4993</color>
 </resources>

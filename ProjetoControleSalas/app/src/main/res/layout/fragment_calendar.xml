@@ -11,29 +11,29 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="CALENDÁRIO"
-        android:layout_marginTop="15dp"
-        android:textSize="30sp"
-        android:textColor="@android:color/black"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textQuantReunioes"
         android:layout_gravity="center_horizontal"
-        android:text="@string/quantidadeReunioes"
-        ></TextView>
+        android:layout_marginTop="15dp"
+        android:text="CALENDÁRIO"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/textQuantReunioes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dataDia"
-        android:layout_gravity="center_horizontal">
-    </TextView>
+        android:layout_gravity="center_horizontal"
+        android:text="@string/quantidadeReunioes"></TextView>
+
+    <TextView
+        android:id="@+id/textViewDataAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/dataDia"></TextView>
 
 
-       <CalendarView
+    <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></CalendarView>
 

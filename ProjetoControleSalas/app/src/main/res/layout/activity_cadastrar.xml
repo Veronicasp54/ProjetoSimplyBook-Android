@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="CADASTRO USUÁRIO"
         android:textColor="@android:color/white"
@@ -60,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NOME:"
+            android:textStyle="bold"
             android:textColor="@android:color/white"></TextView>
 
         <EditText
@@ -76,7 +77,8 @@
             android:layout_height="wrap_content"
             android:text="EMAIL:"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"></TextView>
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
 
         <EditText
             android:id="@+id/email_cadastrar"
@@ -92,7 +94,8 @@
             android:layout_height="wrap_content"
             android:text="SENHA:"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"></TextView>
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
 
         <EditText
             android:id="@+id/senha_cadastrar"
@@ -108,7 +111,8 @@
             android:layout_height="wrap_content"
             android:text="CONFIRMAR SENHA:"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"></TextView>
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
 
         <EditText
             android:id="@+id/senha_confirmar"
@@ -126,7 +130,7 @@
             android:layout_marginTop="35dp"
             android:background="@drawable/shape_button_ligth"
             android:text="@string/sign_up"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
             app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
 

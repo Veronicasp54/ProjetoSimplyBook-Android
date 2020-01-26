@@ -46,6 +46,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMAIL:"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
         <EditText
             android:id="@+id/email_entrar"
             style="@style/EditTextFormField"
@@ -56,10 +62,16 @@
             android:inputType="textEmailAddress"
             android:textColor="@android:color/black" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SENHA:"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
         <EditText
             android:id="@+id/senha_entrar"
             style="@style/EditTextFormField"
-            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_password"
@@ -84,9 +96,9 @@
             style="@style/ButtonForm"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:background="@android:drawable/screen_background_light_transparent"
+            android:background="@drawable/shape_button_ligth"
             android:text="@string/do_login"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="@+id/ll_container_fields"
             app:layout_constraintTop_toBottomOf="@+id/ll_container_fields" />
 

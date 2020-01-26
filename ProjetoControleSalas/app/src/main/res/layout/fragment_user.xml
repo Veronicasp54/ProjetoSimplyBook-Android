@@ -258,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="12dp"
-                android:text="Escuro"
+                android:text="Dia"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -266,14 +266,14 @@
                 app:layout_constraintTop_toTopOf="@+id/risco_desing3"></TextView>
 
             <ImageView
-                android:id="@+id/icon_theme_escuro"
+                android:id="@+id/icon_theme_claro"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="12dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/icon_claro"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.36"
                 app:layout_constraintStart_toEndOf="@+id/textEscuro"
                 app:layout_constraintTop_toTopOf="@+id/risco_desing3"></ImageView>
 
@@ -283,7 +283,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center_vertical"
-                android:text="Claro"
+                android:text="Noite"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -291,7 +291,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textEscuro"></TextView>
 
             <ImageView
-                android:id="@+id/icon_theme_claro"
+                android:id="@+id/icon_theme_escuro"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="24dp"
@@ -300,7 +300,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.30"
                 app:layout_constraintStart_toEndOf="@+id/textLigth"
-                app:layout_constraintTop_toBottomOf="@+id/icon_theme_escuro"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/icon_theme_claro"></ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
