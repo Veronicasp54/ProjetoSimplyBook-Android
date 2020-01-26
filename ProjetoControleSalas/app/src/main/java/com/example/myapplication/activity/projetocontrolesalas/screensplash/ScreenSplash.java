@@ -1,34 +1,33 @@
 package com.example.myapplication.activity.projetocontrolesalas.screensplash;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
-import com.example.myapplication.activity.projetocontrolesalas.ui.MainActivity;
 
-public class ScreenSplash extends AppCompatActivity {
+public class ScreenSplash extends Activity {
+
+    //Define tempo que a tela vai exibir. (tempo em milisegundos)
+    private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_splash);
-        Handler handle = new Handler();
-        handle.postDelayed(new Runnable() {
+        setContentView(R.layout.activity_screensplash);
+
+        new Handler().postDelayed(new Runnable() {
+
             @Override
             public void run() {
-                abrirTelaInicial();
+                //Método que será executado uma vez.. Na abertura do app.
+                Intent i = new Intent(ScreenSplash.this, Login.class);
+                startActivity(i);
+
+                finish();
             }
-        }, 2000);
-
-    }
-
-    private void abrirTelaInicial() {
-        Intent intent = new Intent(ScreenSplash.this, Login.class);
-        startActivity(intent);
-        finish();
+        }, SPLASH_TIME_OUT);
     }
 }

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">ProjetoControleSalas v1 2</string>
+
+    <string name="app_name"> SIMPLY BOOK </string>
+
     <string name="hint_name">Nome</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_password">Senha</string>
@@ -29,6 +31,8 @@
     <string name="invalid_confirmed_password">
         Confirme a senha informada no campo acima.
     </string>
+
+    <!-- Fixas -->
     <string name="hint_cadastro_cep">CEP</string>
     <string name="quantidadeReunioes">4 reuniões</string>
     <string name="dataDia">sexta-feira, 24</string>

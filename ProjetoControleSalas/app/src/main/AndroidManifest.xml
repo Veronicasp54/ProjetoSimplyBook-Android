@@ -12,22 +12,20 @@
         <activity android:name=".ui.LoginEmpresa"></activity>
         <activity android:name=".ui.CadastroEmpresa" />
         <activity android:name=".ui.Menu" />
-        <activity android:name=".ui.Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.Cadastro">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".ui.Login"
+            android:theme="@style/Splash" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".ui.Cadastro"
+            android:theme="@style/Splash" />
+
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".screensplash.ScreenSplash">
+
+        <activity
+            android:name=".screensplash.ScreenSplash"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

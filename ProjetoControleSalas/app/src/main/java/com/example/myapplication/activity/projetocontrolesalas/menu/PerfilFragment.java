@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -28,7 +29,7 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-         view =  inflater.inflate(R.layout.fragment_user, container, false);
+        view = inflater.inflate(R.layout.fragment_user, container, false);
 
         iniciaComponentes();
 
@@ -51,12 +52,17 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Toast.makeText(getContext(), "Click buttonSalvar", Toast.LENGTH_LONG).show();
+
+
             }
         });
 
         buttonSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(getContext(), "Click buttonSair", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -69,7 +75,7 @@ public class PerfilFragment extends Fragment {
         imageViewEscuro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+                Toast.makeText(getContext(), "Click modo Noite", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -78,6 +84,7 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 view.getContext().setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+                Toast.makeText(getContext(), "Click modo Dia", Toast.LENGTH_LONG).show();
 
 
             }
