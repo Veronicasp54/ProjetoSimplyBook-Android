@@ -91,7 +91,7 @@ public class CalendarFragment extends Fragment {
         textViewDataAtual.setText(getData());
 
         mesAtual = (TextView) view.findViewById(R.id.mesAtual);
-        mesAtual.setText(getMesAtual());
+        mesAtual.setText(getMesAtual().toString().toUpperCase());
 
 
     }
