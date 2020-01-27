@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -31,10 +33,55 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/dataDia"></TextView>
 
-
-    <CalendarView
-        android:id="@+id/calendarView"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></CalendarView>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/traco_desing"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/reservas"
+            android:textColor="@color/colorPrimary"></TextView>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/traco_desing"></ImageView>
+    </LinearLayout>
+
+    <devs.mulham.horizontalcalendar.HorizontalCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/white"
+        app:selectedDateBackground="@android:color/white"
+        app:selectorColor="@color/colorPrimary"
+        app:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
+
+    <ListView
+        android:id="@+id/lista_pacotes_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        tools:listitem="@layout/item_list_calendar" >
+
+    </ListView>
 
 </LinearLayout>

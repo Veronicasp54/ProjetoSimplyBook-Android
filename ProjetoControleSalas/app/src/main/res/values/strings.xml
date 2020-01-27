@@ -51,5 +51,8 @@
     <string name="email_user">user@email.com</string>
     <string name="conta">CONTA</string>
     <string name="usuario">USUÁRIO</string>
+    <string name="reservas">RESERVAS</string>
+    <string name="horario">8:00</string>
+    <string name="descricao_reuniao">Descricao reuniao</string>
 
 </resources>
