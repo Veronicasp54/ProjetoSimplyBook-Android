@@ -52,7 +52,6 @@ public class CalendarFragment extends Fragment {
     }
 
     private void createCalendar() {
-        Locale local = new Locale("pt", "BR");
 
         /* start before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -88,8 +87,8 @@ public class CalendarFragment extends Fragment {
 
     private void iniciaComponentes() {
 
-        textViewDataAtual = (TextView) view.findViewById(R.id.dataAtual);
-       // mesAtual.setText(getData());
+        textViewDataAtual = (TextView) view.findViewById(R.id.diaDaSemana);
+        textViewDataAtual.setText(getData());
 
         mesAtual = (TextView) view.findViewById(R.id.mesAtual);
         mesAtual.setText(getMesAtual());
@@ -100,7 +99,7 @@ public class CalendarFragment extends Fragment {
     private String getData() {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd ',' EEEE", local);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
         return dateFormat.format(data);
     }
 

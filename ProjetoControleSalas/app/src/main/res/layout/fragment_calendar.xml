@@ -33,6 +33,7 @@
             android:textColor="@android:color/darker_gray"></TextView>
 
         <TextView
+            android:id="@+id/diaDaSemana"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DIA DA SEMANA"
@@ -57,7 +58,7 @@
                 android:id="@+id/mesAtual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 android:text="JANEIRO"
                 android:textColor="@color/colorPrimary"></TextView>
 
