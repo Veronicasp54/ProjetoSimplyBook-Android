@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,16 +34,13 @@ public class CalendarFragment extends Fragment {
     private Locale local;
     private Date data;
     private SimpleDateFormat dateFormat;
+    private ListView listViewEventos;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        // Inflate the layout for this fragment
-
-         data = new Date();
-         local = new Locale("pt", "BR");
 
         createCalendar();
         iniciaComponentes();
@@ -75,17 +73,28 @@ public class CalendarFragment extends Fragment {
                 .end()
                 .build();
 
+        eventCalendar();
+
+    }
+
+    private void eventCalendar(){
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
+
+
+
             }
 
         });
-
     }
-
     private void iniciaComponentes() {
+
+        data = new Date();
+        local = new Locale("pt", "BR");
+
+        listViewEventos = view.findViewById(R.id.lista_eventos_listview);
 
         textViewDataAtual = (TextView) view.findViewById(R.id.diaDaSemana);
         textViewDataAtual.setText(getData());

@@ -81,7 +81,7 @@
             app:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
 
         <ListView
-            android:id="@+id/lista_pacotes_listview"
+            android:id="@+id/lista_eventos_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
