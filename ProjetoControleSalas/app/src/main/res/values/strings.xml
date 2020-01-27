@@ -44,7 +44,6 @@
     <string name="perfil">PERFIL</string>
     <string name="empresa">EMPRESA</string>
     <string name="empresa_nome_empresa">Empresa: Nome empresa</string>
-    <string name="todo">TODO</string>
     <string name="tema">TEMA</string>
     <string name="todas">TODAS</string>
     <string name="nome_user"> Nome Usuário </string>
@@ -54,5 +53,8 @@
     <string name="reservas">RESERVAS</string>
     <string name="horario">8:00</string>
     <string name="descricao_reuniao">Descricao reuniao</string>
+    <string name="calendario">CALENDÁRIO</string>
+    <string name="data_atual">sexta-feira, 24</string>
+    <string name="todo">TODO</string>
 
 </resources>

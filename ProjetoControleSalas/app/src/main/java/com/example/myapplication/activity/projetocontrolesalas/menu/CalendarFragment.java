@@ -15,7 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
@@ -26,12 +29,30 @@ public class CalendarFragment extends Fragment {
     private TextView textViewDataAtual;
     private HorizontalCalendar horizontalCalendar;
     private View view;
+    private TextView mesAtual;
+    private Locale local;
+    private Date data;
+    private SimpleDateFormat dateFormat;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
         // Inflate the layout for this fragment
+
+         data = new Date();
+         local = new Locale("pt", "BR");
+
+        createCalendar();
+        iniciaComponentes();
+
+
+        return view;
+    }
+
+    private void createCalendar() {
+        Locale local = new Locale("pt", "BR");
 
         /* start before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -51,7 +72,7 @@ public class CalendarFragment extends Fragment {
                 .textSize(14f, 24f, 14f)
                 .showTopText(true)
                 .showBottomText(true)
-                .textColor(Color.GRAY,Color.BLACK)
+                .textColor(Color.GRAY, Color.BLACK)
                 .end()
                 .build();
 
@@ -63,8 +84,30 @@ public class CalendarFragment extends Fragment {
 
         });
 
+    }
 
-        return view;
+    private void iniciaComponentes() {
+
+        textViewDataAtual = (TextView) view.findViewById(R.id.dataAtual);
+       // mesAtual.setText(getData());
+
+        mesAtual = (TextView) view.findViewById(R.id.mesAtual);
+        mesAtual.setText(getMesAtual());
+
+
+    }
+
+    private String getData() {
+        Date data = new Date();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd ',' EEEE", local);
+        return dateFormat.format(data);
+    }
+
+    private CharSequence getMesAtual() {
+
+        dateFormat = new SimpleDateFormat("MMMM", local);
+        return dateFormat.format(data);
     }
 
 

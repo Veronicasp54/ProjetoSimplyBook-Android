@@ -19,31 +19,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:text="CALENDÁRIO"
+            android:text="@string/calendario"
             android:textColor="@android:color/black"
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textQuantReunioes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/quantidadeReunioes"></TextView>
+            android:text="@string/reunioes"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"></TextView>
 
         <TextView
-            android:id="@+id/textViewDataAtual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/dataDia"></TextView>
+            android:text="DIA DA SEMANA"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"></TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
@@ -51,20 +50,23 @@
                 android:layout_width="100dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/traco_desing"></ImageView>
+                android:src="@drawable/traco_desing"
+                android:contentDescription="@string/todo"></ImageView>
 
             <TextView
+                android:id="@+id/mesAtual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/reservas"
+                android:text="JANEIRO"
                 android:textColor="@color/colorPrimary"></TextView>
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/traco_desing"></ImageView>
+                android:src="@drawable/traco_desing"
+                android:contentDescription="@string/todo"></ImageView>
         </LinearLayout>
 
         <devs.mulham.horizontalcalendar.HorizontalCalendarView
@@ -73,9 +75,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:background="@android:color/white"
-            android:selectedDateBackground="@android:color/white"
-            android:selectorColor="@color/colorPrimary"
-            android:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
+            app:selectedDateBackground="@android:color/white"
+            app:selectorColor="@color/colorPrimary"
+            app:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
 
         <ListView
             android:id="@+id/lista_pacotes_listview"
