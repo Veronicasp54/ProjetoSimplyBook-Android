@@ -51,5 +51,8 @@
     <string name="email_user">user@email.com</string>
     <string name="conta">CONTA</string>
     <string name="usuario">USUÁRIO</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">OK</string>
+    <string name="new_event">Novo Evento</string>
 
 </resources>
