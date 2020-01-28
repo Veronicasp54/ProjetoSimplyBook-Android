@@ -1,4 +1,4 @@
-package com.example.myapplication.activity.projetocontrolesalas.sala;
+package com.example.myapplication.activity.projetocontrolesalas.model;
 
 public class Sala {
 

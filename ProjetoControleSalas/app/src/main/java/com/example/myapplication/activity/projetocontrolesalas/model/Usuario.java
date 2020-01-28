@@ -1,6 +1,6 @@
-package com.example.myapplication.activity.projetocontrolesalas.user;
+package com.example.myapplication.activity.projetocontrolesalas.model;
 
-import com.example.myapplication.activity.projetocontrolesalas.empresa.Empresa;
+import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 
 public class Usuario {
 

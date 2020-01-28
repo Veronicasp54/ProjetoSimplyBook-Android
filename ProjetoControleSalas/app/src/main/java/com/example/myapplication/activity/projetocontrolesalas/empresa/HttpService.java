@@ -2,6 +2,7 @@ package com.example.myapplication.activity.projetocontrolesalas.empresa;
 
 import android.os.AsyncTask;
 
+import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.google.gson.Gson;
 
 import java.io.IOException;

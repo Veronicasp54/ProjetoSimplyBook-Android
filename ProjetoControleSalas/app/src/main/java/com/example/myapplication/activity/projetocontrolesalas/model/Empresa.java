@@ -1,4 +1,6 @@
-package com.example.myapplication.activity.projetocontrolesalas.empresa;
+package com.example.myapplication.activity.projetocontrolesalas.model;
+
+import com.example.myapplication.activity.projetocontrolesalas.empresa.Cep;
 
 public class Empresa {
 
