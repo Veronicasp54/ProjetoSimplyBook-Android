@@ -30,7 +30,8 @@
                     android:src="@drawable/conselho_jedi"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:id="@+id/item_nome_sala"
@@ -40,7 +41,7 @@
                     android:background="@android:drawable/screen_background_dark_transparent"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="Nome Sala"
+                    android:text="@string/nome_sala"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -65,7 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccentLigth"
-                    android:text="Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum."
+                    android:text="@string/descricao"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:layout_margin="2dp"

@@ -60,6 +60,7 @@
     <string name="calendario">CALENDÁRIO</string>
     <string name="data_atual">sexta-feira, 24</string>
     <string name="todo">TODO</string>
->>>>>>> 8226cc81ced4336e6e48201e5b1e59f2f7f5fffe
+    <string name="descricao">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum.</string>
+    <string name="nome_sala">Nome Sala</string>
 
 </resources>

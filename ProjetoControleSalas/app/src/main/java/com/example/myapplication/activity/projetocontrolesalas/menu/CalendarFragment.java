@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,6 +36,7 @@ public class CalendarFragment extends Fragment {
     private Date data;
     private SimpleDateFormat dateFormat;
     private ListView listViewEventos;
+    private FloatingActionButton floatingActionButton;
 
 
     @Nullable
@@ -77,18 +79,18 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    private void eventCalendar(){
+    private void eventCalendar() {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
 
 
-
             }
 
         });
     }
+
     private void iniciaComponentes() {
 
         data = new Date();
@@ -101,6 +103,15 @@ public class CalendarFragment extends Fragment {
 
         mesAtual = (TextView) view.findViewById(R.id.mesAtual);
         mesAtual.setText(getMesAtual().toString().toUpperCase());
+
+        floatingActionButton = view.findViewById(R.id.floatActionButton);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "floatingActionButton", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
