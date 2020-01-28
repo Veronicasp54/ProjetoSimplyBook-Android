@@ -1,40 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="@string/calendario"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reunioes"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"></TextView>
+
+        <TextView
+            android:id="@+id/diaDaSemana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DIA DA SEMANA"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"></TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/traco_desing"
+                android:contentDescription="@string/todo"></ImageView>
+
+            <TextView
+                android:id="@+id/mesAtual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="JANEIRO"
+                android:textColor="@color/colorPrimary"></TextView>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/traco_desing"
+                android:contentDescription="@string/todo"></ImageView>
+        </LinearLayout>
+
+        <devs.mulham.horizontalcalendar.HorizontalCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@android:color/white"
+            app:selectedDateBackground="@android:color/white"
+            app:selectorColor="@color/colorPrimary"
+            app:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
+
+        <ListView
+            android:id="@+id/lista_eventos_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_marginTop="12dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            tools:listitem="@layout/item_list_calendar">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:text="CALENDÁRIO"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textQuantReunioes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/quantidadeReunioes"></TextView>
-
-    <TextView
-        android:id="@+id/textViewDataAtual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/dataDia"></TextView>
-
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></CalendarView>
-
-</LinearLayout>
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_add_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_margin="4dp"
+        app:layout_constraintStart_toStartOf="parent"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+</androidx.constraintlayout.widget.ConstraintLayout>

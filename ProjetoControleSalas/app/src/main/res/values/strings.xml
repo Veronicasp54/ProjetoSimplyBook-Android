@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name"> SIMPLY BOOK </string>
+    <string name="app_name"> Simply Book</string>
 
     <string name="hint_name">Nome</string>
     <string name="hint_email">E-mail</string>
@@ -44,7 +44,6 @@
     <string name="perfil">PERFIL</string>
     <string name="empresa">EMPRESA</string>
     <string name="empresa_nome_empresa">Empresa: Nome empresa</string>
-    <string name="todo">TODO</string>
     <string name="tema">TEMA</string>
     <string name="todas">TODAS</string>
     <string name="nome_user"> Nome Usuário </string>
@@ -54,5 +53,13 @@
     <string name="cancel">Cancelar</string>
     <string name="ok">OK</string>
     <string name="new_event">Novo Evento</string>
+
+    <string name="reservas">RESERVAS</string>
+    <string name="horario">8:00</string>
+    <string name="descricao_reuniao">Descricao reuniao</string>
+    <string name="calendario">CALENDÁRIO</string>
+    <string name="data_atual">sexta-feira, 24</string>
+    <string name="todo">TODO</string>
+>>>>>>> 8226cc81ced4336e6e48201e5b1e59f2f7f5fffe
 
 </resources>
