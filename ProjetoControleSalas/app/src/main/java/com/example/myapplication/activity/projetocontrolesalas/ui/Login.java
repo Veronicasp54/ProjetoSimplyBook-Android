@@ -33,20 +33,28 @@ public class Login extends AppCompatActivity {
         buttonLogin = findViewById(R.id.btnLogin);
         textViewCadastro = findViewById(R.id.realizar_cadastro);
 
-        textViewCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startClass(Cadastro.class);
-            }
-        });
+        startCadastro();
+        logar();
 
+
+    }
+
+    private void logar() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startClass(MainActivity.class);
             }
         });
+    }
 
+    private void startCadastro() {
+        textViewCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startClass(Cadastro.class);
+            }
+        });
 
     }
 
