@@ -11,7 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.services.Verificador;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -21,7 +24,6 @@ public class Login extends AppCompatActivity {
     private EditText editTextSenha;
     private Button buttonLogin;
     private TextView textViewCadastro;
-    private String senhaStr, emailStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,6 @@ public class Login extends AppCompatActivity {
         editTextEmail = findViewById(R.id.email_entrar);
         editTextSenha = findViewById(R.id.senha_entrar);
 
-         emailStr = editTextEmail.getText().toString();
-         senhaStr = editTextSenha.getText().toString();
 
         buttonLogin = findViewById(R.id.btnLogin);
         textViewCadastro = findViewById(R.id.realizar_cadastro);
@@ -50,21 +50,74 @@ public class Login extends AppCompatActivity {
 
     private void logar() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View v) {
 
+                String emailStr = editTextEmail.getText().toString().trim();
+                String senhaStr = editTextSenha.getText().toString().trim();
+
                 try {
-                    autenticarUsuario(emailStr, senhaStr);
-                    Toast.makeText(getApplicationContext(),"Login realizado com sucesso", Toast.LENGTH_LONG).show();
-                    startClass(MainActivity.class);
+                    String authReturn = new Verificador().execute(emailStr, senhaStr).get();
+
+
+
+                    //Toast.makeText(getApplicationContext(),authReturn,Toast.LENGTH_LONG).show();
+
+                    if (authReturn.equalsIgnoreCase("Login efetuado com sucesso!")) {
+                        Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
+                        startClass(MainActivity.class);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_LONG).show();
+
+
+                    }
 
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),"Login inválido", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), " inválido", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
             }
         });
+    }
+
+    public static String autenticarUsuario(String email, String password) throws Exception {
+
+        String urlWS = "http://172.30.248.56:8080/ReservaDeSala/rest/usuario/login/";
+
+        String authorizationHeader = "secret";
+
+        try {
+            StringBuilder result = new StringBuilder();
+            URL url = new URL(urlWS);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("authorization", authorizationHeader);
+            conn.setRequestProperty("email", email);
+            conn.setRequestProperty("password", password);
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+            rd.close();
+            System.out.println(result.toString());
+
+            return result.toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return "";
+    }
+
+    private void loginInvalido() {
+
     }
 
     private void startCadastro() {
@@ -83,27 +136,6 @@ public class Login extends AppCompatActivity {
         this.finish();
 
     }
-
-    public static int autenticarUsuario(String email, String password) throws Exception {
-        try {
-            String wsURL = "http://localhost:8080/ReservaDeSala/rest/usuario/login";
-            URL obj = new URL(wsURL);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Content-Type", "application/json; utf-8");
-            con.setRequestProperty("authorization", "secret");
-            con.setConnectTimeout(2000);
-            con.setRequestProperty("email", email);
-            con.setRequestProperty("password", password);
-
-            int responseCode = con.getResponseCode();
-            return responseCode;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 400;
-        }
-    }
-
 }
 
 
