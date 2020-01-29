@@ -1,11 +1,6 @@
 package com.example.myapplication.activity.projetocontrolesalas.ui;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +8,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorCadastro;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import android.util.Base64;
+
 
 public class Cadastro extends AppCompatActivity {
 
@@ -46,19 +50,68 @@ public class Cadastro extends AppCompatActivity {
 
         voltarTela();
 
-
     }
 
 
     private void cadastrar() {
+
         buttonCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startClass(Login.class);
+
+                String nome = editTextNome.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String senha = editTextSenha.getText().toString();
+
+                if (verificarDados() == true) {
+                    createJson(email, nome, senha);
+
+                    // startClass(Login.class);
+
+
+                } else {
+
+                }
+
             }
         });
 
+
     }
+
+    private void createJson(String email, String nome, String senha) {
+
+        JSONObject usuarioJson = new JSONObject();
+
+
+        try {
+            usuarioJson.put("email", email);
+            usuarioJson.put("senha", senha);
+            usuarioJson.put("nome", nome);
+
+
+            System.out.println(usuarioJson.toString());
+
+            String userEncoded = Base64.encodeToString(usuarioJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
+            System.out.println(userEncoded);
+
+            String respostaMetodo = new VerificadorCadastro().execute(email, nome, senha).get();
+
+            if (respostaMetodo.equals("Usuário criado com sucesso")) {
+
+                startClass(Login.class);
+            } else {
+                Toast.makeText(Cadastro.this, "Campos inválidos!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(
+                    Cadastro.this,
+                    "Erro ao efetuar cadastro!",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 
     private void voltarTela() {
         imageButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -86,13 +139,26 @@ public class Cadastro extends AppCompatActivity {
             chave = false;
         }
 
-        if (editTextEmail.getText().toString().trim().length() < 8) {
-            editTextEmail.setError("A senha deve ter no mínimo 8 caracteres!");
+        if (editTextSenha.getText().toString().trim().length() < 8) {
+            editTextSenha.setError("A senha deve ter no mínimo 8 caracteres!");
             chave = false;
+        }
+
+
+        if (editTextNome.getText().toString().trim().length() <= 0) {
+            editTextNome.setError("Campo obrigatório");
+            chave = false;
+
         }
 
         return chave;
     }
+
+
+    public void mostrarMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+    }
+
 
     public String criptografarSenha(String senha) {
         String criptografada = null;
@@ -116,12 +182,5 @@ public class Cadastro extends AppCompatActivity {
         return criptografada;
     }
 
-    public void mostrarMensagem(String mensagem) {
-        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
-    }
-
-    public void getEmpresa(){
-
-    }
 
 }
