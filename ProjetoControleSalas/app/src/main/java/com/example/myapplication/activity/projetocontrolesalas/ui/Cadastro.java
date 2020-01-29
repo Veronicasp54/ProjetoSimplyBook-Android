@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -95,7 +96,7 @@ public class Cadastro extends AppCompatActivity {
             String userEncoded = Base64.encodeToString(usuarioJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
             System.out.println(userEncoded);
 
-            String respostaMetodo = new VerificadorCadastro().execute(email, nome, senha).get();
+            String respostaMetodo = new VerificadorCadastro().execute(userEncoded).get();
 
             if (respostaMetodo.equals("Usuário criado com sucesso")) {
 
