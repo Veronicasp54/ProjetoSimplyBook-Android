@@ -54,9 +54,6 @@ public class Login extends AppCompatActivity {
 
                 if (verificarDados() == true) {
 
-                    startClass(Cadastro.class);
-
-
                     try {
                         String authReturn = new VerificadorLogin().execute(emailStr, senhaStr).get();
 
@@ -84,9 +81,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void loginInvalido() {
 
-    }
 
     private void startCadastro() {
         textViewCadastro.setOnClickListener(new View.OnClickListener() {
