@@ -14,6 +14,7 @@ public class VerificadorCadastro extends AsyncTask<String, Void, String> {
         String urlWS = "http://172.30.248.134:8080/ReservaDeSala/rest/usuario/cadastro/";
 
         StringBuilder result = new StringBuilder();
+
         try {
             URL url = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
