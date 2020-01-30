@@ -7,13 +7,13 @@ public class Usuario {
     private String nomeUser;
     private String emailUser;
     private int id;
-    private Empresa empresa;
+    private int idEmpresa;
 
-    public Usuario(String nomeUser, String emailUser, int id, Empresa empresa) {
+    public Usuario(String nomeUser, String emailUser, int id, int idEmpresa) {
         this.nomeUser = nomeUser;
         this.emailUser = emailUser;
         this.id = id;
-        this.empresa = empresa;
+        this.idEmpresa = idEmpresa;
     }
 
     public String getNomeUser() {
@@ -40,11 +40,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public int getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 }

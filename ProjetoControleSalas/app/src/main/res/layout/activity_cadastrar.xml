@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="CADASTRO USUÁRIO"
         android:textColor="@android:color/white"
@@ -71,6 +71,20 @@
             android:hint="@string/hint_name"
             android:imeOptions="actionNext"
             android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMPRESA:"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"></TextView>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinnerEmpresa"
+            android:visibility="invisible"
+            android:imeOptions="actionNext"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"

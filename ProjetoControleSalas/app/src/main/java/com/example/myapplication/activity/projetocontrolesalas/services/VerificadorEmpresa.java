@@ -7,21 +7,22 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class VerificadorCadastro extends AsyncTask<String, Void, String> {
+public class VerificadorEmpresa  extends AsyncTask<String, Void, String> {
 
+
+    @Override
     protected String doInBackground(String... strings) {
 
-        String urlWS = "http:/172.30.248.134:8080/ReservaDeSala/rest/usuario/cadastro/";
+        String urlWS = "http://172.30.248.134:8080/ReservaDeSala/rest/organizacao/organizacoesByDominio";
 
         StringBuilder result = new StringBuilder();
-
         try {
             URL url = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+            conn.setRequestMethod("GET");
             conn.setRequestProperty("authorization", "secret");
-            conn.setRequestProperty("novoUsuario", strings[0]);
-            conn.setConnectTimeout(6000);
+            conn.setRequestProperty("dominio", strings[0]);
+            conn.setConnectTimeout(2000);
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
@@ -29,7 +30,6 @@ public class VerificadorCadastro extends AsyncTask<String, Void, String> {
                 result.append(line);
             }
             rd.close();
-            System.out.println("Resultado do cadastro: " + result.toString());
             return result.toString();
         } catch (Exception e) {
             e.printStackTrace();

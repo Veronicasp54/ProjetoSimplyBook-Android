@@ -3,6 +3,7 @@
     package="com.example.myapplication.activity.projetocontrolesalas">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"

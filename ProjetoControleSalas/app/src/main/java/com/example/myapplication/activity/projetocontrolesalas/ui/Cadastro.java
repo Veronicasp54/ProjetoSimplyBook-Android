@@ -2,26 +2,29 @@ package com.example.myapplication.activity.projetocontrolesalas.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorCadastro;
+import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorEmpresa;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import android.util.Base64;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Cadastro extends AppCompatActivity {
@@ -29,6 +32,7 @@ public class Cadastro extends AppCompatActivity {
     private EditText editTextEmail, editTextNome, editTextSenha, editTextSenhaConfirmar;
     private Button buttonCadastrar;
     private ImageButton imageButtonBack;
+    private Spinner spinnerEmpresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +48,13 @@ public class Cadastro extends AppCompatActivity {
         editTextEmail = findViewById(R.id.email_cadastrar);
         editTextNome = findViewById(R.id.nome_cadastrar);
         editTextSenha = findViewById(R.id.senha_cadastrar);
+        editTextSenhaConfirmar = findViewById(R.id.senha_confirmar);
         buttonCadastrar = findViewById(R.id.btnCadastro);
         imageButtonBack = findViewById(R.id.imageButtonBack);
+        spinnerEmpresa = findViewById(R.id.spinnerEmpresa);
 
         cadastrar();
-
+        inicializaEmailFocusListener();
         voltarTela();
 
     }
@@ -63,6 +69,8 @@ public class Cadastro extends AppCompatActivity {
                 String nome = editTextNome.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String senha = editTextSenha.getText().toString();
+                //int id_organizacao = getIdOrganizacao();
+
 
                 if (verificarDados() == true) {
                     createJson(email, nome, senha);
@@ -89,6 +97,7 @@ public class Cadastro extends AppCompatActivity {
             usuarioJson.put("email", email);
             usuarioJson.put("senha", senha);
             usuarioJson.put("nome", nome);
+            // usuarioJson.put("idOrganizacao", idOrganizacao);
 
 
             System.out.println(usuarioJson.toString());
@@ -113,6 +122,96 @@ public class Cadastro extends AppCompatActivity {
 
     }
 
+
+    private void inicializaEmailFocusListener() {
+
+        editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String emailAfterTextChanged = editTextEmail.getText().toString();
+
+                    if (emailAfterTextChanged.contains("@")) {
+                        String[] emailCompleto = emailAfterTextChanged.split("@");
+                        if (emailCompleto.length > 1) {
+                            String dominio = emailCompleto[1];
+                            if (dominio.contains(".")) {
+                                System.out.println("dominio: " + dominio);
+                                try {
+                                    String organizacoesStringFromServer = new VerificadorEmpresa().execute(dominio).get();
+                                    System.out.println("Organizações em string: " + organizacoesStringFromServer);
+
+                                    // 1 - verifica se a string nao eh vazia -> exibe erro dizendo q n existe organizacao com o dominio informado
+
+
+                                   if (organizacoesStringFromServer.length() > 0) {
+
+                                        // 2 - inicializar um jsonarray a partir da string recebida
+                                        JSONArray jsonArray = new JSONArray(organizacoesStringFromServer);
+                                        List<Empresa> listaEmpresas = new ArrayList();
+
+
+
+                                        // 3 - verifica o length do array > 0
+                                       // 4 - se tem coisa no array, pega a posicao do array e inicializa um jsonobject
+                                       // 5 - verifica se o jsonObject possui os campos id, nome e tipoOrganizacao
+                                       // 6 - se ele possuir esses 3 atributos, entao voce passa pra variaveis
+                                       // 7 - criar em tempo de execuao um spinner com os as organizacoes
+
+                                        if (jsonArray.length() > 0) {
+
+                                            for (int i = 0; i < jsonArray.length(); i++) {
+                                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                                if (jsonObject.has("id") && jsonObject.has("nome") && jsonObject.has("tipoOrganizacao")) {
+
+                                                    int id = jsonObject.getInt("id");
+                                                    String nome = jsonObject.getString("nome");
+                                                    String tipoEmpresa = jsonObject.getString("tipoOrganizacao");
+
+                                                    Empresa newEmpresa = new Empresa();
+
+                                                    newEmpresa.setId(id);
+                                                    newEmpresa.setNomeEmpresa(nome);
+                                                    newEmpresa.setTipoEmpresa(tipoEmpresa);
+
+                                                    listaEmpresas.add(newEmpresa);
+                                                }
+
+
+                                            }
+
+
+
+
+
+                                        } else {
+                                            mostrarMensagem("Erro");
+
+                                        }
+
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Não pertence a nenhuma organização", Toast.LENGTH_LONG);
+
+                                    }
+
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+
+            }
+        });
+
+
+    }
 
     private void voltarTela() {
         imageButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +249,11 @@ public class Cadastro extends AppCompatActivity {
             editTextNome.setError("Campo obrigatório");
             chave = false;
 
+        }
+
+        if (editTextSenhaConfirmar.getText().toString().trim().length() <= 0
+                && editTextSenhaConfirmar.getText().toString() != editTextSenha.getText().toString()) {
+            chave = false;
         }
 
         return chave;
