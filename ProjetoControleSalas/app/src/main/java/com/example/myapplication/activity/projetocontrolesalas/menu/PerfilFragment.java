@@ -91,5 +91,12 @@ public class PerfilFragment extends Fragment {
         });
     }
 
+    private void alterarPerfil(){
+
+
+    }
+
+
+
 
 }

@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+        app:layout_constraintVertical_bias="1.0"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -27,8 +27,9 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -90,7 +91,9 @@
             android:background="@android:color/white"
             app:selectedDateBackground="@android:color/white"
             app:selectorColor="@color/colorPrimary"
-            app:textColorSelected="@android:color/white"></devs.mulham.horizontalcalendar.HorizontalCalendarView>
+            app:textColorSelected="@android:color/white">
+
+        </devs.mulham.horizontalcalendar.HorizontalCalendarView>
 
         <ListView
             android:id="@+id/lista_eventos_listview"
@@ -99,10 +102,9 @@
             android:layout_margin="12dp"
             android:layout_marginTop="12dp"
             android:dividerHeight="0dp"
-            tools:listitem="@layout/item_list_calendar">
-
-        </ListView>
+            tools:listitem="@layout/item_list_calendar"></ListView>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,8 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:src="@drawable/ic_back_white"
-        android:tint="@null" />
+        android:tint="@null"
+        android:contentDescription="TODO" />
 
     <TextView
         android:layout_width="wrap_content"
