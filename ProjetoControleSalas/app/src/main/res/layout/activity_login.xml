@@ -104,4 +104,15 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:background="@null"
+        android:tint="@null"
+        android:id="@+id/modoConvidado"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="60dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_last_page"></ImageButton>
+
 </LinearLayout>

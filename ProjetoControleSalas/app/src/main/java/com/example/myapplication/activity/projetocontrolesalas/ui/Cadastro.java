@@ -23,11 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -119,7 +117,10 @@ public class Cadastro extends AppCompatActivity {
 
             if (respostaMetodo.equals("Usuário criado com sucesso")) {
 
+                Toast.makeText(Cadastro.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
                 startClass(Login.class);
+
+
             } else {
                 Toast.makeText(Cadastro.this, "Campos inválidos!", Toast.LENGTH_SHORT).show();
             }
@@ -190,6 +191,7 @@ public class Cadastro extends AppCompatActivity {
                                                     ArrayAdapter<String> adapter = new ArrayAdapter<>(Cadastro.this, android.R.layout.simple_spinner_item, listaNomesEmpresas);
 
                                                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
                                                     spinnerEmpresa.setAdapter(adapter);
                                                     spinnerEmpresa.setVisibility(View.VISIBLE);
                                                     //  createSpinner(listaEmpresas);
@@ -261,6 +263,7 @@ public class Cadastro extends AppCompatActivity {
     }
 
     public boolean verificarDados() {
+
         boolean chave = true;
 
         if (editTextEmail.getText().toString().trim().isEmpty() || !editTextEmail.getText().toString().trim().contains("@")
@@ -281,10 +284,11 @@ public class Cadastro extends AppCompatActivity {
 
         }
 
-        if (editTextSenhaConfirmar.getText().toString().trim().length() <= 0
+       /*/ if (editTextSenhaConfirmar.getText().toString().trim().length()<= 0
                 && editTextSenhaConfirmar.getText().toString() != editTextSenha.getText().toString()) {
+            editTextSenhaConfirmar.setError("Senhas diferentes");
             chave = false;
-        }
+        }/*/
 
         return chave;
     }

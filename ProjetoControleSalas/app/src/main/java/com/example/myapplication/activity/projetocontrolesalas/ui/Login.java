@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class Login extends AppCompatActivity {
     private EditText editTextSenha;
     private Button buttonLogin;
     private TextView textViewCadastro;
+    private ImageButton btnModoConvidado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,11 @@ public class Login extends AppCompatActivity {
         buttonLogin = findViewById(R.id.btnLogin);
         textViewCadastro = findViewById(R.id.realizar_cadastro);
 
+        btnModoConvidado = findViewById(R.id.modoConvidado);
+
         startCadastro();
         logar();
+        modoConvidado();
 
 
     }
@@ -82,6 +87,17 @@ public class Login extends AppCompatActivity {
     }
 
 
+    private void modoConvidado(){
+
+        btnModoConvidado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startClass(MainActivity.class);
+            }
+        });
+    }
+
+
 
     private void startCadastro() {
         textViewCadastro.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +127,7 @@ public class Login extends AppCompatActivity {
         }
 
         if (editTextSenha.getText().toString().trim().length() < 8) {
-            editTextSenha.setError("Insira uma senha");
+            editTextSenha.setError("Insira uma senha válida");
             chave = false;
         }
 
