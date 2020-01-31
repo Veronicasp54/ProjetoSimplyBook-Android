@@ -44,7 +44,7 @@ public class DayFragment extends Fragment {
     private String getData() {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd ',' EEEE", local);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
         return dateFormat.format(data);
 
     }

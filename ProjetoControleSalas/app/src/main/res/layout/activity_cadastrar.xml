@@ -13,8 +13,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="15dp"
         android:background="@null"
         android:src="@drawable/ic_back_white"
         android:tint="@null" />
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="sans-serif-condensed-light"
         android:text="CADASTRO USUÁRIO"
         android:textColor="@android:color/white"
@@ -34,7 +34,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:contentDescription="Icone Usuario"
         android:src="@drawable/ic_account_white"
         app:layout_constraintBottom_toTopOf="@+id/ll_container_fields"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,8 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NOME:"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"></TextView>
+            android:textColor="@android:color/white"
+            android:textStyle="bold"></TextView>
 
         <EditText
             android:id="@+id/nome_cadastrar"
@@ -72,27 +72,14 @@
             android:imeOptions="actionNext"
             android:inputType="textPersonName" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EMPRESA:"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"></TextView>
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/spinnerEmpresa"
-            android:visibility="invisible"
-            android:imeOptions="actionNext"
-            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EMAIL:"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"></TextView>
+            android:text="EMAIL:"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"></TextView>
 
         <EditText
             android:id="@+id/email_cadastrar"
@@ -103,13 +90,14 @@
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress" />
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SENHA:"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"></TextView>
+            android:text="SENHA:"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"></TextView>
 
         <EditText
             android:id="@+id/senha_cadastrar"
@@ -123,10 +111,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CONFIRMAR SENHA:"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"></TextView>
+            android:text="CONFIRMAR SENHA:"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"></TextView>
 
         <EditText
             android:id="@+id/senha_confirmar"
@@ -137,11 +125,26 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMPRESA:"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"></TextView>
+
+        <Spinner
+            android:id="@+id/spinnerEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:visibility="invisible" />
+
         <Button
             android:id="@+id/btnCadastro"
             style="@style/ButtonForm"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/shape_button_ligth"
             android:text="@string/sign_up"
             android:textColor="@android:color/white"

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,9 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -34,10 +38,15 @@ public class Cadastro extends AppCompatActivity {
     private ImageButton imageButtonBack;
     private Spinner spinnerEmpresa;
 
+    List<Empresa> listaEmpresas = new ArrayList();
+    List<String> listaNomesEmpresas = new ArrayList<>();
+    int idEmpresaSelecionada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
+
 
         iniciarComponentes();
 
@@ -56,6 +65,7 @@ public class Cadastro extends AppCompatActivity {
         cadastrar();
         inicializaEmailFocusListener();
         voltarTela();
+        createSpinner();
 
     }
 
@@ -73,7 +83,7 @@ public class Cadastro extends AppCompatActivity {
 
 
                 if (verificarDados() == true) {
-                    createJson(email, nome, senha);
+                    createJson(email, nome, senha, idEmpresaSelecionada);
 
                     // startClass(Login.class);
 
@@ -88,7 +98,7 @@ public class Cadastro extends AppCompatActivity {
 
     }
 
-    private void createJson(String email, String nome, String senha) {
+    private void createJson(String email, String nome, String senha, int idOrganizacao) {
 
         JSONObject usuarioJson = new JSONObject();
 
@@ -97,7 +107,7 @@ public class Cadastro extends AppCompatActivity {
             usuarioJson.put("email", email);
             usuarioJson.put("senha", senha);
             usuarioJson.put("nome", nome);
-            // usuarioJson.put("idOrganizacao", idOrganizacao);
+            usuarioJson.put("idOrganizacao", idOrganizacao);
 
 
             System.out.println(usuarioJson.toString());
@@ -144,19 +154,17 @@ public class Cadastro extends AppCompatActivity {
                                     // 1 - verifica se a string nao eh vazia -> exibe erro dizendo q n existe organizacao com o dominio informado
 
 
-                                   if (organizacoesStringFromServer.length() > 0) {
+                                    if (organizacoesStringFromServer.length() > 0) {
 
                                         // 2 - inicializar um jsonarray a partir da string recebida
                                         JSONArray jsonArray = new JSONArray(organizacoesStringFromServer);
-                                        List<Empresa> listaEmpresas = new ArrayList();
-
 
 
                                         // 3 - verifica o length do array > 0
-                                       // 4 - se tem coisa no array, pega a posicao do array e inicializa um jsonobject
-                                       // 5 - verifica se o jsonObject possui os campos id, nome e tipoOrganizacao
-                                       // 6 - se ele possuir esses 3 atributos, entao voce passa pra variaveis
-                                       // 7 - criar em tempo de execuao um spinner com os as organizacoes
+                                        // 4 - se tem coisa no array, pega a posicao do array e inicializa um jsonobject
+                                        // 5 - verifica se o jsonObject possui os campos id, nome e tipoOrganizacao
+                                        // 6 - se ele possuir esses 3 atributos, entao voce passa pra variaveis
+                                        // 7 - criar em tempo de execuao um spinner com os as organizacoes
 
                                         if (jsonArray.length() > 0) {
 
@@ -176,13 +184,21 @@ public class Cadastro extends AppCompatActivity {
                                                     newEmpresa.setTipoEmpresa(tipoEmpresa);
 
                                                     listaEmpresas.add(newEmpresa);
+
+                                                    listaNomesEmpresas.add(newEmpresa.getNomeEmpresa());
+
+                                                    ArrayAdapter<String> adapter = new ArrayAdapter<>(Cadastro.this, android.R.layout.simple_spinner_item, listaNomesEmpresas);
+
+                                                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                                    spinnerEmpresa.setAdapter(adapter);
+                                                    spinnerEmpresa.setVisibility(View.VISIBLE);
+                                                    //  createSpinner(listaEmpresas);
+
+
                                                 }
 
 
                                             }
-
-
-
 
 
                                         } else {
@@ -211,6 +227,20 @@ public class Cadastro extends AppCompatActivity {
         });
 
 
+    }
+
+    private void createSpinner() {
+        spinnerEmpresa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                idEmpresaSelecionada = listaEmpresas.get(position).getId();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void voltarTela() {
