@@ -83,6 +83,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
                             salvarCredenciais(emailStr);
+                            System.out.println(userPreferences);
 
                             startClass(MainActivity.class);
                         } else {
@@ -94,6 +95,8 @@ public class Login extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
+                    Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -104,7 +107,6 @@ public class Login extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putString(Email, email);
-
         editor.commit();
 
     }
