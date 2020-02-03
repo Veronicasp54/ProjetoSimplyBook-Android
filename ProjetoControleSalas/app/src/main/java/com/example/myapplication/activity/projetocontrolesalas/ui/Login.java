@@ -62,32 +62,27 @@ public class Login extends AppCompatActivity {
                     try {
                         String authReturn = new VerificadorLogin().execute(emailStr, senhaStr).get();
 
-
                         //Toast.makeText(getApplicationContext(),authReturn,Toast.LENGTH_LONG).show();
 
                         if (authReturn.equalsIgnoreCase("Login efetuado com sucesso!")) {
-
                             Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
                             startClass(MainActivity.class);
-
                         } else {
                             Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
                         }
-
                     } catch (Exception e) {
+
                         Toast.makeText(getApplicationContext(), " inválido", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 } else {
-
                 }
-
             }
         });
     }
 
 
-    private void modoConvidado(){
+    private void modoConvidado() {
 
         btnModoConvidado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +91,6 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
 
 
     private void startCadastro() {
