@@ -1,5 +1,7 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -23,7 +25,8 @@ public class PerfilFragment extends Fragment {
     private ImageView imageViewEscuro, imageViewClaro;
     private TextView textViewNomeEmpresa, textViewNomeUser, textViewEmailUser;
     private View view;
-
+    private SharedPreferences preferences;
+    public static final String userPreferences = "userPreferences";
 
     @Nullable
     @Override
@@ -46,8 +49,19 @@ public class PerfilFragment extends Fragment {
         textViewNomeUser = (TextView) view.findViewById(R.id.textViewNome);
         textViewEmailUser = (TextView) view.findViewById(R.id.textViewEmail);
 
-        changeTheme();
+        //    preferences = view.getSharedPreferences(userPreferences,
+        //           Context.MODE_PRIVATE);
 
+        // SharedPreferences pref = view.getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+
+
+        changeTheme();
+        atualizarConta();
+
+
+    }
+
+    private void atualizarConta() {
         buttonAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,17 +71,26 @@ public class PerfilFragment extends Fragment {
 
             }
         });
+    }
+
+    private void logout() {
 
         buttonSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(getContext(), "Click buttonSair", Toast.LENGTH_LONG).show();
-
+                removerCredenciais();
             }
         });
 
+    }
 
+    private void removerCredenciais() {
+
+        //editor.remove("name");
+        //editor.remove("email");
+        //editor.commit();
     }
 
     private void changeTheme() {
@@ -90,13 +113,6 @@ public class PerfilFragment extends Fragment {
             }
         });
     }
-
-    private void alterarPerfil(){
-
-
-    }
-
-
 
 
 }

@@ -6,10 +6,11 @@ import java.util.Date;
 public class ReservaSala {
 
     private Sala sala;
-    private Date dataAReserva;
+    private Date dataReserva;
     private Time horarioUsoInicio;
     private Time horarioUsoFinal;
     private int quantidadePessosas;
+
 
 
 

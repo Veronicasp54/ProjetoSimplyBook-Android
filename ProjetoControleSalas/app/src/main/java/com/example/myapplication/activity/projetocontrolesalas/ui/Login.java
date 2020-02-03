@@ -2,7 +2,9 @@ package com.example.myapplication.activity.projetocontrolesalas.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,13 @@ public class Login extends AppCompatActivity {
     private Button buttonLogin;
     private TextView textViewCadastro;
     private ImageButton btnModoConvidado;
+
+    private SharedPreferences preferences;
+    public static final String userPreferences = "userPreferences";
+
+    public static final String Senha = "key";
+    public static final String Email = "emailKey";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,12 @@ public class Login extends AppCompatActivity {
 
         btnModoConvidado = findViewById(R.id.modoConvidado);
 
+        preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+
+        if (preferences.contains(Email)) {
+            editTextEmail.setText(preferences.getString(Email, ""));
+
+        }
         startCadastro();
         logar();
         modoConvidado();
@@ -66,6 +81,9 @@ public class Login extends AppCompatActivity {
 
                         if (authReturn.equalsIgnoreCase("Login efetuado com sucesso!")) {
                             Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
+
+                            salvarCredenciais(emailStr);
+
                             startClass(MainActivity.class);
                         } else {
                             Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
@@ -79,6 +97,16 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void salvarCredenciais( String email) {
+
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString(Email, email);
+
+        editor.commit();
+
     }
 
 
@@ -127,6 +155,7 @@ public class Login extends AppCompatActivity {
 
         return chave;
     }
+
 
 }
 
