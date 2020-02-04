@@ -31,4 +31,18 @@ public class HomeFragment extends Fragment {
 
     }
 
+    public void iniciaCampos(){
+        textNomeEmpresa = view.findViewById(R.id.textViewNomeEmpresa);
+        listSalas = view.findViewById(R.id.lista_salas_listview);
+
+        listDetails();
+
+    }
+
+    private void listDetails() {
+
+
+    }
+
+
 }

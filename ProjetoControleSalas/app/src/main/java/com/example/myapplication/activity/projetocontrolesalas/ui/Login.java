@@ -14,7 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
+import com.example.myapplication.activity.projetocontrolesalas.model.Usuario;
 import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorLogin;
+
+import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
@@ -34,6 +38,11 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+        if(preferences.contains("userEmail")){
+            startClass(MainActivity.class);
+        }
+
         setContentView(R.layout.activity_login);
 
         iniciarComponentes();
@@ -50,12 +59,8 @@ public class Login extends AppCompatActivity {
 
         btnModoConvidado = findViewById(R.id.modoConvidado);
 
-        preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
-        if (preferences.contains(Email)) {
-            editTextEmail.setText(preferences.getString(Email, ""));
 
-        }
         startCadastro();
         logar();
         modoConvidado();
@@ -79,11 +84,42 @@ public class Login extends AppCompatActivity {
 
                         //Toast.makeText(getApplicationContext(),authReturn,Toast.LENGTH_LONG).show();
 
-                        if (authReturn.equalsIgnoreCase("Login efetuado com sucesso!")) {
+                        if (authReturn.length() > 0) {
                             Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
-                            salvarCredenciais(emailStr);
-                            System.out.println(userPreferences);
+                            JSONObject usuarioJSON = new JSONObject(authReturn);
+
+                            if (usuarioJSON.has("email") && usuarioJSON.has("id") && usuarioJSON.has("nome") && usuarioJSON.has("idOrganizacao")) {
+                                int id = usuarioJSON.getInt("id");
+                                String nome = usuarioJSON.getString("nome");
+                                String email = usuarioJSON.getString("email");
+
+                                JSONObject organizacao = usuarioJSON.getJSONObject("idOrganizacao");
+                                String nomeOrganizacao = organizacao.getString("nome");
+                                String tipoOrganizacao = organizacao.getString("tipoOrganizacao");
+                                int idOrganizacao = organizacao.getInt("id");
+
+
+                                Usuario usuarioAuth = new Usuario();
+                                usuarioAuth.setId(id);
+                                usuarioAuth.setNomeUser(nome);
+                                usuarioAuth.setEmailUser(email);
+                                usuarioAuth.setIdEmpresa(idOrganizacao);
+
+                                Empresa empresa = new Empresa();
+                                empresa.setId(idOrganizacao);
+                                empresa.setNomeEmpresa(nomeOrganizacao);
+                                empresa.setTipoEmpresa(tipoOrganizacao);
+
+                                salvarCredenciais(usuarioAuth, empresa);
+                            }
+                            System.out.println(preferences.getString("userEmail", null));
+                            System.out.println(preferences.getString("userName", null));
+                            System.out.println(preferences.getString("userId", null));
+                            System.out.println(preferences.getString("userIdOrganizacao", null));
+                            System.out.println(preferences.getString("userNomeEmpresa", null));
+                            System.out.println(preferences.getString("userTipoEmpresa", null));
+                            System.out.println(preferences.getString("userIdEmpresa", null));
 
                             startClass(MainActivity.class);
                         } else {
@@ -102,11 +138,18 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void salvarCredenciais( String email) {
+    private void salvarCredenciais(Usuario u, Empresa e) {
 
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putString(Email, email);
+        editor.putString("userEmail", u.getEmailUser());
+        editor.putString("userName", u.getNomeUser());
+        editor.putString("userId", Integer.toString(u.getId()));
+        editor.putString("userIdOrganizacao", Integer.toString(u.getIdEmpresa()));
+        editor.putString("userNomeEmpresa", e.getNomeEmpresa());
+        editor.putString("userTipoEmpresa", e.getTipoEmpresa());
+        editor.putString("userIdEmpresa", Integer.toString(e.getId()));
+
         editor.commit();
 
     }

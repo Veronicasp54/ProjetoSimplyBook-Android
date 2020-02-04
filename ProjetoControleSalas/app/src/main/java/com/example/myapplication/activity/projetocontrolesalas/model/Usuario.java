@@ -9,6 +9,10 @@ public class Usuario {
     private int id;
     private int idEmpresa;
 
+    public Usuario (){
+
+    }
+
     public Usuario(String nomeUser, String emailUser, int id, int idEmpresa) {
         this.nomeUser = nomeUser;
         this.emailUser = emailUser;

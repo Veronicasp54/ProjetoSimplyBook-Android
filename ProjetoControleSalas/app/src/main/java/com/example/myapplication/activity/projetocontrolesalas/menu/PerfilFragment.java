@@ -1,6 +1,7 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
 
 
 public class PerfilFragment extends Fragment {
@@ -45,7 +47,7 @@ public class PerfilFragment extends Fragment {
         imageViewClaro = (ImageView) view.findViewById(R.id.icon_theme_claro);
         buttonAtualizar = (Button) view.findViewById(R.id.buttonAtualizar);
         buttonSair = (Button) view.findViewById(R.id.buttonSair);
-        textViewNomeEmpresa = (TextView) view.findViewById(R.id.nome_empresa);
+        textViewNomeEmpresa = (TextView) view.findViewById(R.id.descSala);
         textViewNomeUser = (TextView) view.findViewById(R.id.textViewNome);
         textViewEmailUser = (TextView) view.findViewById(R.id.textViewEmail);
 
@@ -57,7 +59,7 @@ public class PerfilFragment extends Fragment {
 
         changeTheme();
         atualizarConta();
-
+        logout();
 
     }
 
@@ -78,16 +80,18 @@ public class PerfilFragment extends Fragment {
         buttonSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(getContext(), "Click buttonSair", Toast.LENGTH_LONG).show();
                 removerCredenciais();
+                startClass(Login.class);
             }
         });
 
     }
 
     private void removerCredenciais() {
-
+        SharedPreferences preferences = getActivity().getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("userEmail");
+        editor.commit();
         //editor.remove("name");
         //editor.remove("email");
         //editor.commit();
@@ -112,6 +116,14 @@ public class PerfilFragment extends Fragment {
 
             }
         });
+    }
+
+    private void startClass(Class classe) {
+        Intent intent = new Intent(getContext(), classe);
+        startActivity(intent);
+        getActivity().finish();
+
+
     }
 
 

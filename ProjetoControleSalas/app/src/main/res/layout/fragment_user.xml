@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <TextView
-                android:id="@+id/textViewEmpresa"
+                android:id="@+id/textNomeSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -136,10 +136,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewEmpresa"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/textNomeSala"></ImageView>
 
             <TextView
-                android:id="@+id/nome_empresa"
+                android:id="@+id/descSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
@@ -161,7 +161,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/icon_account"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nome_empresa"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/descSala"></ImageView>
 
             <TextView
                 android:id="@+id/textViewConta"
@@ -178,7 +178,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/icon_conta"
-                app:layout_constraintTop_toBottomOf="@+id/nome_empresa"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/descSala"></TextView>
 
 
             <ImageView
