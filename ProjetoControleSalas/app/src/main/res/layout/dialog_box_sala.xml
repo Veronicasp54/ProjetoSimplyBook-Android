@@ -30,7 +30,8 @@
                 android:src="@drawable/conselho_jedi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ImageView>
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/todo"></ImageView>
 
             <View
                 android:id="@+id/item_pacote_divisor"
@@ -56,7 +57,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageSala"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/imageSala"
+                android:layout_marginStart="2dp"></TextView>
 
 
             <ImageView
@@ -69,7 +71,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNomeSala" />
+                app:layout_constraintTop_toBottomOf="@+id/textNomeSala"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/descSala"
@@ -110,7 +113,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textCaracteristicas" />
+                app:layout_constraintTop_toBottomOf="@+id/textCaracteristicas"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:id="@+id/textTamanho"
@@ -118,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
-                android:text="Dimensão Sala:"
+                android:text="@string/dimens_sala"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Capacidade: xx pessoas"
+                android:text="@string/capacidade"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Ar Condicionado:"
+                android:text="@string/ar_condicionado"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,14 +155,14 @@
                 android:id="@+id/textMultimidia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Multimidia"
+                android:text="@string/multimidia"
                 app:layout_constraintStart_toStartOf="@+id/textArCondicionado"
                 app:layout_constraintTop_toBottomOf="@id/textArCondicionado"></TextView>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RESERVAR"
+                android:text="@string/reservar"
                 android:layout_marginTop="360dp"
                 style="@style/ButtonForm"
                 android:layout_gravity="center_horizontal"

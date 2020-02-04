@@ -64,5 +64,10 @@
     <string name="nome_sala">Nome Sala</string>
     <string name="list_empresas">empresas</string>
     <string name="caracteristicas">Características</string>
+    <string name="dimens_sala">Dimensão Sala</string>
+    <string name="ar_condicionado">Ar Condicionado</string>
+    <string name="capacidade">Capacidade: xx pessoas</string>
+    <string name="multimidia">Multimidia</string>
+    <string name="reservar">RESERVAR</string>
 
 </resources>

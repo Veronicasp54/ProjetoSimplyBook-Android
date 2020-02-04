@@ -31,14 +31,14 @@ public class Login extends AppCompatActivity {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
 
-    public static final String Senha = "key";
-    public static final String Email = "emailKey";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+
         if(preferences.contains("userEmail")){
             startClass(MainActivity.class);
         }
