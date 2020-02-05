@@ -1,7 +1,5 @@
 package com.example.myapplication.activity.projetocontrolesalas.model;
 
-import com.example.myapplication.activity.projetocontrolesalas.empresa.Cep;
-
 import java.util.Date;
 
 public class Empresa {
@@ -14,7 +12,6 @@ public class Empresa {
     private String dominio;
     private Date dataCriacao;
     private Date dataAlteraca;
-    private Cep cep;
 
 
     public int getId() {

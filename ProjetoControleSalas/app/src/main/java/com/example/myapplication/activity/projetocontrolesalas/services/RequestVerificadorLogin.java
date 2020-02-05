@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class VerificadorLogin extends AsyncTask<String, Void, String> {
+public class RequestVerificadorLogin extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {

@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
-import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorCadastro;
-import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorEmpresa;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastro;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestEmpresa;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -100,7 +100,6 @@ public class Cadastro extends AppCompatActivity {
 
         JSONObject usuarioJson = new JSONObject();
 
-
         try {
             usuarioJson.put("email", email);
             usuarioJson.put("senha", senha);
@@ -113,7 +112,7 @@ public class Cadastro extends AppCompatActivity {
             String userEncoded = Base64.encodeToString(usuarioJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
             System.out.println(userEncoded);
 
-            String respostaMetodo = new VerificadorCadastro().execute(userEncoded).get();
+            String respostaMetodo = new RequestCadastro().execute(userEncoded).get();
 
             if (respostaMetodo.equals("Usuário criado com sucesso")) {
 
@@ -149,7 +148,7 @@ public class Cadastro extends AppCompatActivity {
                             if (dominio.contains(".")) {
                                 System.out.println("dominio: " + dominio);
                                 try {
-                                    String organizacoesStringFromServer = new VerificadorEmpresa().execute(dominio).get();
+                                    String organizacoesStringFromServer = new RequestEmpresa().execute(dominio).get();
                                     System.out.println("Organizações em string: " + organizacoesStringFromServer);
 
                                     // 1 - verifica se a string nao eh vazia -> exibe erro dizendo q n existe organizacao com o dominio informado

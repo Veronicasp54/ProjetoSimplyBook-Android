@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.Usuario;
-import com.example.myapplication.activity.projetocontrolesalas.services.VerificadorLogin;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestVerificadorLogin;
 
 import org.json.JSONObject;
 
@@ -75,7 +75,7 @@ public class Login extends AppCompatActivity {
                 if (verificarDados() == true) {
 
                     try {
-                        String authReturn = new VerificadorLogin().execute(emailStr, senhaStr).get();
+                        String authReturn = new RequestVerificadorLogin().execute(emailStr, senhaStr).get();
 
                         //Toast.makeText(getApplicationContext(),authReturn,Toast.LENGTH_LONG).show();
 

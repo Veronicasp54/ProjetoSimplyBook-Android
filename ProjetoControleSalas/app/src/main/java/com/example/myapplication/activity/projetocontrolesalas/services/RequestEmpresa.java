@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class VerificadorEmpresa  extends AsyncTask<String, Void, String> {
+public class RequestEmpresa extends AsyncTask<String, Void, String> {
 
 
     @Override
