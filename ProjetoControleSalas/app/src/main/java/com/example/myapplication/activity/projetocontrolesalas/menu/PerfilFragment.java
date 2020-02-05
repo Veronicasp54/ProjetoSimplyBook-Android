@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,16 +50,44 @@ public class PerfilFragment extends Fragment {
         textViewNomeUser = (TextView) view.findViewById(R.id.textViewNome);
         textViewEmailUser = (TextView) view.findViewById(R.id.textViewEmail);
 
-        //    preferences = view.getSharedPreferences(userPreferences,
-        //           Context.MODE_PRIVATE);
-
-        // SharedPreferences pref = view.getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
-
 
         changeTheme();
         atualizarConta();
         logout();
+        inserirDados();
 
+    }
+
+    private void inserirDados() {
+
+        preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+
+        if (preferences.contains("userEmail") && preferences.contains("userIdOrganizacao")) {
+
+            String nomeUser = preferences.getString("userName", null);
+            String emailUser = preferences.getString("userEmail", null);
+            String nomeEmpresa = preferences.getString("userNomeEmpresa", null);
+            String tipoEmpresa = preferences.getString("userTipoEmpresa", null);
+
+            if (tipoEmpresa == "M") {
+
+                tipoEmpresa = "Matriz";
+
+            } else {
+                tipoEmpresa = "Filial";
+
+            }
+
+
+            textViewNomeUser.setText("Nome: " + nomeUser);
+            textViewEmailUser.setText("Email: " + emailUser);
+            textViewNomeEmpresa.setText("Empresa: " + nomeEmpresa + " " + tipoEmpresa);
+
+        } else {
+            textViewNomeUser.setText("Convidado");
+            textViewEmailUser.setText("Email");
+            textViewNomeEmpresa.setText("Empresa associada");
+        }
     }
 
     private void atualizarConta() {
@@ -92,9 +119,7 @@ public class PerfilFragment extends Fragment {
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove("userEmail");
         editor.commit();
-        //editor.remove("name");
-        //editor.remove("email");
-        //editor.commit();
+
     }
 
     private void changeTheme() {
@@ -122,8 +147,6 @@ public class PerfilFragment extends Fragment {
         Intent intent = new Intent(getContext(), classe);
         startActivity(intent);
         getActivity().finish();
-
-
     }
 
 

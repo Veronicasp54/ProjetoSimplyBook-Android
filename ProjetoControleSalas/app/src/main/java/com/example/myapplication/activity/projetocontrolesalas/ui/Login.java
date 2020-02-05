@@ -32,14 +32,13 @@ public class Login extends AppCompatActivity {
     public static final String userPreferences = "userPreferences";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
-        if(preferences.contains("userEmail")){
+        if (preferences.contains("userEmail")) {
             startClass(MainActivity.class);
         }
 
@@ -53,13 +52,10 @@ public class Login extends AppCompatActivity {
         editTextEmail = findViewById(R.id.email_entrar);
         editTextSenha = findViewById(R.id.senha_entrar);
 
-
         buttonLogin = findViewById(R.id.btnLogin);
         textViewCadastro = findViewById(R.id.realizar_cadastro);
 
         btnModoConvidado = findViewById(R.id.modoConvidado);
-
-
 
         startCadastro();
         logar();
@@ -75,7 +71,6 @@ public class Login extends AppCompatActivity {
 
                 String emailStr = editTextEmail.getText().toString().trim();
                 String senhaStr = editTextSenha.getText().toString().trim();
-
 
                 if (verificarDados() == true) {
 

@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.box_reservar_sala, null));
+        builder.setView(inflater.inflate(R.layout.box_reservar, null));
 
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

@@ -103,7 +103,7 @@
     <Spinner
         android:id="@+id/spinnerSalas"
         android:layout_width="350dp"
-        android:layout_height="38"
+        android:layout_height="38dp"
         android:layout_marginLeft="12dp"
         app:layout_constraintStart_toEndOf="@+id/iconSala"
         app:layout_constraintTop_toBottomOf="@id/textData"></Spinner>
