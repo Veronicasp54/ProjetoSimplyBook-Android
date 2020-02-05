@@ -5,10 +5,11 @@ public class Sala {
     private int id;
     private String nomeSala;
     private String descricaoSala;
-    private double dimensaoSala;
-
-    public Sala() {
-    }
+    private String dimensaoSala;
+    private String localizacao;
+    private boolean arCondicionado;
+    private boolean multimidia;
+    private String capacidade;
 
     public int getId() {
         return id;
@@ -26,19 +27,26 @@ public class Sala {
         this.nomeSala = nomeSala;
     }
 
-    public String getDescricaoSala() {
-        return descricaoSala;
-    }
-
-    public void setDescricaoSala(String descricaoSala) {
-        this.descricaoSala = descricaoSala;
-    }
-
-    public double getDimensaoSala() {
-        return dimensaoSala;
-    }
-
-    public void setDimensaoSala(double dimensaoSala) {
+    public void setDimensaoSala(String dimensaoSala) {
         this.dimensaoSala = dimensaoSala;
     }
+
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public void setArCondicionado(boolean arCondicionado) {
+        this.arCondicionado = arCondicionado;
+    }
+
+    public void setMultimidia(boolean multimidia) {
+        this.multimidia = multimidia;
+    }
+
+    public void setCapacidade(String capacidade) {
+        this.capacidade = capacidade;
+    }
+
+
 }

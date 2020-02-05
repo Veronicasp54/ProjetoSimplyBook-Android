@@ -17,16 +17,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.model.Usuario;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestVerificadorLogin;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class HomeFragment extends Fragment {
 
@@ -54,8 +51,6 @@ public class HomeFragment extends Fragment {
     public void iniciaCampos() {
         textNomeEmpresa = view.findViewById(R.id.textViewNomeEmpresa);
 
-
-        listDetails();
         inserirEmpresa();
         inserirSalas();
 
@@ -77,10 +72,25 @@ public class HomeFragment extends Fragment {
 
                 for (int i = 0; i < salasJson.length(); i++) {
                     JSONObject salaJSon = salasJson.getJSONObject(i);
-                    String nome = salaJSon.getString("nome");
 
-                    Sala sala = new Sala();
-                    sala.setNomeSala(nome);
+                    String nome = salaJSon.getString("nome");
+                    String dimensao = salaJSon.getString("areaDaSala");
+                    String capacidade = salaJSon.getString("quantidadePessoasSentadas");
+                    Boolean multimidia = salaJSon.getBoolean("possuiMultimidia");
+                    Boolean arcondicionado = salaJSon.getBoolean("possuiMultimidia");
+                    String localizacao = salaJSon.getString("localizacao");
+
+
+
+                    Sala newSala = new Sala();
+
+                    newSala.setNomeSala(nome);
+
+                    newSala.setDimensaoSala(dimensao);
+                    newSala.setCapacidade(capacidade);
+                    newSala.setLocalizacao(localizacao);
+                    newSala.setArCondicionado(arcondicionado);
+                    newSala.setMultimidia(multimidia);
 
                     salas.add(sala);
                     nomeSalas.add(sala.getNomeSala());
@@ -128,11 +138,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-    private void listDetails() {
-
-
-    }
 
     private void showDialogDetalhes() {
 
