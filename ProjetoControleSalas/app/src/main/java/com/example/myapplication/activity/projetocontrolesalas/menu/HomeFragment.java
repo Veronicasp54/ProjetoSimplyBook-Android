@@ -80,8 +80,6 @@ public class HomeFragment extends Fragment {
                     Boolean arcondicionado = salaJSon.getBoolean("possuiMultimidia");
                     String localizacao = salaJSon.getString("localizacao");
 
-
-
                     Sala newSala = new Sala();
 
                     newSala.setNomeSala(nome);
