@@ -1,7 +1,9 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +21,15 @@ public class HomeFragment extends Fragment {
     private View view;
     private TextView textNomeEmpresa;
     private ListView listSalas;
+    private SharedPreferences preferences;
+    public static final String userPreferences = "userPreferences";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        iniciaCampos();
 
         return view;
 
@@ -35,8 +40,38 @@ public class HomeFragment extends Fragment {
         listSalas = view.findViewById(R.id.lista_salas_listview);
 
         listDetails();
+        inserirEmpresa();
 
     }
+
+    private void inserirEmpresa() {
+
+        preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+
+        if (preferences.contains("userEmail") && preferences.contains("userIdOrganizacao")) {
+
+            String nomeEmpresa = preferences.getString("userNomeEmpresa", null);
+            String tipoEmpresa = preferences.getString("userTipoEmpresa", null);
+
+            System.out.println(tipoEmpresa);
+
+            if (tipoEmpresa.equals("M")) {
+                tipoEmpresa = "Matriz";
+
+            } else if (tipoEmpresa.equals("F")) {
+                tipoEmpresa = "Filial";
+            }
+
+            textNomeEmpresa.setText(nomeEmpresa.concat(" "+ tipoEmpresa).toUpperCase());
+
+        } else {
+
+            textNomeEmpresa.setText("Empresa associada");
+
+        }
+
+    }
+
 
     private void listDetails() {
 

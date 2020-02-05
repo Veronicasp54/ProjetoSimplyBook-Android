@@ -69,11 +69,12 @@ public class PerfilFragment extends Fragment {
             String nomeEmpresa = preferences.getString("userNomeEmpresa", null);
             String tipoEmpresa = preferences.getString("userTipoEmpresa", null);
 
-            if (tipoEmpresa == "M") {
+            System.out.println(tipoEmpresa);
 
+            if (tipoEmpresa.equals("M")) {
                 tipoEmpresa = "Matriz";
 
-            } else {
+            } else if (tipoEmpresa.equals("F")) {
                 tipoEmpresa = "Filial";
 
             }
@@ -81,7 +82,7 @@ public class PerfilFragment extends Fragment {
 
             textViewNomeUser.setText("Nome: " + nomeUser);
             textViewEmailUser.setText("Email: " + emailUser);
-            textViewNomeEmpresa.setText("Empresa: " + nomeEmpresa + " " + tipoEmpresa);
+            textViewNomeEmpresa.setText(nomeEmpresa.concat(" "+ tipoEmpresa));
 
         } else {
             textViewNomeUser.setText("Convidado");
