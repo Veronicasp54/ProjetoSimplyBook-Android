@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
 
         inserirEmpresa();
         inserirSalas();
+        clickList();
 
     }
 
@@ -76,8 +78,8 @@ public class HomeFragment extends Fragment {
                     String nome = salaJSon.getString("nome");
                     String dimensao = salaJSon.getString("areaDaSala");
                     String capacidade = salaJSon.getString("quantidadePessoasSentadas");
-                    Boolean multimidia = salaJSon.getBoolean("possuiMultimidia");
-                    Boolean arcondicionado = salaJSon.getBoolean("possuiMultimidia");
+                    String multimidia = salaJSon.getString("possuiMultimidia");
+                    String arcondicionado = salaJSon.getString("possuiMultimidia");
                     String localizacao = salaJSon.getString("localizacao");
 
                     Sala newSala = new Sala();
@@ -90,8 +92,8 @@ public class HomeFragment extends Fragment {
                     newSala.setArCondicionado(arcondicionado);
                     newSala.setMultimidia(multimidia);
 
-                    salas.add(sala);
-                    nomeSalas.add(sala.getNomeSala());
+                    salas.add(newSala);
+                    nomeSalas.add(newSala.getNomeSala());
 
 
                 }
@@ -136,24 +138,38 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void clickList(){
+        listSalas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-    private void showDialogDetalhes() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int pos, long id) {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                showDialogDetalhes(pos);
+            }
+        });
+    }
+
+    private void showDialogDetalhes(int pos) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.box_reservar, null));
+        View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setView(dialogLayout);
 
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textNomeSala);
 
-            }
-        });
+        TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.textTamanho);
+        TextView textCapacidade = (TextView) dialogLayout.findViewById(R.id.textCapacidade);
+        TextView booleanArcond = (TextView) dialogLayout.findViewById(R.id.textArCondicionado);
+        TextView booleanMultimidia = (TextView) dialogLayout.findViewById(R.id.textMultimidia);
+
+        nomeSala.setText(salas.get(pos).getNomeSala());
+        textTamanhoSala.setText(salas.get(pos).getDimensaoSala());
+        textCapacidade.setText(salas.get(pos).getCapacidade());
+        booleanArcond.setText(salas.get(pos).getArCondicionado());
+        booleanMultimidia.setText(salas.get(pos).getArCondicionado());
 
         AlertDialog dialog = builder.create();
     }
