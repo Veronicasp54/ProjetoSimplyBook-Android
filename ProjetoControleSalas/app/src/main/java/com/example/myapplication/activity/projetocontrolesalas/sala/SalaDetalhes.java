@@ -1,24 +1,33 @@
 package com.example.myapplication.activity.projetocontrolesalas.sala;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalaDetalhes extends AppCompatActivity {
 
-    private TextView nomeSala;
+    private TextView textNomeSala;
     private TextView textTamanhoSala;
     private TextView textCapacidade;
-    private TextView booleanArcond ;
-    private TextView booleanMultimidia;
+    private TextView textArCondicionado;
+    private TextView textMultimidia;
     private List<Sala> salas = new ArrayList<>();
+    private ImageButton buttonBack;
+    private SharedPreferences preferences;
+    public static final String userPreferences = "userPreferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +41,64 @@ public class SalaDetalhes extends AppCompatActivity {
 
     private void iniciarComponentes() {
 
-        findViewById(R.id.textNomeSala);
-        findViewById(R.id.textTamanho);
-        findViewById(R.id.textCapacidade);
-        findViewById(R.id.textArCondicionado);
-        findViewById(R.id.textMultimidia);
+        textNomeSala = findViewById(R.id.textNomeSala);
+        textTamanhoSala = findViewById(R.id.textTamanho);
+        textCapacidade = findViewById(R.id.textCapacidade);
+        textArCondicionado = findViewById(R.id.textArCondicionado);
+        textMultimidia = findViewById(R.id.textMultimidia);
+        buttonBack = findViewById(R.id.imageButtonBack);
 
-        atualizarCampos();
+        buttonBack();
+        inserirDados();
 
     }
 
-    private void atualizarCampos() {
-   ///    nomeSala.setText(salas.get(pos).getNomeSala());
-       /// textTamanhoSala.setText(salas.get(pos).getDimensaoSala());
-       // textCapacidade.setText(salas.get(pos).getCapacidade());
-      //  booleanArcond.setText(salas.get(pos).getArCondicionado());
-      //  booleanMultimidia.setText(salas.get(pos).getArCondicionado());
+    private void buttonBack() {
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startClass(MainActivity.class);
+
+            }
+        });
+
     }
+
+    private void inserirDados() {
+
+        preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+
+        if (preferences.contains("userEmail") && preferences.contains("userIdOrganizacao")) {
+
+            String nomeEmpresa = preferences.getString("userNomeEmpresa", null);
+            String tipoEmpresa = preferences.getString("userTipoEmpresa", null);
+
+            System.out.println(tipoEmpresa);
+
+            if (tipoEmpresa.equals("M")) {
+                tipoEmpresa = "Matriz";
+
+            } else if (tipoEmpresa.equals("F")) {
+                tipoEmpresa = "Filial";
+
+            }
+
+
+            textNomeSala.setText(nomeEmpresa.concat(" "+ tipoEmpresa));
+            textTamanhoSala.setText("");
+            textArCondicionado.setText("");
+            textCapacidade.setText("");
+            textMultimidia.setText("");
+
+
+        }
+    }
+
+    private void startClass(Class classe) {
+        Intent intent = new Intent(this, classe);
+        startActivity(intent);
+        this.finish();
+
+    }
+
 }

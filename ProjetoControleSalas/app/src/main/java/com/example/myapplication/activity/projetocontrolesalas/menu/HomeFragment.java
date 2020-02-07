@@ -2,14 +2,18 @@ package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,10 +37,10 @@ public class HomeFragment extends Fragment {
     private ListView listSalas;
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
-    List<Sala> salas = new ArrayList<>();
-    List<String> nomeSalas = new ArrayList<>();
-    ArrayAdapter<String> adapter;
-    private Sala sala;
+    private List<Sala> salas = new ArrayList<>();
+    private List<String> nomeSalas = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+
 
     @Nullable
     @Override
@@ -51,6 +55,7 @@ public class HomeFragment extends Fragment {
 
     public void iniciaCampos() {
         textNomeEmpresa = view.findViewById(R.id.textViewNomeEmpresa);
+        listSalas = view.findViewById(R.id.lista_salas_listview);
 
         inserirEmpresa();
         inserirSalas();
@@ -65,10 +70,8 @@ public class HomeFragment extends Fragment {
             requestSalas = new RequestSalas().execute(preferences.getString("userIdEmpresa", null)).get();
 
             System.out.println(requestSalas);
-            //JSONObject usuarioJSON = new JSONObject(requestSalas);
-            JSONArray salasJson = new JSONArray(requestSalas);
 
-//            List<Sala> salas = new ArrayList<>();
+            JSONArray salasJson = new JSONArray(requestSalas);
 
             if (salasJson.length() > 0) {
 
@@ -138,41 +141,76 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void clickList(){
+    private void clickList() {
         listSalas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int pos, long id) {
 
-                showDialogDetalhes(pos);
+                showDialogDetalhesSala(pos);
             }
         });
     }
 
-    private void showDialogDetalhes(int pos) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    private void showDialogDetalhesSala(int pos) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
-        View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
-
+        final View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
         builder.setView(dialogLayout);
 
         TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textNomeSala);
 
         TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.textTamanho);
         TextView textCapacidade = (TextView) dialogLayout.findViewById(R.id.textCapacidade);
-        TextView booleanArcond = (TextView) dialogLayout.findViewById(R.id.textArCondicionado);
-        TextView booleanMultimidia = (TextView) dialogLayout.findViewById(R.id.textMultimidia);
+
+        ImageView iconCheckArCondicionado = dialogLayout.findViewById(R.id.iconCheckArcond);
+        ImageView iconCheckMultimidia = dialogLayout.findViewById(R.id.iconCheckMultimidia);
 
         nomeSala.setText(salas.get(pos).getNomeSala());
-        textTamanhoSala.setText(salas.get(pos).getDimensaoSala());
-        textCapacidade.setText(salas.get(pos).getCapacidade());
-        booleanArcond.setText(salas.get(pos).getArCondicionado());
-        booleanMultimidia.setText(salas.get(pos).getArCondicionado());
+        textTamanhoSala.setText("Dimensão: " + salas.get(pos).getDimensaoSala());
+        textCapacidade.setText("Capacidade: " + salas.get(pos).getCapacidade());
 
-        AlertDialog dialog = builder.create();
+        /*/check/*/
+        String arcondiconadoCondicao = salas.get(pos).getArCondicionado();
+        String multimidia = salas.get(pos).getMultimidia();
+
+        System.out.println(arcondiconadoCondicao);
+        System.out.println(multimidia);
+
+        check(arcondiconadoCondicao, iconCheckArCondicionado);
+        check(multimidia, iconCheckMultimidia);
+
+        /*/buttonBack/*/
+        ImageButton buttonBack = dialogLayout.findViewById(R.id.imageButtonBack);
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //dialog.dismiss();
+            }
+        });
+        final AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
+    private void check(String checkVerifica, ImageView iconCheck) {
 
+        if (checkVerifica.equals("true")) {
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_check_true);
+            iconCheck.setImageDrawable(drawable);
+            iconCheck.setVisibility(View.VISIBLE);
+
+        } else {
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_check_false);
+            iconCheck.setImageDrawable(drawable);
+            iconCheck.setVisibility(View.VISIBLE);
+
+        }
+
+    }
 }

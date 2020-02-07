@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="14dp">
 
     <ImageButton
         android:id="@+id/imageButtonBack"
@@ -16,6 +17,20 @@
         android:tint="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+    <Button
+        style="@style/ButtonForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:text="@string/reservar"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMultimidia"></Button>
 
 
     <View
@@ -38,144 +53,156 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"></ImageView>
 
-            <View
-                android:id="@+id/item_pacote_divisor"
-                android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:background="@android:color/holo_orange_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageSala" />
-
-            <TextView
-                android:id="@+id/textNomeSala"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="15dp"
-                android:foregroundGravity="center_vertical"
-                android:gravity="left"
-                android:text="@string/nome_sala"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageSala"
-                android:layout_marginStart="2dp"></TextView>
+    <View
+        android:id="@+id/item_pacote_divisor"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@android:color/holo_orange_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageSala" />
 
 
-            <ImageView
-                android:id="@+id/risco_desing"
-                android:layout_width="300dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="1dp"
-                android:src="@drawable/traco_desing"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNomeSala"
-                android:contentDescription="@string/todo" />
-
-            <TextView
-                android:id="@+id/descSala"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/descricao"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textNomeSala"
-                app:layout_constraintTop_toBottomOf="@id/risco_desing"></TextView>
-
-            <TextView
-                android:id="@+id/textCaracteristicas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:foregroundGravity="center_vertical"
-                android:gravity="left"
-                android:text="@string/caracteristicas"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/descSala"></TextView>
+    <TextView
+        android:id="@+id/textNomeSala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="left"
+        android:text="@string/nome_sala"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSala"></TextView>
 
 
-            <ImageView
-                android:id="@+id/risco_desing2"
-                android:layout_width="300dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="1dp"
-                android:src="@drawable/traco_desing"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textCaracteristicas"
-                android:contentDescription="@string/todo" />
+    <ImageView
+        android:id="@+id/risco_desing"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/traco_desing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNomeSala" />
 
-            <TextView
-                android:id="@+id/textTamanho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/dimens_sala"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/risco_desing2" />
+    <TextView
+        android:id="@+id/descSala"
+        android:layout_width="357dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/descricao"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textNomeSala"
+        app:layout_constraintTop_toBottomOf="@id/risco_desing"></TextView>
 
-            <TextView
-                android:id="@+id/textCapacidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="@string/capacidade"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textTamanho" />
-
-            <TextView
-                android:id="@+id/textArCondicionado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="@string/ar_condicionado"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textCapacidade" />
+    <TextView
+        android:id="@+id/textCaracteristicas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="left"
+        android:layout_marginStart="20dp"
+        android:text="@string/caracteristicas"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descSala"></TextView>
 
 
-            <TextView
-                android:id="@+id/textMultimidia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/multimidia"
-                app:layout_constraintStart_toStartOf="@+id/textArCondicionado"
-                app:layout_constraintTop_toBottomOf="@id/textArCondicionado"></TextView>
+    <ImageView
+        android:id="@+id/risco_desing2"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/traco_desing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCaracteristicas" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reservar"
-                android:layout_marginTop="360dp"
-                style="@style/ButtonForm"
-                android:layout_gravity="center_horizontal"
-                android:background="@android:color/transparent"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"></Button>
+    <TextView
+        android:id="@+id/textTamanho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/dimens_sala"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/risco_desing2" />
+
+    <TextView
+        android:id="@+id/textCapacidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/capacidade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTamanho" />
+
+    <TextView
+        android:id="@+id/textArCondicionado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/ar_condicionado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCapacidade" />
+
+    <ImageView
+        android:id="@+id/iconCheckArcond"
+        android:layout_width="19dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="4dp"
+        android:src="@mipmap/ic_check_false"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintStart_toEndOf="@+id/textArCondicionado"
+        app:layout_constraintTop_toBottomOf="@+id/textCapacidade"></ImageView>
+
+    <TextView
+        android:id="@+id/textMultimidia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/multimidia"
+        app:layout_constraintStart_toStartOf="@+id/textArCondicionado"
+        app:layout_constraintTop_toBottomOf="@id/textArCondicionado"></TextView>
+
+    <ImageView
+        android:id="@+id/iconCheckMultimidia"
+        android:layout_width="19dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="4dp"
+        android:foregroundGravity="center_vertical"
+        android:src="@mipmap/ic_check_false"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toEndOf="@+id/textMultimidia"
+        app:layout_constraintTop_toBottomOf="@+id/textArCondicionado"></ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
