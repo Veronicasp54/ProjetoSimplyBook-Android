@@ -35,8 +35,8 @@ class Reservar extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
-        nomeSala = (TextView) findViewById(R.id.textNomeSala);
-        textTamanhoSala = (TextView) findViewById(R.id.textTamanho);
+        nomeSala = (TextView) findViewById(R.id.textReuniao);
+        textTamanhoSala = (TextView) findViewById(R.id.dataSelecionada);
         textCapacidade = (TextView) findViewById(R.id.textCapacidade);
 
         iconCheckArCondicionado = findViewById(R.id.iconCheckArcond);
@@ -64,7 +64,7 @@ class Reservar extends AppCompatActivity {
 
     private void clickReservar() {
 
-        buttonReserva = findViewById(R.id.buttonReserva);
+        buttonReserva = findViewById(R.id.buttonSave);
 
         buttonReserva.setOnClickListener(new View.OnClickListener() {
             @Override

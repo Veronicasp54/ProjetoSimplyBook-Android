@@ -26,61 +26,28 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
         android:background="@android:color/transparent"
-        android:text="@string/reservar"
+        android:text="@string/button_save"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMultimidia"></Button>
-
-
-    <View
-        android:id="@+id/item_pacote_divisor_top"
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="@android:color/holo_orange_dark"
-        app:layout_constraintBottom_toTopOf="@+id/imageSala"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageSala"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:contentDescription="@string/todo"
-        android:scaleType="centerCrop"
-        android:src="@drawable/conselho_jedi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"></ImageView>
-
-    <View
-        android:id="@+id/item_pacote_divisor"
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="@android:color/holo_orange_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageSala" />
+        app:layout_constraintTop_toBottomOf="@+id/textAdmReuniao"></Button>
 
 
     <TextView
         android:id="@+id/textReuniao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
         android:foregroundGravity="center_vertical"
         android:gravity="left"
-        android:text="@string/nome_sala"
+        android:text="@string/reuniao"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSala"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"></TextView>
 
 
     <ImageView
@@ -98,15 +65,25 @@
 
     <TextView
         android:id="@+id/textSala"
-        android:layout_width="357dp"
-        android:layout_height="49dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/descricao"
+        android:text="@string/salas"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textReuniao"
         app:layout_constraintTop_toBottomOf="@id/risco_desing"></TextView>
+
+    <Spinner
+        android:id="@+id/spinnerSalas"
+        android:layout_width="match_parent"
+        android:imeOptions="actionNext"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSala"></Spinner>
 
     <TextView
         android:id="@+id/textEvento"
@@ -115,15 +92,14 @@
         android:layout_marginTop="15dp"
         android:foregroundGravity="center_vertical"
         android:gravity="left"
-        android:layout_marginStart="20dp"
-        android:text="@string/caracteristicas"
+        android:text="@string/reuniao_evento"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textSala"></TextView>
+        app:layout_constraintTop_toBottomOf="@id/spinnerSalas"></TextView>
 
 
     <ImageView
@@ -145,18 +121,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="4dp"
-        android:text="@string/dimens_sala"
+        android:text="@string/data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/risco_desing2" />
 
     <TextView
-        android:id="@+id/textCapacidade"
+        android:id="@+id/textHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="@string/capacidade"
+        android:text="@string/text_hour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,43 +143,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="@string/ar_condicionado"
+        android:text="@string/text_adm_reuniao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textCapacidade" />
+        app:layout_constraintTop_toBottomOf="@id/textHour" />
 
-    <ImageView
-        android:id="@+id/iconCheckArcond"
-        android:layout_width="19dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="4dp"
-        android:src="@mipmap/ic_check_false"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toEndOf="@+id/textAdmReuniao"
-        app:layout_constraintTop_toBottomOf="@+id/textCapacidade"></ImageView>
-
-    <TextView
-        android:id="@+id/textMultimidia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/multimidia"
-        app:layout_constraintStart_toStartOf="@+id/textAdmReuniao"
-        app:layout_constraintTop_toBottomOf="@id/textAdmReuniao"></TextView>
-
-    <ImageView
-        android:id="@+id/iconCheckMultimidia"
-        android:layout_width="19dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="4dp"
-        android:foregroundGravity="center_vertical"
-        android:src="@mipmap/ic_check_false"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toEndOf="@+id/textMultimidia"
-        app:layout_constraintTop_toBottomOf="@+id/textAdmReuniao"></ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

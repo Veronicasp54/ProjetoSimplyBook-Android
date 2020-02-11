@@ -41,10 +41,10 @@ public class SalaDetalhes extends AppCompatActivity {
 
     private void iniciarComponentes() {
 
-        textNomeSala = findViewById(R.id.textNomeSala);
-        textTamanhoSala = findViewById(R.id.textTamanho);
+        textNomeSala = findViewById(R.id.textReuniao);
+        textTamanhoSala = findViewById(R.id.dataSelecionada);
         textCapacidade = findViewById(R.id.textCapacidade);
-        textArCondicionado = findViewById(R.id.textArCondicionado);
+        textArCondicionado = findViewById(R.id.textAdmReuniao);
         textMultimidia = findViewById(R.id.textMultimidia);
         buttonBack = findViewById(R.id.imageButtonBack);
 

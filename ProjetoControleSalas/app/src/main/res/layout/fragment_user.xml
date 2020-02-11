@@ -113,7 +113,7 @@
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <TextView
-                android:id="@+id/textNomeSala"
+                android:id="@+id/textReuniao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -138,10 +138,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNomeSala"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/textReuniao"></ImageView>
 
             <TextView
-                android:id="@+id/descSala"
+                android:id="@+id/textSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
@@ -164,7 +164,7 @@
                 android:foregroundGravity="center_horizontal"
                 android:src="@drawable/icon_account"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descSala"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/textSala"></ImageView>
 
             <TextView
                 android:id="@+id/textViewConta"
@@ -181,7 +181,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/icon_conta"
-                app:layout_constraintTop_toBottomOf="@+id/descSala"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/textSala"></TextView>
 
 
             <ImageView

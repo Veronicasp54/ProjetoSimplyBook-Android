@@ -46,7 +46,7 @@ public class PerfilFragment extends Fragment {
         imageViewClaro = (ImageView) view.findViewById(R.id.icon_theme_claro);
         buttonAtualizar = (Button) view.findViewById(R.id.buttonAtualizar);
         buttonSair = (Button) view.findViewById(R.id.buttonSair);
-        textViewNomeEmpresa = (TextView) view.findViewById(R.id.descSala);
+        textViewNomeEmpresa = (TextView) view.findViewById(R.id.textSala);
         textViewNomeUser = (TextView) view.findViewById(R.id.textViewNome);
         textViewEmailUser = (TextView) view.findViewById(R.id.textViewEmail);
 

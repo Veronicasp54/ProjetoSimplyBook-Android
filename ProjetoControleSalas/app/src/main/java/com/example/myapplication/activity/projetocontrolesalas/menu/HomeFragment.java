@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
-import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
@@ -149,6 +148,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapter, View view, int pos, long id) {
 
                 showDialogDetalhesSala(pos);
+
             }
         });
     }
@@ -163,9 +163,9 @@ public class HomeFragment extends Fragment {
         final View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
         builder.setView(dialogLayout);
 
-        TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textNomeSala);
+        TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textReuniao);
 
-        TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.textTamanho);
+        TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.dataSelecionada);
         TextView textCapacidade = (TextView) dialogLayout.findViewById(R.id.textCapacidade);
 
         ImageView iconCheckArCondicionado = dialogLayout.findViewById(R.id.iconCheckArcond);
@@ -196,7 +196,7 @@ public class HomeFragment extends Fragment {
         });
 
         /*/buttonBack/*/
-        Button buttonReserva = dialogLayout.findViewById(R.id.buttonReserva);
+        Button buttonReserva = dialogLayout.findViewById(R.id.buttonSave);
 
         buttonReserva.setOnClickListener(new View.OnClickListener() {
             @Override

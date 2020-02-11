@@ -37,7 +37,7 @@
     <string name="quantidadeReunioes">4 reuniões</string>
     <string name="dataDia">sexta-feira, 24</string>
     <string name="meudia">MEU DIA</string>
-    <string name="salas">SALAS</string>
+    <string name="salas">Salas:</string>
 
 
     <string name="nome_empresa">Nome empresa</string>
@@ -69,5 +69,11 @@
     <string name="capacidade">Capacidade: xx pessoas</string>
     <string name="multimidia">Multimidia</string>
     <string name="reservar">RESERVAR</string>
+    <string name="reuniao">REUNIÃO</string>
+    <string name="reuniao_evento">Detalhes Reunião</string>
+    <string name="data">Data</string>
+    <string name="text_hour">Horário</string>
+    <string name="text_adm_reuniao">Administrador Reunião</string>
+    <string name="button_save">SALVAR</string>
 
 </resources>

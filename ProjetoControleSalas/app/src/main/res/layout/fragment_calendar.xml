@@ -11,13 +11,13 @@
         android:id="@+id/floatActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="4dp"
+        android:layout_margin="8dp"
         android:src="@drawable/ic_add_black_24dp"
         app:layout_anchor="@id/lista_eventos_listview"
-        app:layout_anchorGravity="bottom|right"
+        app:layout_anchorGravity="bottom|center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <TextView
         android:id="@+id/textView2"
