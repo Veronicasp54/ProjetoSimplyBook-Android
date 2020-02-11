@@ -83,11 +83,9 @@ public class CalendarFragment extends Fragment {
 
     private void createCalendar() {
 
-        /* start before 1 month from now */
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
-        /* end after 1 month from now */
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
 
