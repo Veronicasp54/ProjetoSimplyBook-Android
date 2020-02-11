@@ -19,13 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"></ImageButton>
 
     <Button
+        android:id="@+id/buttonReserva"
         style="@style/ButtonForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
         android:background="@android:color/transparent"
         android:text="@string/reservar"
-        android:layout_margin="20dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
