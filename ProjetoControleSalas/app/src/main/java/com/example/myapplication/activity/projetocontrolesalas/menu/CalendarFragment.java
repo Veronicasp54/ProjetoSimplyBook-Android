@@ -85,6 +85,7 @@ public class CalendarFragment extends Fragment {
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
+        //avancando um dia
 
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
@@ -112,8 +113,6 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
-
-                adicionarReuniao();
 
             }
 
@@ -171,7 +170,7 @@ public class CalendarFragment extends Fragment {
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();
 
-        final View dialogLayout = inflater.inflate(R.layout.box_add_reserva, null);
+        final View dialogLayout = inflater.inflate(R.layout.box_reservar, null);
         builder.setView(dialogLayout);
 
         spinnerSalas = dialogLayout.findViewById(R.id.spinnerSalas);
@@ -243,7 +242,7 @@ public class CalendarFragment extends Fragment {
         spinnerSalas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                idSalaSelecionada = listaSalas.get(position).getId();
+                //idSalaSelecionada = listaSalas.get(position).getId();
 
             }
 

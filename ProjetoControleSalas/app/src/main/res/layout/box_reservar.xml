@@ -3,18 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:background="@drawable/shape_alert_arrredondado">
+
+    <TextView
+        android:id="@+id/textReuniao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_vertical"
+        android:gravity="left"
+        android:text="@string/marcar_reuniao"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+    <ImageView
+        android:id="@+id/risco_desing"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/traco_desing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textReuniao" />
+
 
     <ImageView
         android:id="@+id/imageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="14dp"
         android:foregroundGravity="center_horizontal"
         android:src="@drawable/ic_text_fields_nome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintTop_toBottomOf="@id/risco_desing"></ImageView>
 
     <EditText
         android:id="@+id/textNomeReuniao"
@@ -23,10 +55,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:hint="Nome Reunião"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageText"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/textReuniao"></EditText>
 
     <ImageView
         android:id="@+id/iconDescReuniao"
@@ -100,11 +133,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconTime"></ImageView>
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha a sala:"
+        android:textSize="14dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/iconSala"
+        app:layout_constraintTop_toBottomOf="@+id/textData"></TextView>
+
     <Spinner
         android:id="@+id/spinnerSalas"
-        android:layout_width="350dp"
-        android:layout_height="38dp"
-        android:layout_marginLeft="12dp"
-        app:layout_constraintStart_toEndOf="@+id/iconSala"
-        app:layout_constraintTop_toBottomOf="@id/textData"></Spinner>
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:autofillHints="SALA"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"></Spinner>
+
+    <Button
+        android:id="@+id/buttonSave2"
+        style="@style/ButtonForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:text="@string/button_save"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSalas"></Button>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

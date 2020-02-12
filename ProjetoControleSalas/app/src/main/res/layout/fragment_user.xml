@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/icon_user"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="6dp"
                 android:src="@drawable/icons_user_orange"
@@ -38,7 +38,7 @@
                 android:gravity="left"
                 android:text="@string/usuario"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -65,7 +65,7 @@
                 android:layout_marginTop="2dp"
                 android:text="@string/nome_user"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/risco_desing_inicio"></TextView>
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
                 android:text="@string/email_user"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNome"></TextView>
@@ -103,8 +103,8 @@
 
             <ImageView
                 android:id="@+id/icon_empresa"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="6dp"
                 android:foregroundGravity="center_horizontal"
@@ -121,7 +121,7 @@
                 android:gravity="left"
                 android:text="@string/empresa"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -147,7 +147,7 @@
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="2dp"
                 android:text="@string/empresa_nome_empresa"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,8 +156,8 @@
 
             <ImageView
                 android:id="@+id/icon_conta"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="30dp"
                 android:contentDescription="@string/todo"
@@ -176,7 +176,7 @@
                 android:gravity="left"
                 android:text="@string/conta"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -199,13 +199,13 @@
             <Button
                 android:id="@+id/buttonAtualizar"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/shape_button"
                 android:text="ATUALIZAR"
                 android:textColor="@android:color/white"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -214,7 +214,7 @@
             <Button
                 android:id="@+id/buttonSair"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/shape_button"
@@ -228,8 +228,8 @@
 
             <ImageView
                 android:id="@+id/icon_theme"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="30dp"
                 android:contentDescription="@string/todo"
@@ -248,7 +248,7 @@
                 android:gravity="left"
                 android:text="@string/tema"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

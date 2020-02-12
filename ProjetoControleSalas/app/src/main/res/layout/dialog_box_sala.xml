@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="14dp">
+    android:layout_margin="14dp"
+    android:background="@drawable/shape_alert_arrredondado">
 
     <ImageButton
         android:id="@+id/imageButtonBack"
@@ -27,6 +28,7 @@
         android:layout_margin="20dp"
         android:background="@android:color/transparent"
         android:text="@string/reservar"
+        android:visibility="invisible"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
