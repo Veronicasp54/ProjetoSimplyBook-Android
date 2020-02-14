@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,31 +30,27 @@ public class ActivityReuniao extends AppCompatActivity {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
     private List<String> listaNomesSalas = new ArrayList<>();
-    private Toolbar toolbar;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.box_reservar);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_back_white);
+        
 
         iniciarComponentes();
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void iniciarComponentes() {
-
-        toolbar =findViewById(R.id.toolbar);
-        toolbar.setLogo(R.drawable.ic_back_white);
 
         spinnerSalas = findViewById(R.id.spinnerSalas);
 
         buscarListSalas();
         createSpinner();
-
 
     }
 
