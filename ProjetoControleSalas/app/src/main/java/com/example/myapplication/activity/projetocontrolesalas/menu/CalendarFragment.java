@@ -63,7 +63,6 @@ public class CalendarFragment extends Fragment {
 
     List<Empresa> listaSalas = new ArrayList();
     List<String> listaNomesSalas = new ArrayList<>();
-    int idSalaSelecionada;
 
 
     private SharedPreferences preferences;
@@ -74,6 +73,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
+
 
         createCalendar();
         iniciaComponentes();
@@ -154,7 +154,6 @@ public class CalendarFragment extends Fragment {
     private void startClass(Class classe) {
         Intent intent = new Intent(getActivity(), classe);
         startActivity(intent);
-        getActivity().finish();
     }
 
     private String getData() {
