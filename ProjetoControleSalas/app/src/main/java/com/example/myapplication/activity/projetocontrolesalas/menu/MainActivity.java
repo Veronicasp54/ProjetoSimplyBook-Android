@@ -1,7 +1,6 @@
-package com.example.myapplication.activity.projetocontrolesalas.ui;
+package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.os.Bundle;
-
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -9,10 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
-import com.example.myapplication.activity.projetocontrolesalas.menu.CalendarFragment;
-import com.example.myapplication.activity.projetocontrolesalas.menu.HomeFragment;
-import com.example.myapplication.activity.projetocontrolesalas.menu.PerfilFragment;
-import com.example.myapplication.activity.projetocontrolesalas.menu.DayFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

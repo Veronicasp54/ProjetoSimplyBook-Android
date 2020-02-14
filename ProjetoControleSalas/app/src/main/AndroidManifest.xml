@@ -25,7 +25,7 @@
             android:name=".ui.Cadastro"
             android:theme="@style/Splash" />
 
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".menu.MainActivity" />
 
         <activity
             android:name=".screensplash.ScreenSplash"

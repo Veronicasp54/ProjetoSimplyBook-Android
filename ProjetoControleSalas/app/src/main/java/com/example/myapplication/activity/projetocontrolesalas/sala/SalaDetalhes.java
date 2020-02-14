@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.ui.MainActivity;
+import com.example.myapplication.activity.projetocontrolesalas.menu.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
