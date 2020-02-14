@@ -146,9 +146,15 @@ public class CalendarFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "floatingActionButton", Toast.LENGTH_SHORT).show();
 
-                showDialogDetalhesSala();
+                startClass(ActivityReuniao.class);
             }
         });
+    }
+
+    private void startClass(Class classe) {
+        Intent intent = new Intent(getActivity(), classe);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     private String getData() {

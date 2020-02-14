@@ -75,7 +75,7 @@
             android:autofillHints=""
             android:background="@drawable/bg_form_field_top"
             android:hint="@string/hint_password"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionGo"
             android:inputType="textPassword"
             android:textColor="@android:color/black" />
 

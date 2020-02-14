@@ -15,6 +15,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
     <style name="EditTextFormField">
         <item name="android:layout_width">300dp</item>
