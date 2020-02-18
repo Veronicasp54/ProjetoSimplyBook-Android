@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:foregroundGravity="center_vertical"
             android:gravity="left"
-            android:text="@string/marcar_reuniao"
+            android:text="@string/crie_sua_reuniao"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:textStyle="normal"
@@ -133,11 +133,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewCapacidade"></EditText>
 
         <ImageView
-            android:id="@+id/iconTime"
+            android:id="@+id/iconDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:src="@drawable/ic_access_time_black_24dp"
+            android:src="@drawable/ic_today_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantPessoas"></ImageView>
 
@@ -146,59 +146,81 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:text="Quando:"
+            android:text="Data:"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/iconTime"
             app:layout_constraintTop_toBottomOf="@+id/quantPessoas"></TextView>
 
 
-        <EditText
+        <TextView
             android:id="@+id/textData"
             style="@style/EditTextFormField"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
+            android:textColor="@android:color/black"
             android:hint="date_and_hour"
             app:layout_constraintStart_toEndOf="@+id/iconTime"
-            app:layout_constraintTop_toBottomOf="@id/textHourDate"></EditText>
+            app:layout_constraintTop_toBottomOf="@id/textHourDate"></TextView>
+
+        <ImageView
+            android:id="@+id/iconTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ic_access_time_black_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textData"></ImageView>
+
+
+        <TextView
+            android:id="@+id/textHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horario:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textData"
+            app:layout_constraintTop_toBottomOf="@+id/textData"></TextView>
+
+        <TextView
+            android:id="@+id/textViewHour"
+            style="@style/EditTextFormField"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Escolha o horario"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@+id/textHour"
+            app:layout_constraintTop_toBottomOf="@+id/textHour"></TextView>
 
         <ImageView
             android:id="@+id/iconSala"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:src="@drawable/ic_home"
+            android:layout_marginLeft="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textData"></ImageView>
+            app:layout_constraintTop_toTopOf="@+id/textView4"></ImageView>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="6dp"
             android:text="Escolha a sala:"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/iconSala"
-            app:layout_constraintTop_toBottomOf="@+id/textData"></TextView>
+            app:layout_constraintStart_toStartOf="@+id/textViewHour"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHour"></TextView>
+
 
         <Spinner
             android:id="@+id/spinnerSalas"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
             android:autofillHints="SALA"
             android:visibility="invisible"
-            android:layout_marginLeft="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/iconSala"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4"></Spinner>
-
 
         <Button
             android:id="@+id/buttonSave2"

@@ -1,18 +1,22 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
@@ -23,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ActivityReuniao extends AppCompatActivity {
@@ -31,6 +36,11 @@ public class ActivityReuniao extends AppCompatActivity {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
     private List<String> listaNomesSalas = new ArrayList<>();
+    private EditText textNomeReuniao, textQuantPessoas;
+    private TextView textHorario, textData;
+    private DatePickerDialog datePicker;
+    private TimePickerDialog timePicker;
+
 
 
     @Override
@@ -49,9 +59,79 @@ public class ActivityReuniao extends AppCompatActivity {
     private void iniciarComponentes() {
 
         spinnerSalas = findViewById(R.id.spinnerSalas);
-
         buscarListSalas();
         createSpinner();
+
+        textData = findViewById(R.id.textData);
+        textData.setInputType(InputType.TYPE_NULL);
+
+        escolherData();
+
+        textHorario = findViewById(R.id.textViewHour);
+        escolherHorario();
+
+        getDataSelecionada();
+
+
+    }
+
+    private void getDataSelecionada() {
+        Intent intent = getIntent();
+        //Bundle dados = new Bundle();
+        //dados = intent.getExtras();
+        String dataRecuperada = getIntent().getCharSequenceExtra("dataSelecionada").toString();
+
+        textData.setText(dataRecuperada);
+
+        System.out.println(dataRecuperada);
+    }
+
+    private void escolherData() {
+
+        textData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                // date picker dialog
+                datePicker = new DatePickerDialog(ActivityReuniao.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+
+                                textData.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                datePicker.show();
+                Toast.makeText(getApplication(), "Selected Date: " + textData.getText(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void escolherHorario() {
+        textHorario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+
+                timePicker = new TimePickerDialog(ActivityReuniao.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                textHorario.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                timePicker.show();
+            }
+        });
 
     }
 

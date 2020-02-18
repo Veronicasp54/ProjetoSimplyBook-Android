@@ -60,9 +60,9 @@ public class CalendarFragment extends Fragment {
 
     private Spinner spinnerSalas;
 
-
-    List<Empresa> listaSalas = new ArrayList();
-    List<String> listaNomesSalas = new ArrayList<>();
+    private List<Empresa> listaSalas = new ArrayList();
+    private List<String> listaNomesSalas = new ArrayList<>();
+    private CharSequence dataSelecionada;
 
 
     private SharedPreferences preferences;
@@ -92,7 +92,7 @@ public class CalendarFragment extends Fragment {
 
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
-                .datesNumberOnScreen(5)
+                .datesNumberOnScreen(7)
                 .configure()
                 .formatTopText("MMM")
                 .formatMiddleText("dd")
@@ -109,10 +109,16 @@ public class CalendarFragment extends Fragment {
     }
 
     private void eventCalendar() {
+        dataSelecionada = DateFormat.format("dd/MM/yyyy", Calendar.getInstance().getTime());
+
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 Toast.makeText(getContext(), DateFormat.format("EEE, MMM d, yyyy", date) + " is selected!", Toast.LENGTH_SHORT).show();
+                dataSelecionada = DateFormat.format("dd/MM/yyyy", date);
+
+                Toast.makeText(getContext(), dataSelecionada + " is selected!", Toast.LENGTH_SHORT).show();
+
 
             }
 
@@ -144,9 +150,15 @@ public class CalendarFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "floatingActionButton", Toast.LENGTH_SHORT).show();
 
-                startClass(ActivityReuniao.class);
+                Intent intent = new Intent(getActivity(), ActivityReuniao.class);
+//                Bundle dados = new Bundle();
+
+                intent.putExtra("dataSelecionada", dataSelecionada);
+                //intent.putExtras(dados);
+
+                startActivity(intent);
+
             }
         });
     }
@@ -160,6 +172,12 @@ public class CalendarFragment extends Fragment {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
+
+        //SimpleDateFormat dateFormatReserva = new SimpleDateFormat("dd/MM/yyyy",local);
+        //String dataSelecionada = dateFormatReserva.format(data);
+
+        // Toast.makeText(getContext(), dateFormatReserva.format(data), Toast.LENGTH_LONG).show();
+
         return dateFormat.format(data);
     }
 
@@ -167,27 +185,6 @@ public class CalendarFragment extends Fragment {
         dateFormat = new SimpleDateFormat("MMMM", local);
         return dateFormat.format(data);
     }
-
-
-    private void showDialogDetalhesSala() {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-
-        final View dialogLayout = inflater.inflate(R.layout.box_reservar, null);
-        builder.setView(dialogLayout);
-
-        spinnerSalas = dialogLayout.findViewById(R.id.spinnerSalas);
-
-        createSpinner();
-        buscarListSalas();
-
-        final AlertDialog dialog = builder.create();
-
-        dialog.show();
-    }
-
 
     private void buscarListSalas() {
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
@@ -255,6 +252,25 @@ public class CalendarFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    private void showDialogDetalhesSala() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+
+        final View dialogLayout = inflater.inflate(R.layout.box_reservar, null);
+        builder.setView(dialogLayout);
+
+        spinnerSalas = dialogLayout.findViewById(R.id.spinnerSalas);
+
+        createSpinner();
+        buscarListSalas();
+
+        final AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
 
