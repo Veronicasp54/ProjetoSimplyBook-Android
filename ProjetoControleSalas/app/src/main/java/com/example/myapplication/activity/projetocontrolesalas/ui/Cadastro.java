@@ -36,8 +36,8 @@ public class Cadastro extends AppCompatActivity {
     private ImageButton imageButtonBack;
     private Spinner spinnerEmpresa;
 
-    List<Empresa> listaEmpresas = new ArrayList();
-    List<String> listaNomesEmpresas = new ArrayList<>();
+    private List<Empresa> listaEmpresas = new ArrayList();
+    private List<String> listaNomesEmpresas = new ArrayList<>();
     int idEmpresaSelecionada;
 
     @Override

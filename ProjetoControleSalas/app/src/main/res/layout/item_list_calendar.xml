@@ -19,7 +19,7 @@
             android:background="@android:color/white">
 
             <TextView
-                android:id="@+id/textViewHour"
+                android:id="@+id/textViewHourInicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -38,10 +38,10 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="6dp"
                 android:src="@drawable/traco_desing"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewHour"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewHourInicio"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textViewHour"
+                app:layout_constraintStart_toEndOf="@+id/textViewHourInicio"
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <ImageView
@@ -52,7 +52,7 @@
                 android:src="@mipmap/ic_event"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewHour"></ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/textViewHourInicio"></ImageView>
 
 
             <TextView
