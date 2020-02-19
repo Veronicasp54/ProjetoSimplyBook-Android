@@ -88,7 +88,7 @@ public class CalendarFragment extends Fragment {
         //avancando um dia
 
         Calendar endDate = Calendar.getInstance();
-        endDate.add(Calendar.MONTH, 2);
+        endDate.add(Calendar.MONTH, 1);
 
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
@@ -163,10 +163,6 @@ public class CalendarFragment extends Fragment {
         });
     }
 
-    private void startClass(Class classe) {
-        Intent intent = new Intent(getActivity(), classe);
-        startActivity(intent);
-    }
 
     private String getData() {
         Date data = new Date();
@@ -185,93 +181,5 @@ public class CalendarFragment extends Fragment {
         dateFormat = new SimpleDateFormat("MMMM", local);
         return dateFormat.format(data);
     }
-
-    private void buscarListSalas() {
-        preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
-
-        String requestSalas = null;
-
-        try {
-            requestSalas = new RequestSalas().execute(preferences.getString("userIdEmpresa", null)).get();
-            System.out.println("salas em string: " + requestSalas);
-
-
-            if (requestSalas.length() > 0) {
-
-                JSONArray jsonArray = new JSONArray(requestSalas);
-
-                if (jsonArray.length() > 0) {
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                        if (jsonObject.has("nome")) {
-
-                            String nome = jsonObject.getString("nome");
-
-                            Empresa newEmpresa = new Empresa();
-
-                            newEmpresa.setNomeEmpresa(nome);
-
-                            listaNomesSalas.add(newEmpresa.getNomeEmpresa());
-
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listaNomesSalas);
-
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                            spinnerSalas.setAdapter(adapter);
-                            spinnerSalas.setVisibility(View.VISIBLE);
-
-                        }
-
-
-                    }
-
-
-                }
-
-
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void createSpinner() {
-        spinnerSalas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //idSalaSelecionada = listaSalas.get(position).getId();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-    private void showDialogDetalhesSala() {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-
-        final View dialogLayout = inflater.inflate(R.layout.box_reservar, null);
-        builder.setView(dialogLayout);
-
-        spinnerSalas = dialogLayout.findViewById(R.id.spinnerSalas);
-
-        createSpinner();
-        buscarListSalas();
-
-        final AlertDialog dialog = builder.create();
-
-        dialog.show();
-    }
-
 
 }
