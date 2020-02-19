@@ -11,7 +11,7 @@ public class RequestReserva extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... strings) {
 
-        String urlWS = "http:/172.30.248.134:8080/ReservaDeSala/rest/reserva/byIdSala/";
+        String urlWS = "http:/172.30.248.134:8080/ReservaDeSala/rest/reserva/cadastrar/";
 
         StringBuilder result = new StringBuilder();
 
@@ -20,7 +20,7 @@ public class RequestReserva extends AsyncTask<String, Void, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("authorization", "secret");
-            conn.setRequestProperty("id_sala", strings[0]);
+            conn.setRequestProperty("novaReserva", strings[0]);
             conn.setConnectTimeout(6000);
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));

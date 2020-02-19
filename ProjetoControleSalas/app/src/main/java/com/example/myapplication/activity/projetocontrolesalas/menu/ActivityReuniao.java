@@ -25,13 +25,17 @@ import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastro;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityReuniao extends AppCompatActivity {
@@ -40,7 +44,7 @@ public class ActivityReuniao extends AppCompatActivity {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
     private List<String> listaNomesSalas = new ArrayList<>();
-    private EditText textNomeReuniao, textQuantPessoas;
+    private EditText textDescReuniao;
     private TextView textHorarioInicial, textHorarioFinal, textData;
     private DatePickerDialog datePicker;
     private TimePickerDialog timePicker;
@@ -48,7 +52,6 @@ public class ActivityReuniao extends AppCompatActivity {
     private List<Sala> listaSalas = new ArrayList();
 
     private int idSalaSelecionada;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class ActivityReuniao extends AppCompatActivity {
 
     private void iniciarComponentes() {
 
+        textDescReuniao = findViewById(R.id.textDescReuniao);
         spinnerSalas = findViewById(R.id.spinnerSalas);
         buscarListSalas();
         createSpinner();
@@ -82,28 +86,42 @@ public class ActivityReuniao extends AppCompatActivity {
 
         getDataSelecionada();
 
-        validarDados();
-
         salvarReuniao();
-
 
 
     }
 
-    private void createJson(String tituloReuniao,int idSala, String horarioMarcadoInicial, String horarioMarcadoFinal, String dataMarcada, int capacidade) {
+    private void createJson(String tituloReuniao, int idSala, String horarioMarcadoInicial, String horarioMarcadoFinal, String dataMarcada) {
+
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+        String datHoraInicioStr = dataMarcada + " " + horarioMarcadoInicial;
+        String datHoraFimStr = dataMarcada + " " + horarioMarcadoFinal;
+
+        Date dateHoraFim = null, dateHoraInicio = null;
+        try {
+            dateHoraFim = simpleDateFormat.parse(datHoraInicioStr);
+            dateHoraInicio = simpleDateFormat.parse(datHoraFimStr);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         idSala = idSalaSelecionada;
 
         JSONObject reservaJson = new JSONObject();
 
-        try {
-            reservaJson.put("", tituloReuniao);
-            reservaJson.put("idSala", idSala);
-            reservaJson.put("dataHoraInicio", horarioMarcadoInicial);
-            reservaJson.put("dataHoraFim", horarioMarcadoInicial);
-            reservaJson.put("data", dataMarcada);
-            reservaJson.put("capacidade", capacidade);
+        preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
+
+        try {
+            reservaJson.put("id_usuario", preferences.getString("userId", null));
+            reservaJson.put("descricao", tituloReuniao);
+            reservaJson.put("id_sala", idSala);
+            reservaJson.put("data_hora_inicio", dateHoraInicio.getTime());
+            reservaJson.put("data_hora_fim", dateHoraFim.getTime());
 
 
             System.out.println(reservaJson.toString());
@@ -111,22 +129,24 @@ public class ActivityReuniao extends AppCompatActivity {
             String reservaEncoded = Base64.encodeToString(reservaJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
             System.out.println(reservaEncoded);
 
-            String respostaMetodo = new RequestCadastro().execute(reservaEncoded).get();
+            String respostaMetodo = new RequestReserva().execute(reservaEncoded).get();
 
             if (respostaMetodo.equals("Reserva realizada com sucesso")) {
 
                 Toast.makeText(ActivityReuniao.this, "Reserva realizada com sucesso!", Toast.LENGTH_SHORT).show();
-                startClass(CalendarFragment.class);
 
+                onBackPressed();
 
             } else {
-                Toast.makeText(ActivityReuniao.this, "A reserva não foi realizada, os dados enviados estão incompletos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        ActivityReuniao.this,
+                        "A reserva não foi realizada!",
+                        Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            Toast.makeText(
-                    ActivityReuniao.this,
-                    "A reserva não foi realizada!",
-                    Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+
         }
 
     }
@@ -137,19 +157,14 @@ public class ActivityReuniao extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String tituloReuniao = textNomeReuniao.getText().toString();
                 String horarioMarcadoInicio = textHorarioInicial.getText().toString();
                 String horarioMarcadoFinal = textHorarioFinal.getText().toString();
                 String dataMarcada = textData.getText().toString();
-                String capacidade = textQuantPessoas.getText().toString();
+                String tituloReuniao = textDescReuniao.getText().toString();
 
 
                 if (validarDados() == true) {
-                    //createJson(tituloReuniao, horarioMarcadoInicio, horarioMarcadoFinal, dataMarcada, capacidade);
-
-                    startClass(CalendarFragment.class);
-
-
+                    createJson(tituloReuniao, idSalaSelecionada, horarioMarcadoInicio, horarioMarcadoFinal, dataMarcada);
                 } else {
                     Toast.makeText(getApplication(), "Dados Invalidos", Toast.LENGTH_LONG).show();
 
@@ -164,7 +179,6 @@ public class ActivityReuniao extends AppCompatActivity {
     private void startClass(Class classe) {
         Intent intent = new Intent(this, classe);
         startActivity(intent);
-        this.finish();
     }
 
 
@@ -194,9 +208,12 @@ public class ActivityReuniao extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                String monthStr = String.valueOf(monthOfYear + 1);
+                                if (monthStr.length() < 2) {
+                                    monthStr = "0" + monthStr;
+                                }
 
-
-                                textData.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                textData.setText(dayOfMonth + "/" + (monthStr) + "/" + year);
                             }
                         }, year, month, day);
                 datePicker.show();
@@ -272,11 +289,16 @@ public class ActivityReuniao extends AppCompatActivity {
 
                             String nome = jsonObject.getString("nome");
 
-                            Empresa newEmpresa = new Empresa();
+                            //Empresa newEmpresa = new Empresa();
+                            Sala newSala = new Sala();
+                            newSala.setNomeSala(jsonObject.getString("nome"));
+                            newSala.setId(jsonObject.getInt("id"));
 
-                            newEmpresa.setNomeEmpresa(nome);
+                            //newEmpresa.setNomeEmpresa(nome);
 
-                            listaNomesSalas.add(newEmpresa.getNomeEmpresa());
+                            listaNomesSalas.add(newSala.getNomeSala());
+                            listaSalas.add(newSala);
+
 
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNomesSalas);
 
@@ -329,27 +351,22 @@ public class ActivityReuniao extends AppCompatActivity {
 
         boolean chave = true;
 
-        if (textNomeReuniao.getText().toString().trim().length() >= 0) {
-            textNomeReuniao.setError("Campo Obrigatorio");
+        if (textDescReuniao.getText().toString().trim().length() <= 0) {
+            textDescReuniao.setError("Campo Obrigatorio");
             chave = false;
         }
 
-        if (textQuantPessoas.getText().toString().trim().length() >= 0) {
-            textQuantPessoas.setError("Digite um valor valido");
-            chave = false;
-        }
-
-        if (textData.getText().toString().trim().length() >= 0) {
+        if (textData.getText().toString().trim().length() <= 0) {
             textData.setError("Campo obrigatório");
             chave = false;
 
         }
-        if (textHorarioInicial.getText().toString().trim().length() >= 0 ||
+        if (textHorarioInicial.getText().toString().trim().length() <= 0 ||
                 textHorarioInicial.getText() == textHorarioFinal.getText()) {
             textHorarioInicial.setError("Campo obrigatório");
             chave = false;
         }
-        if (textHorarioFinal.getText().toString().trim().length() >= 0) {
+        if (textHorarioFinal.getText().toString().trim().length() <= 0) {
             textHorarioFinal.setError("Campo obrigatório");
             chave = false;
         }
