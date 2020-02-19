@@ -18,7 +18,7 @@ public class RequestExibirReservas extends AsyncTask<String, Void, String> {
         try {
             URL url = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+            conn.setRequestMethod("GET");
             conn.setRequestProperty("authorization", "secret");
             conn.setRequestProperty("id_usuario", strings[0]);
             conn.setConnectTimeout(6000);
