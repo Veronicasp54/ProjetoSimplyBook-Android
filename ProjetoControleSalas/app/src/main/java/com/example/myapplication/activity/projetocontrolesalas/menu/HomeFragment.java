@@ -35,8 +35,10 @@ public class HomeFragment extends Fragment {
     private View view;
     private TextView textNomeEmpresa;
     private ListView listSalas;
+
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
+
     private List<Sala> salas = new ArrayList<>();
     private List<String> nomeSalas = new ArrayList<>();
     private ArrayAdapter<String> adapter;

@@ -1,18 +1,27 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestExibirReservas;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -20,6 +29,9 @@ public class DayFragment extends Fragment {
 
     private View view;
     private TextView dataAtual, quantReunioes;
+
+    private SharedPreferences preferences;
+    public static final String userPreferences = "userPreferences";
 
     @Nullable
     @Override
@@ -48,4 +60,33 @@ public class DayFragment extends Fragment {
         return dateFormat.format(data);
 
     }
+
+    private void exibirReservas() {
+
+        String requestReservas = null;
+        try {
+            requestReservas = new RequestExibirReservas().execute(preferences.getString("id_usuario", null)).get();
+
+            System.out.println(requestReservas);
+
+            JSONArray reservasJson = new JSONArray(requestReservas);
+
+            if (reservasJson.length() > 0) {
+
+                for (int i = 0; i < reservasJson.length(); i++) {
+                    JSONObject reservaJson = reservasJson.getJSONObject(i);
+
+
+
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
