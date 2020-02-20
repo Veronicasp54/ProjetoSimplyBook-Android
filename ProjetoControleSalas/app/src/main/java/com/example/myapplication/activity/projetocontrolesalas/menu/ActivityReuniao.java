@@ -176,11 +176,6 @@ public class ActivityReuniao extends AppCompatActivity {
 
     }
 
-    private void startClass(Class classe) {
-        Intent intent = new Intent(this, classe);
-        startActivity(intent);
-    }
-
 
     private void getDataSelecionada() {
         Intent intent = getIntent();
@@ -340,10 +335,10 @@ public class ActivityReuniao extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
+        public boolean onSupportNavigateUp() {
+            onBackPressed();
 
-        return true;
+            return true;
 
     }
 

@@ -56,7 +56,7 @@
 
 
             <TextView
-                android:id="@+id/textViewNomeEvento"
+                android:id="@+id/textViewNomeSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -79,13 +79,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewNomeEvento"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNomeEvento"></TextView>
+                app:layout_constraintStart_toStartOf="@+id/textViewNomeSala"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomeSala"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="date"
+                android:id="@+id/dataReuniao"
                 android:text="data Reuniao"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewDesc"

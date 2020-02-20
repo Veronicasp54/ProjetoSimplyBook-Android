@@ -10,6 +10,16 @@ public class ReservaSala {
     private String horarioInicio;
     private String horarioFinal;
     private String nomeOrganizador;
+    private String nomeSala;
+
+
+    public String getNomeSala() {
+        return nomeSala;
+    }
+
+    public void setNomeSala(String nomeSala) {
+        this.nomeSala = nomeSala;
+    }
 
     public int getIdSala() {
         return idSala;

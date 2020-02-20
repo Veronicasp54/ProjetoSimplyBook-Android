@@ -1,6 +1,5 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,12 +9,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,9 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
+import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestEmpresa;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestExibirReservas;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 import com.example.myapplication.activity.projetocontrolesalas.ui.Cadastro;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,6 +49,7 @@ public class CalendarFragment extends Fragment {
     private HorizontalCalendar horizontalCalendar;
     private View view;
     private TextView mesAtual;
+    private List<ReservaSala> reservas = new ArrayList<>();
     private Locale local;
     private Date data;
     private SimpleDateFormat dateFormat;
@@ -130,7 +128,6 @@ public class CalendarFragment extends Fragment {
         data = new Date();
         local = new Locale("pt", "BR");
 
-        listViewEventos = view.findViewById(R.id.lista_eventos_listview);
 
         textViewDataAtual = (TextView) view.findViewById(R.id.diaDaSemana);
         textViewDataAtual.setText(getData());
@@ -182,4 +179,59 @@ public class CalendarFragment extends Fragment {
         return dateFormat.format(data);
     }
 
+    private void exibirTodasReservas() {
+
+        preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
+        System.out.println(preferences.getString("userId", null));
+
+        String requestReservas = null;
+        try {
+            requestReservas = new RequestExibirReservas().execute(preferences.getString("userId", null)).get();
+
+            System.out.println(requestReservas);
+
+            JSONArray reservasJson = new JSONArray(requestReservas);
+
+            if (reservasJson.length() > 0) {
+
+                for (int i = 0; i < reservasJson.length(); i++) {
+
+                    JSONObject jsonObjectReserva = reservasJson.getJSONObject(i);
+
+                    if (jsonObjectReserva.has("idUsuario") && jsonObjectReserva.has("id")) {
+
+                        //I/System.out: [{"ativo":true,"dataAlteracao":"2020-02-19T17:00:15Z[UTC]","dataCriacao":"2020-02-19T17:00:15Z[UTC]","dataHoraFim":"2020-02-19T20:00:00Z[UTC]","dataHoraInicio":"2020-02-19T21:00:00Z[UTC]","descricao":"reserva","id":1,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:01:54Z[UTC]","dataCriacao":"2020-02-19T17:01:54Z[UTC]","dataHoraFim":"2020-02-19T21:01:00Z[UTC]","dataHoraInicio":"2020-02-19T22:01:00Z[UTC]","descricao":"reserva","id":2,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:04:09Z[UTC]","dataCriacao":"2020-02-19T17:04:09Z[UTC]","dataHoraFim":"2020-02-19T20:04:00Z[UTC]","dataHoraInicio":"2020-02-19T21:04:00Z[UTC]","descricao":"re","id":3,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:07:15Z[UTC]","dataCriacao":"2020-02-19T17:07:15Z[UTC]","dataHoraFim":"2020-02-19T20:07:00Z[UTC]","dataHoraInicio":"2020-02-19T21:07:00Z[UTC]","descricao":"reservar","id":4,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-20T14:16:57Z[UTC]","dataCriacao":"2020-02-20T14:16:57Z[UTC]","dataHoraFim":"2020-02-20T17:16:00Z[UTC]","dataHoraInicio":"2020-02-20T17:30:00Z[UTC]","descricao":"desc","id":5,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"}]
+                        int idUser = jsonObjectReserva.getInt("idUsuario");
+                        int idSala = jsonObjectReserva.getInt("idSala");
+                        int idReserva = jsonObjectReserva.getInt("id");
+                        String descricaoReserva = jsonObjectReserva.getString("descricao");
+                        String dataHoraInicio = jsonObjectReserva.getString("dataHoraInicio");
+                        String dataHoraFim = jsonObjectReserva.getString("dataHoraFim");
+
+                        ReservaSala newReserva = new ReservaSala();
+
+                        newReserva.setIdSala(idSala);
+                        newReserva.setDescricaoReserva(descricaoReserva);
+                        newReserva.setIdUser(idUser);
+                        // newReserva.setNomeSala(idSala);
+
+                        reservas.add(newReserva);
+
+                    }
+
+                }
+                listViewEventos = view.findViewById(R.id.lista_eventos_listview);
+
+                AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
+                listViewEventos.setAdapter(adapter);
+
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
