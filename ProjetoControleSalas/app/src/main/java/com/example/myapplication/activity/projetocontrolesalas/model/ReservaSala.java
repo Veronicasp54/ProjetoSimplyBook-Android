@@ -1,53 +1,77 @@
 package com.example.myapplication.activity.projetocontrolesalas.model;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class ReservaSala {
 
-    private Sala sala;
-    private Date dataReserva;
-    private Time horarioUsoInicio;
-    private Time horarioUsoFinal;
-    private int quantidadePessosas;
+    private int idSala;
+    private int idUser;
+    private int idReserva;
+    private String descricaoReserva;
+    private String dataReserva;
+    private String horarioInicio;
+    private String horarioFinal;
+    private String nomeOrganizador;
 
-    public Sala getSala() {
-        return sala;
+    public int getIdSala() {
+        return idSala;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setIdSala(int idSala) {
+        this.idSala = idSala;
     }
 
-    public Date getDataReserva() {
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public String getDescricaoReserva() {
+        return descricaoReserva;
+    }
+
+    public void setDescricaoReserva(String descricaoReserva) {
+        this.descricaoReserva = descricaoReserva;
+    }
+
+    public String getDataReserva() {
         return dataReserva;
     }
 
-    public void setDataReserva(Date dataReserva) {
+    public void setDataReserva(String dataReserva) {
         this.dataReserva = dataReserva;
     }
 
-    public Time getHorarioUsoInicio() {
-        return horarioUsoInicio;
+    public String getHorarioInicio() {
+        return horarioInicio;
     }
 
-    public void setHorarioUsoInicio(Time horarioUsoInicio) {
-        this.horarioUsoInicio = horarioUsoInicio;
+    public void setHorarioInicio(String horarioInicio) {
+        this.horarioInicio = horarioInicio;
     }
 
-    public Time getHorarioUsoFinal() {
-        return horarioUsoFinal;
+    public String getHorarioFinal() {
+        return horarioFinal;
     }
 
-    public void setHorarioUsoFinal(Time horarioUsoFinal) {
-        this.horarioUsoFinal = horarioUsoFinal;
+    public void setHorarioFinal(String horarioFinal) {
+        this.horarioFinal = horarioFinal;
     }
 
-    public int getQuantidadePessosas() {
-        return quantidadePessosas;
+    public String getNomeOrganizador() {
+        return nomeOrganizador;
     }
 
-    public void setQuantidadePessosas(int quantidadePessosas) {
-        this.quantidadePessosas = quantidadePessosas;
+    public void setNomeOrganizador(String nomeOrganizador) {
+        this.nomeOrganizador = nomeOrganizador;
     }
 }
