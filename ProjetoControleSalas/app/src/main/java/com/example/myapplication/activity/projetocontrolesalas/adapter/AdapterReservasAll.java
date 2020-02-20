@@ -1,7 +1,6 @@
 package com.example.myapplication.activity.projetocontrolesalas.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,27 +38,27 @@ public class AdapterReservasAll extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = act.getLayoutInflater().inflate(R.layout.list_item_sala_unique, parent, false);
+        View view = act.getLayoutInflater().inflate(R.layout.item_list_reserva_all, parent, false);
 
         ReservaSala reserva = reservas.get(position);
 
-        TextView nomeSala = (TextView)
-                view.findViewById(R.id.item_nome_sala);
+       // TextView nomeSala = (TextView)
+       //         view.findViewById(R.id.item_nome_sala);
         TextView nomeOrganizador = (TextView)
-                view.findViewById(R.id.item_nome_sala);
+                view.findViewById(R.id.textViewNome);
         TextView descricao = (TextView)
                 view.findViewById(R.id.textViewDesc);
-        TextView dataReuniao = (TextView)
-                view.findViewById(R.id.dataReuniao);
-        TextView textViewHourInicio =
-                view.findViewById(R.id.textViewHourInicio);
+      //  TextView dataReuniao = (TextView)
+      //          view.findViewById(R.id.dataReuniao);
+      //  TextView textViewHourInicio =
+       //         view.findViewById(R.id.textViewHourInicio);
 
         //  nomeSala.setText(reserva.getIdSala());
-        nomeSala.setText(reserva.getNomeSala());
+       // nomeSala.setText(reserva.getNomeSala());
         nomeOrganizador.setText(reserva.getNomeOrganizador());
         descricao.setText(reserva.getDescricaoReserva());
-        dataReuniao.setText(reserva.getDataReserva());
-        textViewHourInicio.setText(reserva.getHorarioInicio());
+      //  dataReuniao.setText(reserva.getDataReserva());
+      //  textViewHourInicio.setText(reserva.getHorarioInicio());
 
         return view;
     }

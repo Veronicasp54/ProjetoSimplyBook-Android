@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasAll;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
@@ -138,6 +139,7 @@ public class CalendarFragment extends Fragment {
         floatingActionButton = view.findViewById(R.id.floatActionButton);
 
         adicionarReuniao();
+        exibirTodasReservas();
 
 
     }
@@ -204,6 +206,7 @@ public class CalendarFragment extends Fragment {
                         int idUser = jsonObjectReserva.getInt("idUsuario");
                         int idSala = jsonObjectReserva.getInt("idSala");
                         int idReserva = jsonObjectReserva.getInt("id");
+                        String nomeOrganizador = jsonObjectReserva.getString("nomeOrganizador");
                         String descricaoReserva = jsonObjectReserva.getString("descricao");
                         String dataHoraInicio = jsonObjectReserva.getString("dataHoraInicio");
                         String dataHoraFim = jsonObjectReserva.getString("dataHoraFim");
@@ -213,6 +216,7 @@ public class CalendarFragment extends Fragment {
                         newReserva.setIdSala(idSala);
                         newReserva.setDescricaoReserva(descricaoReserva);
                         newReserva.setIdUser(idUser);
+                        newReserva.setNomeOrganizador(nomeOrganizador);
                         // newReserva.setNomeSala(idSala);
 
                         reservas.add(newReserva);
@@ -222,7 +226,7 @@ public class CalendarFragment extends Fragment {
                 }
                 listViewEventos = view.findViewById(R.id.lista_eventos_listview);
 
-                AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
+                AdapterReservasAll adapter = new AdapterReservasAll(reservas, getActivity());
                 listViewEventos.setAdapter(adapter);
 
 

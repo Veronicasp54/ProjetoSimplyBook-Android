@@ -22,10 +22,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
-import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastro;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestReserva;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastroReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
 import org.json.JSONArray;
@@ -93,7 +91,6 @@ public class ActivityReuniao extends AppCompatActivity {
 
     private void createJson(String tituloReuniao, int idSala, String horarioMarcadoInicial, String horarioMarcadoFinal, String dataMarcada) {
 
-
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         String datHoraInicioStr = dataMarcada + " " + horarioMarcadoInicial;
@@ -129,7 +126,7 @@ public class ActivityReuniao extends AppCompatActivity {
             String reservaEncoded = Base64.encodeToString(reservaJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
             System.out.println(reservaEncoded);
 
-            String respostaMetodo = new RequestReserva().execute(reservaEncoded).get();
+            String respostaMetodo = new RequestCadastroReserva().execute(reservaEncoded).get();
 
             if (respostaMetodo.equals("Reserva realizada com sucesso")) {
 

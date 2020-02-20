@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RequestReserva extends AsyncTask<String, Void, String> {
+public class RequestCadastroReserva extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... strings) {
 

@@ -115,13 +115,13 @@
     <ListView
         android:id="@+id/lista_eventos_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="12dp"
         android:dividerHeight="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        tools:listitem="@layout/item_list_calendar"></ListView>
+        tools:listitem="@layout/item_list_reserva_all"></ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

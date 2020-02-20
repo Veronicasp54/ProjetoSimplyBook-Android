@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -30,19 +31,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"></TextView>
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="300dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/traco_desing"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewHourInicio"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textViewHourInicio"
-                app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <ImageView
                 android:id="@+id/imageView"
@@ -60,14 +48,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
                 android:text="Nome Sala"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewHourInicio" />
+            <TextView
+                android:id="@id/textViewNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nome_user"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textViewNomeSala"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomeSala"></TextView>
 
             <TextView
                 android:id="@+id/textViewDesc"
@@ -76,17 +74,15 @@
                 android:layout_margin="4dp"
                 android:text="@string/descricao_reuniao"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewNomeSala"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNomeSala"></TextView>
+                app:layout_constraintStart_toStartOf="@+id/textViewNome"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNome"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:id="@+id/dataReuniao"
                 android:text="data Reuniao"
                 android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewDesc"

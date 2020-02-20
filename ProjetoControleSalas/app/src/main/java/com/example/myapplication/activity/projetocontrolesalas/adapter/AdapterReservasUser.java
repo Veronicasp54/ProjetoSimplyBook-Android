@@ -39,7 +39,7 @@ public class AdapterReservasUser extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = act.getLayoutInflater().inflate(R.layout.list_item_sala_unique, parent, false);
+        View view = act.getLayoutInflater().inflate(R.layout.list_item_reserva_unique, parent, false);
 
         ReservaSala reserva = reservas.get(position);
 
@@ -53,10 +53,10 @@ public class AdapterReservasUser extends BaseAdapter {
                 view.findViewById(R.id.textViewHourInicio);
 
       //  nomeSala.setText(reserva.getIdSala());
-        nomeSala.setText(reserva.getNomeSala());
+       // nomeSala.setText(reserva.getNomeSala());
         descricao.setText(reserva.getDescricaoReserva());
-        dataReuniao.setText(reserva.getDataReserva());
-        textViewHourInicio.setText(reserva.getHorarioInicio());
+       // dataReuniao.setText(reserva.getDataReserva());
+        //textViewHourInicio.setText(reserva.getHorarioInicio());
 
         return view;
     }
