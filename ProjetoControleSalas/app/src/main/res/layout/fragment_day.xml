@@ -74,6 +74,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ListView
+            android:background="@android:color/white"
             android:id="@+id/listReservas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -81,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_list_calendar"></ListView>
+            tools:listitem="@layout/list_item_sala_unique"></ListView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"

@@ -33,6 +33,7 @@ public class DayFragment extends Fragment {
 
     private View view;
     private TextView dataAtual, quantReunioes;
+    private int contReunioes;
 
     private List<ReservaSala> reservas = new ArrayList<>();
     private ArrayAdapter<String> adapter;
@@ -57,6 +58,7 @@ public class DayFragment extends Fragment {
         dataAtual = view.findViewById(R.id.dataAtual);
         dataAtual.setText(getData());
 
+        quantReunioes = view.findViewById(R.id.textQuantReunioes);
         listRerservas = view.findViewById(R.id.listReservas);
 
         quantReunioes = view.findViewById(R.id.textQuantReunioes);
@@ -77,8 +79,6 @@ public class DayFragment extends Fragment {
 
     private void exibirReservas() {
 
-        
-
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
 
@@ -93,10 +93,11 @@ public class DayFragment extends Fragment {
             if (reservasJson.length() > 0) {
 
                 for (int i = 0; i < reservasJson.length(); i++) {
+                    contReunioes++;
 
                     JSONObject jsonObjectReserva = reservasJson.getJSONObject(i);
 
-                    if (jsonObjectReserva.has("idUsuario") && jsonObjectReserva.has("id") ) {
+                    if (jsonObjectReserva.has("idUsuario") && jsonObjectReserva.has("id")) {
 
                         //I/System.out: [{"ativo":true,"dataAlteracao":"2020-02-19T17:00:15Z[UTC]","dataCriacao":"2020-02-19T17:00:15Z[UTC]","dataHoraFim":"2020-02-19T20:00:00Z[UTC]","dataHoraInicio":"2020-02-19T21:00:00Z[UTC]","descricao":"reserva","id":1,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:01:54Z[UTC]","dataCriacao":"2020-02-19T17:01:54Z[UTC]","dataHoraFim":"2020-02-19T21:01:00Z[UTC]","dataHoraInicio":"2020-02-19T22:01:00Z[UTC]","descricao":"reserva","id":2,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:04:09Z[UTC]","dataCriacao":"2020-02-19T17:04:09Z[UTC]","dataHoraFim":"2020-02-19T20:04:00Z[UTC]","dataHoraInicio":"2020-02-19T21:04:00Z[UTC]","descricao":"re","id":3,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:07:15Z[UTC]","dataCriacao":"2020-02-19T17:07:15Z[UTC]","dataHoraFim":"2020-02-19T20:07:00Z[UTC]","dataHoraInicio":"2020-02-19T21:07:00Z[UTC]","descricao":"reservar","id":4,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-20T14:16:57Z[UTC]","dataCriacao":"2020-02-20T14:16:57Z[UTC]","dataHoraFim":"2020-02-20T17:16:00Z[UTC]","dataHoraInicio":"2020-02-20T17:30:00Z[UTC]","descricao":"desc","id":5,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"}]
                         int idUser = jsonObjectReserva.getInt("idUsuario");
@@ -117,9 +118,12 @@ public class DayFragment extends Fragment {
                     }
 
                 }
+                System.out.println(contReunioes);
+                quantReunioes.setText(contReunioes +" "+ "reuniões");
                 listRerservas = view.findViewById(R.id.listReservas);
                 adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, itemReserva);
                 listRerservas.setAdapter(adapter);
+
 
             }
 
