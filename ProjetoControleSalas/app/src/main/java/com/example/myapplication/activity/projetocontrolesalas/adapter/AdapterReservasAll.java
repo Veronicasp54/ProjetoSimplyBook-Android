@@ -38,7 +38,7 @@ public class AdapterReservasAll extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = act.getLayoutInflater().inflate(R.layout.item_list_reserva_all, parent, false);
+        View view = act.getLayoutInflater().inflate(R.layout.list_item_reserva_all, parent, false);
 
         ReservaSala reserva = reservas.get(position);
 
@@ -47,7 +47,7 @@ public class AdapterReservasAll extends BaseAdapter {
         TextView nomeOrganizador = (TextView)
                 view.findViewById(R.id.textViewNome);
         TextView descricao = (TextView)
-                view.findViewById(R.id.textViewDesc);
+                view.findViewById(R.id.textDescricao);
       //  TextView dataReuniao = (TextView)
       //          view.findViewById(R.id.dataReuniao);
       //  TextView textViewHourInicio =

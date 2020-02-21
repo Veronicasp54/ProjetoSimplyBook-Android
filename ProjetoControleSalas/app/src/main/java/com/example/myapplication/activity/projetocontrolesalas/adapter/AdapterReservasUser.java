@@ -1,7 +1,6 @@
 package com.example.myapplication.activity.projetocontrolesalas.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -46,7 +45,7 @@ public class AdapterReservasUser extends BaseAdapter {
         TextView nomeSala = (TextView)
                 view.findViewById(R.id.textViewNomeSala);
         TextView descricao = (TextView)
-                view.findViewById(R.id.textViewDesc);
+                view.findViewById(R.id.textDescSala);
         TextView dataReuniao = (TextView)
                 view.findViewById(R.id.textDataReuniao);
         TextView textViewHourInicio =
