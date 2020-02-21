@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewHourInicio" />
 
             <TextView
-                android:id="@+id/textViewDesc"
+                android:id="@+id/textDescSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -68,14 +68,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewNomeSala"></TextView>
 
             <TextView
+                android:id="@+id/textDataReuniao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:id="@+id/dataReuniao"
                 android:text="data Reuniao"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/textViewDesc"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDesc"></TextView>
+                app:layout_constraintStart_toStartOf="@+id/textDescSala"
+                app:layout_constraintTop_toBottomOf="@+id/textDescSala"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

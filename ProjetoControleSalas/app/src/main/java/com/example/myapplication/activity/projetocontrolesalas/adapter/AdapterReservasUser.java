@@ -44,11 +44,11 @@ public class AdapterReservasUser extends BaseAdapter {
         ReservaSala reserva = reservas.get(position);
 
         TextView nomeSala = (TextView)
-                view.findViewById(R.id.item_nome_sala);
+                view.findViewById(R.id.textViewNomeSala);
         TextView descricao = (TextView)
                 view.findViewById(R.id.textViewDesc);
         TextView dataReuniao = (TextView)
-                view.findViewById(R.id.dataReuniao);
+                view.findViewById(R.id.textDataReuniao);
         TextView textViewHourInicio =
                 view.findViewById(R.id.textViewHourInicio);
 

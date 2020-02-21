@@ -2,7 +2,6 @@ package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterListSalas;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
@@ -38,6 +38,8 @@ public class HomeFragment extends Fragment {
 
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
+    public static final String salaPreferences = "salaPreferences";
+
 
     private List<Sala> salas = new ArrayList<>();
     private List<String> nomeSalas = new ArrayList<>();
@@ -50,6 +52,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         iniciaCampos();
+
 
         return view;
 
@@ -103,8 +106,9 @@ public class HomeFragment extends Fragment {
 
                 }
                 listSalas = view.findViewById(R.id.lista_salas_listview);
-                adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, nomeSalas);
+                AdapterListSalas adapter = new AdapterListSalas(salas, getActivity(), getContext());
                 listSalas.setAdapter(adapter);
+
 
             }
 
@@ -158,6 +162,8 @@ public class HomeFragment extends Fragment {
 
     private void showDialogDetalhesSala(int pos) {
 
+        preferences = getActivity().getSharedPreferences(salaPreferences, Context.MODE_PRIVATE);
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = requireActivity().getLayoutInflater();
@@ -172,6 +178,13 @@ public class HomeFragment extends Fragment {
 
         ImageView iconCheckArCondicionado = dialogLayout.findViewById(R.id.iconCheckArcond);
         ImageView iconCheckMultimidia = dialogLayout.findViewById(R.id.iconCheckMultimidia);
+
+        Sala salaSave = new Sala();
+        salaSave.setDimensaoSala(salas.get(pos).getDimensaoSala());
+        salaSave.setCapacidade(salas.get(pos).getCapacidade());
+
+        salvarCredenciais(salaSave);
+
 
         nomeSala.setText(salas.get(pos).getNomeSala());
         textTamanhoSala.setText("Dimensão: " + salas.get(pos).getDimensaoSala());
@@ -193,7 +206,7 @@ public class HomeFragment extends Fragment {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*/sair/*/
+
             }
         });
 
@@ -228,9 +241,15 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void startClass(Class classe) {
-        Intent intent = new Intent(getContext(), classe);
-        startActivity(intent);
-        getActivity().finish();
+    private void salvarCredenciais(Sala sala) {
+
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("salaDimensao", sala.getDimensaoSala());
+        editor.putString("salaCapacidade", sala.getCapacidade());
+
+        editor.commit();
+
     }
+
 }
