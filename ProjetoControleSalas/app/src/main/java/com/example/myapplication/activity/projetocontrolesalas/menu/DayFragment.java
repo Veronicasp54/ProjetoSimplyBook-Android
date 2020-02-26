@@ -116,17 +116,20 @@ public class DayFragment extends Fragment {
 
                         System.out.println("data inicio");
 
-                        //dat
-//                        String data = String.valueOf(dataHoraInicio.split("T"));
-                    //    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
-                    //    String dataMarcada = simpleDateFormat.format(data);
-                        newReserva.setDataReserva(dataHoraInicio);
+                        //data
+                        String data = dataHoraInicio.split("T")[0];
+                        newReserva.setDataReserva(data.split("-")[2] + "/" + data.split("-")[1]);
 
+                        //hour//
 
-                        //hour//String horarioInicioFim = ;
+                        String horarioInicioSplit =  dataHoraInicio.split("T")[1];
+                        String horarioInicioStr = horarioInicioSplit.split(":00Z")[0];
 
-                        newReserva.setHorarioInicio(dataHoraInicio);
-                        newReserva.setHorarioFinal(dataHoraFim);
+                        String horarioFimSplit =  dataHoraFim.split("T")[1];
+                        String horarioFimStr = horarioFimSplit.split(":00Z")[0];
+
+                        newReserva.setHorarioInicio(horarioFimStr);
+                        newReserva.setHorarioFinal(horarioInicioStr);
 
                         reservas.add(newReserva);
                         itemReserva.add(descricaoReserva);
