@@ -47,15 +47,15 @@ public class AdapterReservasUser extends BaseAdapter {
         TextView descricao = (TextView)
                 view.findViewById(R.id.textDescSala);
         TextView dataReuniao = (TextView)
-                view.findViewById(R.id.textHoraReuniao);
-        TextView textViewHourInicio =
                 view.findViewById(R.id.textDataReserva);
+        TextView textViewHourInicio =
+                view.findViewById(R.id.textHoraReuniao);
 
       //  nomeSala.setText(reserva.getIdSala());
        // nomeSala.setText(reserva.getNomeSala());
         descricao.setText(reserva.getDescricaoReserva());
-       // dataReuniao.setText(reserva.getDataReserva());
-        //textViewHourInicio.setText(reserva.getHorarioInicio());
+        dataReuniao.setText(reserva.getDataReserva());
+        textViewHourInicio.setText(reserva.getHorarioInicio());
 
         return view;
     }

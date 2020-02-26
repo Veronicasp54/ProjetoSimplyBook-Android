@@ -208,8 +208,8 @@ public class CalendarFragment extends Fragment {
                         int idReserva = jsonObjectReserva.getInt("id");
                         String nomeOrganizador = jsonObjectReserva.getString("nomeOrganizador");
                         String descricaoReserva = jsonObjectReserva.getString("descricao");
-                        String dataHoraInicio = jsonObjectReserva.getString("dataHoraInicio");
-                        String dataHoraFim = jsonObjectReserva.getString("dataHoraFim");
+//                        String dataHoraInicio = jsonObjectReserva.getString("data_hora_inicio");
+         //               String dataHoraFim = jsonObjectReserva.getString("data_hora_fim");
 
                         ReservaSala newReserva = new ReservaSala();
 
@@ -217,6 +217,12 @@ public class CalendarFragment extends Fragment {
                         newReserva.setDescricaoReserva(descricaoReserva);
                         newReserva.setIdUser(idUser);
                         newReserva.setNomeOrganizador(nomeOrganizador);
+
+                        newReserva.setNomeSala("Sala para reuniao");
+                        newReserva.setDataReserva("data");
+                      //  newReserva.setHorarioInicio(dataHoraInicio);
+                     //   newReserva.setHorarioFinal(dataHoraFim);
+
                         // newReserva.setNomeSala(idSala);
 
                         reservas.add(newReserva);

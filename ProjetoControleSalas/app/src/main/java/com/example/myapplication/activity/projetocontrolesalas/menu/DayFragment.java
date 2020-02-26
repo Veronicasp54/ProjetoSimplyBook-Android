@@ -111,7 +111,22 @@ public class DayFragment extends Fragment {
                         newReserva.setIdSala(idSala);
                         newReserva.setDescricaoReserva(descricaoReserva);
                         newReserva.setIdUser(idUser);
-                       // newReserva.setNomeSala(idSala);
+
+                        newReserva.setNomeSala("Sala para reuniao");
+
+                        System.out.println("data inicio");
+
+                        //dat
+//                        String data = String.valueOf(dataHoraInicio.split("T"));
+                    //    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
+                    //    String dataMarcada = simpleDateFormat.format(data);
+                        newReserva.setDataReserva(dataHoraInicio);
+
+
+                        //hour//String horarioInicioFim = ;
+
+                        newReserva.setHorarioInicio(dataHoraInicio);
+                        newReserva.setHorarioFinal(dataHoraFim);
 
                         reservas.add(newReserva);
                         itemReserva.add(descricaoReserva);
