@@ -50,15 +50,17 @@ public class AdapterReservasAll extends BaseAdapter {
                 view.findViewById(R.id.textDescricao);
         TextView dataReuniao = (TextView)
                 view.findViewById(R.id.textDataReserva);
-        TextView textViewHourInicio = view.findViewById(R.id.textHourReuniao);
+        TextView textViewHourReuniao = view.findViewById(R.id.textHourReuniao);
 
         //  nomeSala.setText(reserva.getIdSala());
         // nomeSala.setText(reserva.getNomeSala());
         nomeOrganizador.setText(reserva.getNomeOrganizador());
         descricao.setText(reserva.getDescricaoReserva());
+
         dataReuniao.setText(reserva.getDataReserva());
-        String horarioConcatenado = reserva.getHorarioInicio().concat(" - " + reserva.getHorarioFinal());
-        textViewHourInicio.setText(horarioConcatenado);
+        String horarioConcatenado = reserva.getHorarioInicio().concat(" - "+ reserva.getHorarioFinal());
+       textViewHourReuniao.setText(horarioConcatenado);
+
 
 
         return view;

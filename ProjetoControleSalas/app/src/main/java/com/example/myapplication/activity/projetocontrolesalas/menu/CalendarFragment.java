@@ -208,8 +208,8 @@ public class CalendarFragment extends Fragment {
                         int idReserva = jsonObjectReserva.getInt("id");
                         String nomeOrganizador = jsonObjectReserva.getString("nomeOrganizador");
                         String descricaoReserva = jsonObjectReserva.getString("descricao");
-//                        String dataHoraInicio = jsonObjectReserva.getString("data_hora_inicio");
-         //               String dataHoraFim = jsonObjectReserva.getString("data_hora_fim");
+                        String dataHoraInicio = jsonObjectReserva.getString("dataHoraInicio");
+                        String dataHoraFim = jsonObjectReserva.getString("dataHoraFim");
 
                         ReservaSala newReserva = new ReservaSala();
 
@@ -220,10 +220,20 @@ public class CalendarFragment extends Fragment {
 
                         newReserva.setNomeSala("Sala para reuniao");
                         newReserva.setDataReserva("data");
-                      //  newReserva.setHorarioInicio(dataHoraInicio);
-                     //   newReserva.setHorarioFinal(dataHoraFim);
+                        //data
+                        String data = dataHoraInicio.split("T")[0];
+                        newReserva.setDataReserva(data.split("-")[2] + "/" + data.split("-")[1]);
 
-                        // newReserva.setNomeSala(idSala);
+                        //hour//
+
+                        String horarioInicioSplit = dataHoraInicio.split("T")[1];
+                        String horarioInicioStr = horarioInicioSplit.split(":00Z")[0];
+
+                        String horarioFimSplit = dataHoraFim.split("T")[1];
+                        String horarioFimStr = horarioFimSplit.split(":00Z")[0];
+
+                        newReserva.setHorarioInicio(horarioFimStr);
+                        newReserva.setHorarioFinal(horarioInicioStr);
 
                         reservas.add(newReserva);
 

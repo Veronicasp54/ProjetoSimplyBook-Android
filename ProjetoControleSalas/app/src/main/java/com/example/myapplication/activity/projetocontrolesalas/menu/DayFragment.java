@@ -62,9 +62,7 @@ public class DayFragment extends Fragment {
 
         quantReunioes = view.findViewById(R.id.textQuantReunioes);
 
-
         exibirReservas();
-
 
     }
 
@@ -122,10 +120,10 @@ public class DayFragment extends Fragment {
 
                         //hour//
 
-                        String horarioInicioSplit =  dataHoraInicio.split("T")[1];
+                        String horarioInicioSplit = dataHoraInicio.split("T")[1];
                         String horarioInicioStr = horarioInicioSplit.split(":00Z")[0];
 
-                        String horarioFimSplit =  dataHoraFim.split("T")[1];
+                        String horarioFimSplit = dataHoraFim.split("T")[1];
                         String horarioFimStr = horarioFimSplit.split(":00Z")[0];
 
                         newReserva.setHorarioInicio(horarioFimStr);
@@ -138,14 +136,13 @@ public class DayFragment extends Fragment {
 
                 }
                 System.out.println(contReunioes);
-                quantReunioes.setText(contReunioes +" "+ "reuniões");
+                quantReunioes.setText(contReunioes + " " + "reuniões");
                 listRerservas = view.findViewById(R.id.listReservas);
-              //  adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, itemReserva);
-              //  listRerservas.setAdapter(adapter);
+                //  adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, itemReserva);
+                //  listRerservas.setAdapter(adapter);
 
                 AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
                 listRerservas.setAdapter(adapter);
-
 
             }
 

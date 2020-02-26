@@ -12,7 +12,6 @@ public class ReservaSala {
     private String nomeOrganizador;
     private String nomeSala;
 
-
     public String getNomeSala() {
         return nomeSala;
     }
