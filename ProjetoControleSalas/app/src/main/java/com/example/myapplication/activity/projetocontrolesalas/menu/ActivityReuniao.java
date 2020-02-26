@@ -76,7 +76,7 @@ public class ActivityReuniao extends AppCompatActivity {
 
         escolherData();
 
-        textHorarioInicial = findViewById(R.id.textViewHourInicio);
+        textHorarioInicial = findViewById(R.id.textDataReserva);
         textHorarioFinal = findViewById(R.id.textViewHourFinal);
         escolherHorario();
 
