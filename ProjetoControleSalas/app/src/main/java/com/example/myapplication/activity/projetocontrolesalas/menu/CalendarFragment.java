@@ -22,7 +22,8 @@ import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasAll;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestExibirReservas;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasAll;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -187,7 +188,7 @@ public class CalendarFragment extends Fragment {
 
         String requestReservas = null;
         try {
-            requestReservas = new RequestExibirReservas().execute(preferences.getString("userId", null)).get();
+            requestReservas = new RequestReservasAll().execute(preferences.getString("userIdEmpresa", null)).get();
 
             System.out.println(requestReservas);
 
@@ -275,7 +276,13 @@ public class CalendarFragment extends Fragment {
         }
 
         AdapterReservasAll adapter = new AdapterReservasAll(reservasFiltradas, getActivity());
-        listViewEventos.setAdapter(adapter);
+
+        try {
+            listViewEventos.setAdapter(adapter);
+
+        } catch (Exception e) {
+
+        }
 
     }
 

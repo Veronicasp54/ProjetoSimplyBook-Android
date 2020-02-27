@@ -54,7 +54,7 @@ public class AdapterReservasAll extends BaseAdapter {
 
         //  nomeSala.setText(reserva.getIdSala());
         // nomeSala.setText(reserva.getNomeSala());
-        nomeOrganizador.setText(reserva.getNomeOrganizador());
+        nomeOrganizador.setText("Organizador: " + reserva.getNomeOrganizador());
         descricao.setText(reserva.getDescricaoReserva());
 
        //dataReuniao.setText(reserva.getDataReserva());

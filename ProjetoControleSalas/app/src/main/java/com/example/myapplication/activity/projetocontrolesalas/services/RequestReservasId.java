@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RequestExibirReservas extends AsyncTask<String, Void, String> {
+public class RequestReservasId extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... strings) {
 

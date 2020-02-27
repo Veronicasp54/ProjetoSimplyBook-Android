@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = new SalasFragment();
                             break;
                     }
 

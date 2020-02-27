@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class SalasFragment extends Fragment {
 
     private View view;
     private TextView textNomeEmpresa;

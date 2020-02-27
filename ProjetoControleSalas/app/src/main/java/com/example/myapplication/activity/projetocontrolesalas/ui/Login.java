@@ -126,9 +126,11 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), " inválido", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
-                } else {
+                } else if (senhaStr.equals(null)) {
                     Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_SHORT).show();
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Campos inválidos", Toast.LENGTH_LONG).show();
                 }
             }
         });

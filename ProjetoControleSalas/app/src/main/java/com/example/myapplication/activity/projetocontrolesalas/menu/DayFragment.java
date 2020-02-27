@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestExibirReservas;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -75,6 +75,8 @@ public class DayFragment extends Fragment {
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+
+               reservas.remove(position);
            }
        });
     }
@@ -94,7 +96,7 @@ public class DayFragment extends Fragment {
 
         String requestReservas = null;
         try {
-            requestReservas = new RequestExibirReservas().execute(preferences.getString("userId", null)).get();
+            requestReservas = new RequestReservasId().execute(preferences.getString("userId", null)).get();
 
             System.out.println(requestReservas);
 
@@ -151,8 +153,6 @@ public class DayFragment extends Fragment {
                 System.out.println(contReunioes);
                 quantReunioes.setText(contReunioes + " " + "reuniões");
                 listRerservas = view.findViewById(R.id.listReservas);
-                //  adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, itemReserva);
-                //  listRerservas.setAdapter(adapter);
 
                 AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
                 listRerservas.setAdapter(adapter);
