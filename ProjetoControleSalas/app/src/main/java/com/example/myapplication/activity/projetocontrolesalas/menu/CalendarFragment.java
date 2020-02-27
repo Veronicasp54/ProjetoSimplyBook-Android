@@ -20,14 +20,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasAll;
-import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
-import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestEmpresa;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestExibirReservas;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
-import com.example.myapplication.activity.projetocontrolesalas.ui.Cadastro;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -51,6 +46,7 @@ public class CalendarFragment extends Fragment {
     private View view;
     private TextView mesAtual;
     private List<ReservaSala> reservas = new ArrayList<>();
+    private List<ReservaSala> reservasFiltradas = new ArrayList<>();
     private Locale local;
     private Date data;
     private SimpleDateFormat dateFormat;
@@ -63,6 +59,7 @@ public class CalendarFragment extends Fragment {
     private List<String> listaNomesSalas = new ArrayList<>();
     private CharSequence dataSelecionada;
 
+    private TextView textContemReuniao;
 
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
@@ -84,10 +81,9 @@ public class CalendarFragment extends Fragment {
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
-        //avancando um dia
 
         Calendar endDate = Calendar.getInstance();
-        endDate.add(Calendar.MONTH, 1);
+        endDate.add(Calendar.MONTH, 11);
 
         horizontalCalendar = new HorizontalCalendar.Builder(view, R.id.calendarView)
                 .range(startDate, endDate)
@@ -118,6 +114,27 @@ public class CalendarFragment extends Fragment {
 
                 Toast.makeText(getContext(), dataSelecionada + " is selected!", Toast.LENGTH_SHORT).show();
 
+                String diaMes = (String) DateFormat.format("dd/MM", date);
+                //for da list acompleta procurando quais tem a data selecionada
+                // e colocar na lista auxiliar
+                reservasFiltradas.clear();
+                for (int i = 0; i < reservas.size(); i++) {
+
+                    if (reservas.get(i).getDataReserva().contains(diaMes)) {
+                        reservasFiltradas.add(reservas.get(i));
+                    }
+
+                    if (reservasFiltradas.size() > 0) {
+                        textContemReuniao.setVisibility(View.INVISIBLE);
+                    }
+                    else {
+                        textContemReuniao.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                AdapterReservasAll adapter = new AdapterReservasAll(reservasFiltradas, getActivity());
+                listViewEventos.setAdapter(adapter);
+
 
             }
 
@@ -138,6 +155,7 @@ public class CalendarFragment extends Fragment {
 
         floatingActionButton = view.findViewById(R.id.floatActionButton);
 
+        textContemReuniao = view.findViewById(R.id.textContemReuniao);
         adicionarReuniao();
         exibirTodasReservas();
 
@@ -222,7 +240,8 @@ public class CalendarFragment extends Fragment {
                         newReserva.setDataReserva("data");
                         //data
                         String data = dataHoraInicio.split("T")[0];
-                        newReserva.setDataReserva(data.split("-")[2] + "/" + data.split("-")[1]);
+                        String dataFinal = data.split("-")[2] + "/" + data.split("-")[1];
+                        newReserva.setDataReserva(dataFinal);
 
                         //hour//
 
@@ -241,6 +260,17 @@ public class CalendarFragment extends Fragment {
 
                 }
                 listViewEventos = view.findViewById(R.id.lista_eventos_listview);
+
+                Date dataHoje = new Date();
+                String diaMes = (String) DateFormat.format("dd/MM", dataHoje);
+
+                for (int i = 0; i < reservas.size(); i++) {
+
+                    if (reservas.get(i).getDataReserva().contains(diaMes)) {
+                        reservasFiltradas.add(reservas.get(i));
+                    }
+
+                }
 
                 AdapterReservasAll adapter = new AdapterReservasAll(reservas, getActivity());
                 listViewEventos.setAdapter(adapter);

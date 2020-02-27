@@ -57,8 +57,8 @@ public class AdapterReservasAll extends BaseAdapter {
         nomeOrganizador.setText(reserva.getNomeOrganizador());
         descricao.setText(reserva.getDescricaoReserva());
 
-        dataReuniao.setText(reserva.getDataReserva());
-        String horarioConcatenado = reserva.getHorarioInicio().concat(" - "+ reserva.getHorarioFinal());
+       //dataReuniao.setText(reserva.getDataReserva());
+       String horarioConcatenado = reserva.getHorarioInicio().concat(" - "+ reserva.getHorarioFinal());
        textViewHourReuniao.setText(horarioConcatenado);
 
 
