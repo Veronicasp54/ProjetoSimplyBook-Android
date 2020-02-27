@@ -11,7 +11,7 @@ import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
 public class ScreenSplash extends Activity {
 
     //Define tempo que a tela vai exibir. (tempo em milisegundos)
-    private static int SPLASH_TIME_OUT = 1500;
+    private static int SPLASH_TIME_OUT = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

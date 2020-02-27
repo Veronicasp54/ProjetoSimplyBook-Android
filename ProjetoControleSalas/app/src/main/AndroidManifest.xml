@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.Menu" />
+        <activity android:name=".menu.Menu" />
 
         <activity android:name=".menu.ActivityReuniao" />
         <activity android:name=".menu.CalendarFragment" />

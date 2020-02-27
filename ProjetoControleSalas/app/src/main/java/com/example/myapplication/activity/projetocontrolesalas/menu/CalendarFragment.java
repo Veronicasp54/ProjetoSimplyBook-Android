@@ -115,8 +115,10 @@ public class CalendarFragment extends Fragment {
                 Toast.makeText(getContext(), dataSelecionada + " is selected!", Toast.LENGTH_SHORT).show();
 
                 String diaMes = (String) DateFormat.format("dd/MM", date);
+
+                inicializarReservas(diaMes);
                 //for da list acompleta procurando quais tem a data selecionada
-                // e colocar na lista auxiliar
+                /*/ e colocar na lista auxiliar
                 reservasFiltradas.clear();
                 for (int i = 0; i < reservas.size(); i++) {
 
@@ -126,15 +128,14 @@ public class CalendarFragment extends Fragment {
 
                     if (reservasFiltradas.size() > 0) {
                         textContemReuniao.setVisibility(View.INVISIBLE);
-                    }
-                    else {
+                    } else {
                         textContemReuniao.setVisibility(View.VISIBLE);
                     }
                 }
 
                 AdapterReservasAll adapter = new AdapterReservasAll(reservasFiltradas, getActivity());
                 listViewEventos.setAdapter(adapter);
-
+/*/
 
             }
 
@@ -156,10 +157,9 @@ public class CalendarFragment extends Fragment {
         floatingActionButton = view.findViewById(R.id.floatActionButton);
 
         textContemReuniao = view.findViewById(R.id.textContemReuniao);
+
         adicionarReuniao();
-        exibirTodasReservas();
-
-
+        configurarReservas();
     }
 
     private void adicionarReuniao() {
@@ -180,26 +180,7 @@ public class CalendarFragment extends Fragment {
         });
     }
 
-
-    private String getData() {
-        Date data = new Date();
-        Locale local = new Locale("pt", "BR");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
-
-        //SimpleDateFormat dateFormatReserva = new SimpleDateFormat("dd/MM/yyyy",local);
-        //String dataSelecionada = dateFormatReserva.format(data);
-
-        // Toast.makeText(getContext(), dateFormatReserva.format(data), Toast.LENGTH_LONG).show();
-
-        return dateFormat.format(data);
-    }
-
-    private CharSequence getMesAtual() {
-        dateFormat = new SimpleDateFormat("MMMM", local);
-        return dateFormat.format(data);
-    }
-
-    private void exibirTodasReservas() {
+    private void configurarReservas() {
 
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
@@ -261,20 +242,6 @@ public class CalendarFragment extends Fragment {
                 }
                 listViewEventos = view.findViewById(R.id.lista_eventos_listview);
 
-                Date dataHoje = new Date();
-                String diaMes = (String) DateFormat.format("dd/MM", dataHoje);
-
-                for (int i = 0; i < reservas.size(); i++) {
-
-                    if (reservas.get(i).getDataReserva().contains(diaMes)) {
-                        reservasFiltradas.add(reservas.get(i));
-                    }
-
-                }
-
-                AdapterReservasAll adapter = new AdapterReservasAll(reservas, getActivity());
-                listViewEventos.setAdapter(adapter);
-
 
             }
 
@@ -282,6 +249,53 @@ public class CalendarFragment extends Fragment {
             e.printStackTrace();
         }
 
+        Date data = new Date();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", local);
+
+        String dataAtual = dateFormat.format(data);
+
+        inicializarReservas(dataAtual);
 
     }
+
+    private void inicializarReservas(String diaMes) {
+
+        reservasFiltradas.clear();
+        for (int i = 0; i < reservas.size(); i++) {
+
+            if (reservas.get(i).getDataReserva().contains(diaMes)) {
+                reservasFiltradas.add(reservas.get(i));
+            }
+            if (reservasFiltradas.size() > 0) {
+                textContemReuniao.setVisibility(View.INVISIBLE);
+            } else {
+                textContemReuniao.setVisibility(View.VISIBLE);
+            }
+        }
+
+        AdapterReservasAll adapter = new AdapterReservasAll(reservasFiltradas, getActivity());
+        listViewEventos.setAdapter(adapter);
+
+    }
+
+    private String getData() {
+        Date data = new Date();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
+
+        //SimpleDateFormat dateFormatReserva = new SimpleDateFormat("dd/MM/yyyy",local);
+        //String dataSelecionada = dateFormatReserva.format(data);
+
+        // Toast.makeText(getContext(), dateFormatReserva.format(data), Toast.LENGTH_LONG).show();
+
+        return dateFormat.format(data);
+    }
+
+    private CharSequence getMesAtual() {
+        dateFormat = new SimpleDateFormat("MMMM", local);
+        return dateFormat.format(data);
+    }
+
+
 }

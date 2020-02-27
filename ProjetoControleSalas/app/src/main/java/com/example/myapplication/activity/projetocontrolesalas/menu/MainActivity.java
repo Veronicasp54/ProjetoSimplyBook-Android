@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+                    new CalendarFragment()).commit();
         }
     }
 
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
+                        case R.id.nav_calendar:
+                            selectedFragment = new CalendarFragment();
                             break;
                         case R.id.nav_user:
                             selectedFragment = new PerfilFragment();
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new DayFragment();
                             break;
 
-                        case R.id.nav_calendar:
-                            selectedFragment = new CalendarFragment();
+                        case R.id.nav_home:
+                            selectedFragment = new HomeFragment();
                             break;
                     }
 

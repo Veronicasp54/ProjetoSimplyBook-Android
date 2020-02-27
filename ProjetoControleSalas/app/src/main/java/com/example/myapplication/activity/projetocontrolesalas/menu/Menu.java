@@ -1,4 +1,4 @@
-package com.example.myapplication.activity.projetocontrolesalas.ui;
+package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 

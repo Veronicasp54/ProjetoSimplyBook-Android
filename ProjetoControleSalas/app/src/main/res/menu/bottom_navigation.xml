@@ -4,9 +4,9 @@
     android:layout_height="wrap_content">
 
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="Salas" />
+        android:id="@+id/nav_calendar"
+        android:icon="@drawable/ic_today"
+        android:title="Calendário" />
 
     <item
         android:id="@+id/nav_day"
@@ -14,9 +14,10 @@
         android:title="Meu Dia" />
 
     <item
-        android:id="@+id/nav_calendar"
-        android:icon="@drawable/ic_today"
-        android:title="Calendário" />
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Salas" />
+
 
     <item
         android:id="@+id/nav_user"
