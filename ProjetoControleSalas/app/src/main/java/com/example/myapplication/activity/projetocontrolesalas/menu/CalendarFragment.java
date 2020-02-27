@@ -291,11 +291,6 @@ public class CalendarFragment extends Fragment {
         Locale local = new Locale("pt", "BR");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
 
-        //SimpleDateFormat dateFormatReserva = new SimpleDateFormat("dd/MM/yyyy",local);
-        //String dataSelecionada = dateFormatReserva.format(data);
-
-        // Toast.makeText(getContext(), dateFormatReserva.format(data), Toast.LENGTH_LONG).show();
-
         return dateFormat.format(data);
     }
 

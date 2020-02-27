@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -70,15 +71,13 @@ public class DayFragment extends Fragment {
     }
 
     private void excluirReservas() {
-       listRerservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        listRerservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-
-               reservas.remove(position);
-           }
-       });
+                Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private String getData() {
@@ -150,8 +149,12 @@ public class DayFragment extends Fragment {
                     }
 
                 }
-                System.out.println(contReunioes);
-                quantReunioes.setText(contReunioes + " " + "reuniões");
+
+                if (contReunioes > 1) {
+                    quantReunioes.setText(contReunioes + " " + "reuniões");
+                } else {
+                    quantReunioes.setText(contReunioes + " " + "reunião");
+                }
                 listRerservas = view.findViewById(R.id.listReservas);
 
                 AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());

@@ -332,10 +332,10 @@ public class ActivityReuniao extends AppCompatActivity {
     }
 
     @Override
-        public boolean onSupportNavigateUp() {
-            onBackPressed();
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
 
-            return true;
+        return true;
 
     }
 
@@ -362,6 +362,12 @@ public class ActivityReuniao extends AppCompatActivity {
             textHorarioFinal.setError("Campo obrigatório");
             chave = false;
         }
+        if (textHorarioFinal.getText().toString().equals(textHorarioInicial.getText().toString())) {
+            textHorarioFinal.setError("Horários iguais");
+            Toast.makeText(getApplicationContext(), "Horas iguais, isso é impossível!", Toast.LENGTH_LONG).show();
+            chave = false;
+        }
+
 
         return chave;
     }
