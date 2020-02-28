@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
-        android:text="@string/meudia"
+        android:text="@string/minhas_reservas"
         android:textColor="@android:color/black"
         android:textSize="22sp" />
 

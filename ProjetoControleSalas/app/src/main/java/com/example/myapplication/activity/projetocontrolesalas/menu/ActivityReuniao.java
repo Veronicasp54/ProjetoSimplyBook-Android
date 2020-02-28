@@ -364,7 +364,6 @@ public class ActivityReuniao extends AppCompatActivity {
         }
         if (textHorarioFinal.getText().toString().equals(textHorarioInicial.getText().toString())) {
             textHorarioFinal.setError("Horários iguais");
-            Toast.makeText(getApplicationContext(), "Horas iguais, isso é impossível!", Toast.LENGTH_LONG).show();
             chave = false;
         }
 

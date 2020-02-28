@@ -11,11 +11,11 @@
     <item
         android:id="@+id/nav_day"
         android:icon="@drawable/ic_day"
-        android:title="Meu Dia" />
+        android:title="Reservas" />
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_salas_assento"
         android:title="Salas" />
 
 

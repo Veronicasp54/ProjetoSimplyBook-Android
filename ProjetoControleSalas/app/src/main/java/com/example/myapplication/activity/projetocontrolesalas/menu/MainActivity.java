@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new CalendarFragment()).commit();
+                    new MyReservasFragment()).commit();
         }
     }
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_day:
-                            selectedFragment = new DayFragment();
+                            selectedFragment = new MyReservasFragment();
                             break;
 
                         case R.id.nav_home:

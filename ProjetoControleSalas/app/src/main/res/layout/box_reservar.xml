@@ -51,9 +51,9 @@
     <TextView
         android:id="@+id/textDimensao"
         android:layout_width="350dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
         android:text="Descrição:"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iconDescReuniao"
@@ -62,11 +62,16 @@
     <EditText
         android:id="@+id/textDescReuniao"
         style="@style/EditTextFormField"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="344dp"
+        android:layout_height="42dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:hint="Descrição da Reunião"
+        android:inputType="text|textMultiLine"
+        android:maxLength="250"
+        android:maxLines="4"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintStart_toEndOf="@id/iconDescReuniao"
         app:layout_constraintTop_toBottomOf="@+id/textDimensao"></EditText>
 
@@ -92,8 +97,8 @@
     <TextView
         android:id="@+id/textData"
         style="@style/EditTextFormField"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="342dp"
+        android:layout_height="41dp"
         android:layout_marginLeft="12dp"
         android:hint="date_and_hour"
         android:imeOptions="actionNext"
@@ -140,11 +145,11 @@
         <TextView
             android:id="@+id/textViewHourFinal"
             style="@style/EditTextFormField"
-            android:layout_marginLeft="6dp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
+            android:layout_marginLeft="6dp"
             android:hint="Horario final"
+            android:imeOptions="actionNext"
             android:textColor="@android:color/black"></TextView>
 
 

@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class DayFragment extends Fragment {
+public class MyReservasFragment extends Fragment {
 
     private View view;
     private TextView dataAtual, quantReunioes;
