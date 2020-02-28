@@ -1,8 +1,10 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,12 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastro;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestCancelarReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
+import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
+import com.example.myapplication.activity.projetocontrolesalas.ui.Cadastro;
+import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,7 +73,7 @@ public class MyReservasFragment extends Fragment {
 
         exibirReservas();
 
-        excluirReservas();
+         excluirReservas();
 
     }
 
@@ -77,8 +84,32 @@ public class MyReservasFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
 
+                try {
+                    JSONObject reservaJson = new JSONObject();
+
+
+                    String reservaEncoded = Base64.encodeToString(reservaJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
+                    System.out.println(reservaEncoded);
+
+                    String cancelarReserva = new RequestCancelarReserva().execute(reservaEncoded).get();
+
+                    if (cancelarReserva.equals("A reserva foi cancelada com sucesso")) {
+
+                        reservas.remove(position);
+                        // adapter.clear();
+                        AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
+                        listRerservas.setAdapter(adapter);
+
+                    } else {
+                        Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception e) {
+
+                }
 
             }
+
         });
     }
 

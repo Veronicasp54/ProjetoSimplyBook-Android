@@ -4,14 +4,15 @@
     android:layout_height="wrap_content">
 
     <item
+        android:id="@+id/nav_day"
+        android:icon="@drawable/ic_day"
+        android:title="Reservas" />
+
+    <item
         android:id="@+id/nav_calendar"
         android:icon="@drawable/ic_today"
         android:title="Calendário" />
 
-    <item
-        android:id="@+id/nav_day"
-        android:icon="@drawable/ic_day"
-        android:title="Reservas" />
 
     <item
         android:id="@+id/nav_home"

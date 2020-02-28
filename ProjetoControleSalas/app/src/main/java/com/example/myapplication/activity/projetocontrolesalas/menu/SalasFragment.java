@@ -23,6 +23,7 @@ import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterListSalas;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
+import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,9 +42,10 @@ public class SalasFragment extends Fragment {
     public static final String salaPreferences = "salaPreferences";
 
 
-    private List<Sala> salas = new ArrayList<>();
+    private ArrayList<Sala> salas = new ArrayList<Sala>();
     private List<String> nomeSalas = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+    private TinyDB tinydb;
 
 
     @Nullable
@@ -61,6 +63,8 @@ public class SalasFragment extends Fragment {
     public void iniciaCampos() {
         textNomeEmpresa = view.findViewById(R.id.textViewNomeEmpresa);
         listSalas = view.findViewById(R.id.lista_salas_listview);
+
+         tinydb = new TinyDB(getContext());
 
         inserirEmpresa();
         inserirSalas();
@@ -83,6 +87,7 @@ public class SalasFragment extends Fragment {
                 for (int i = 0; i < salasJson.length(); i++) {
                     JSONObject salaJSon = salasJson.getJSONObject(i);
 
+                    int idSala = salaJSon.getInt("id");
                     String nome = salaJSon.getString("nome");
                     String dimensao = salaJSon.getString("areaDaSala");
                     String capacidade = salaJSon.getString("quantidadePessoasSentadas");
@@ -99,12 +104,15 @@ public class SalasFragment extends Fragment {
                     newSala.setLocalizacao(localizacao);
                     newSala.setArCondicionado(arcondicionado);
                     newSala.setMultimidia(multimidia);
+                    newSala.setId(idSala);
 
                     salas.add(newSala);
                     nomeSalas.add(newSala.getNomeSala());
 
-
                 }
+
+                tinydb.putListSalaObject("salas",salas);
+
                 listSalas = view.findViewById(R.id.lista_salas_listview);
                 AdapterListSalas adapter = new AdapterListSalas(salas, getActivity(), getContext());
                 listSalas.setAdapter(adapter);

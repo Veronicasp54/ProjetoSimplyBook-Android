@@ -8,13 +8,17 @@ import android.widget.TextView;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
+import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterReservasUser extends BaseAdapter {
 
     private final List<ReservaSala> reservas;
     private final Activity act;
+    private TinyDB tinydb;
 
     public AdapterReservasUser(List<ReservaSala> reservas, Activity act) {
         this.reservas = reservas;
@@ -51,11 +55,22 @@ public class AdapterReservasUser extends BaseAdapter {
         TextView textViewHourReuniao =
                 view.findViewById(R.id.textHoraReuniao);
 
-      //  nomeSala.setText(reserva.getIdSala());
-       // nomeSala.setText(reserva.getNomeSala());
+        tinydb = new TinyDB(parent.getContext());
+        ArrayList<Sala> salas = tinydb.getListSalaObject("salas");
+
+        for (int i = 0; i < salas.size(); i++) {
+
+            if(salas.get(i).getId() == reserva.getIdSala()){
+                nomeSala.setText(salas.get(i).getNomeSala());
+
+            }
+        }
+
+        //   nomeSala.setText(reserva.getIdSala());
+        // nomeSala.setText(reserva.getNomeSala());
         descricao.setText(reserva.getDescricaoReserva());
         dataReuniao.setText(reserva.getDataReserva());
-        String horarioConcatenado = reserva.getHorarioInicio().concat(" - "+reserva.getHorarioFinal());
+        String horarioConcatenado = reserva.getHorarioInicio().concat(" - " + reserva.getHorarioFinal());
         textViewHourReuniao.setText(horarioConcatenado);
 
         return view;

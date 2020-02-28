@@ -8,13 +8,17 @@ import android.widget.TextView;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
+import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterReservasAll extends BaseAdapter {
 
     private final List<ReservaSala> reservas;
     private final Activity act;
+    private TinyDB tinydb;
 
     public AdapterReservasAll(List<ReservaSala> reservas, Activity act) {
         this.reservas = reservas;
@@ -42,8 +46,8 @@ public class AdapterReservasAll extends BaseAdapter {
 
         ReservaSala reserva = reservas.get(position);
 
-        // TextView nomeSala = (TextView)
-        //         view.findViewById(R.id.item_nome_sala);
+        TextView nomeSala = (TextView)
+                view.findViewById(R.id.textViewNomeSala);
         TextView nomeOrganizador = (TextView)
                 view.findViewById(R.id.textViewNome);
         TextView descricao = (TextView)
@@ -52,15 +56,26 @@ public class AdapterReservasAll extends BaseAdapter {
                 view.findViewById(R.id.textDataReserva);
         TextView textViewHourReuniao = view.findViewById(R.id.textHourReuniao);
 
+        tinydb = new TinyDB(parent.getContext());
+        ArrayList<Sala> salas = tinydb.getListSalaObject("salas");
+
+        for (int i = 0; i < salas.size(); i++) {
+
+            if (salas.get(i).getId() == reserva.getIdSala()) {
+                nomeSala.setText(salas.get(i).getNomeSala());
+
+            }
+        }
+
+
         //  nomeSala.setText(reserva.getIdSala());
         // nomeSala.setText(reserva.getNomeSala());
         nomeOrganizador.setText("Organizador: " + reserva.getNomeOrganizador());
         descricao.setText(reserva.getDescricaoReserva());
 
-       //dataReuniao.setText(reserva.getDataReserva());
-       String horarioConcatenado = reserva.getHorarioInicio().concat(" - "+ reserva.getHorarioFinal());
-       textViewHourReuniao.setText(horarioConcatenado);
-
+        //dataReuniao.setText(reserva.getDataReserva());
+        String horarioConcatenado = reserva.getHorarioInicio().concat(" - " + reserva.getHorarioFinal());
+        textViewHourReuniao.setText(horarioConcatenado);
 
 
         return view;
