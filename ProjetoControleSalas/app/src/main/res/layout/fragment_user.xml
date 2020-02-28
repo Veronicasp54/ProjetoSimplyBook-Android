@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -200,30 +201,27 @@
                 android:id="@+id/buttonAtualizar"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginLeft="38dp"
-                android:layout_marginTop="12dp"
                 android:background="@drawable/shape_button"
                 android:text="ATUALIZAR"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/risco_desing2"></Button>
+                app:layout_constraintTop_toBottomOf="@+id/risco_desing2"></Button>
 
             <Button
                 android:id="@+id/buttonSair"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginLeft="12dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/shape_button"
                 android:text="SAIR"
+                android:layout_marginLeft="30dp"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonAtualizar"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/buttonAtualizar"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/risco_desing2"></Button>
 
             <ImageView
@@ -286,10 +284,11 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginLeft="50dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/icon_claro"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.36"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textEscuro"
                 app:layout_constraintTop_toTopOf="@+id/risco_desing3"></ImageView>
 
@@ -313,8 +312,9 @@
                 android:layout_marginTop="24dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/ic_escuro"
+                android:layout_marginLeft="34dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.30"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textLigth"
                 app:layout_constraintTop_toBottomOf="@+id/icon_theme_claro"></ImageView>
 

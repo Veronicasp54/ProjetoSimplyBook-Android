@@ -76,6 +76,8 @@ public class MyReservasFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
+
+
             }
         });
     }
