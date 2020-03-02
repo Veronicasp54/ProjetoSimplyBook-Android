@@ -94,25 +94,46 @@
         android:id="@+id/textContemReuniao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:text="Não há reuniões marcadas"
         android:textAlignment="center"
         android:textSize="14sp"
         android:visibility="visible"
-        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
-    <ListView
-        android:id="@+id/lista_eventos_listview"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:dividerHeight="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="160dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatActionButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        tools:listitem="@layout/list_item_reserva_all"></ListView>
+        app:layout_constraintVertical_bias="0">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ListView
+                android:id="@+id/lista_eventos_listview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:dividerHeight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/list_item_reserva_all"></ListView>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

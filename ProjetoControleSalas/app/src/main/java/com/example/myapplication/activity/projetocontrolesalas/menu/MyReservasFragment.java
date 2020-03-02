@@ -1,6 +1,5 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,12 +19,8 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastro;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestCancelarReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
-import com.example.myapplication.activity.projetocontrolesalas.ui.Cadastro;
-import com.example.myapplication.activity.projetocontrolesalas.ui.Login;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,7 +48,7 @@ public class MyReservasFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_day, container, false);
+        view = inflater.inflate(R.layout.fragment_reservas, container, false);
 
         iniciaComponentes();
 
