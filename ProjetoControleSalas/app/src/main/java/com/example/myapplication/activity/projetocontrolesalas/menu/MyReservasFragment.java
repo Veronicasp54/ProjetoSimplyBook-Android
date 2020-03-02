@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasUser;
@@ -45,6 +47,9 @@ public class MyReservasFragment extends Fragment {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,11 +71,29 @@ public class MyReservasFragment extends Fragment {
 
         quantReunioes = view.findViewById(R.id.textQuantReunioes);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+
         exibirReservas();
 
-         excluirReservas();
+        excluirReservas();
+
+        atualizarReservas();
 
     }
+
+    private void atualizarReservas() {
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.e(getClass().getSimpleName(), "refresh");
+                new RequestReservasId().execute();
+            }
+        });
+    }
+
+
+
 
     private void excluirReservas() {
         listRerservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -196,5 +219,6 @@ public class MyReservasFragment extends Fragment {
 
 
     }
+
 
 }
