@@ -90,6 +90,7 @@
                 android:inputType="date"
                 android:text="@string/horario"
                 android:textSize="14sp"
+                android:textColor="@android:color/black"
                 android:layout_marginBottom="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textDescricao"
