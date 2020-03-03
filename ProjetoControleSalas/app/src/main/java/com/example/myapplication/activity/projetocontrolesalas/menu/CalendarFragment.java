@@ -52,7 +52,7 @@ public class CalendarFragment extends Fragment {
     private Date data;
     private SimpleDateFormat dateFormat;
     private ListView listViewEventos;
-    private FloatingActionButton floatingActionButton;
+   // private FloatingActionButton floatingActionButton;
 
     private Spinner spinnerSalas;
 
@@ -155,14 +155,15 @@ public class CalendarFragment extends Fragment {
         mesAtual = (TextView) view.findViewById(R.id.mesAtual);
         mesAtual.setText(getMesAtual().toString().toUpperCase());
 
-        floatingActionButton = view.findViewById(R.id.floatActionButton);
+      // floatingActionButton = view.findViewById(R.id.floatActionButton);
 
         textContemReuniao = view.findViewById(R.id.textContemReuniao);
 
-        adicionarReuniao();
+        //adicionarReuniao();
         configurarReservas();
     }
 
+    /*/
     private void adicionarReuniao() {
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +181,8 @@ public class CalendarFragment extends Fragment {
             }
         });
     }
+
+      /*/
 
     private void configurarReservas() {
 

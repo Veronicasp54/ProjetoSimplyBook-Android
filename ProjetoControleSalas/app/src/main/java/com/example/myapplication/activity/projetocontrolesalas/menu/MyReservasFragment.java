@@ -1,6 +1,7 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
@@ -23,6 +24,7 @@ import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterRe
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestCancelarReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,6 +53,8 @@ public class MyReservasFragment extends Fragment {
 
     private String requestReservas;
 
+    private FloatingActionButton floatingActionButton;
+
 
     @Nullable
     @Override
@@ -77,12 +81,41 @@ public class MyReservasFragment extends Fragment {
 
         textSemReunioes = view.findViewById(R.id.textSemReservas);
 
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
+
         exibirReservas();
 
         excluirReservas();
 
         atualizarReservas();
         //arrumar
+
+        criarReserva();
+    }
+
+    private void criarReserva() {
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), ActivityReuniao.class);
+
+                String data = getDataAtual();
+                intent.putExtra("dataSelecionada", data);
+
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private String getDataAtual() {
+        Date data = new Date();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY", local);
+
+        return dateFormat.format(data);
     }
 
     private void atualizarReservas() {
@@ -159,7 +192,7 @@ public class MyReservasFragment extends Fragment {
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
 
-         requestReservas = null;
+        requestReservas = null;
         try {
             requestReservas = new RequestReservasId().execute(preferences.getString("userId", null)).get();
 
@@ -170,7 +203,7 @@ public class MyReservasFragment extends Fragment {
             if (reservasJson.length() > 0) {
 
                 for (int i = 0; i < reservasJson.length(); i++) {
-                    contReunioes ++;
+                    contReunioes++;
 
                     JSONObject jsonObjectReserva = reservasJson.getJSONObject(i);
 

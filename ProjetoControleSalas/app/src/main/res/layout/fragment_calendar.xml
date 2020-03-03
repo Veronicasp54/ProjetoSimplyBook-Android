@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:visibility="invisible"
         android:src="@drawable/ic_add_black_24dp"
         app:layout_anchor="@id/lista_eventos_listview"
         app:layout_anchorGravity="bottom|center_horizontal"
