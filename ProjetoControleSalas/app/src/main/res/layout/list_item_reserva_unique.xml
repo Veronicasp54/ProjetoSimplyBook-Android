@@ -41,18 +41,18 @@
                 android:src="@mipmap/ic_event"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textViewNomeSala"></ImageView>
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
 
 
             <TextView
-                android:id="@+id/textViewNomeSala"
+                android:id="@+id/textHoraReuniao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="Nome Sala"
+                android:text="@string/horario"
                 android:layout_marginTop="6dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -71,17 +71,17 @@
                 android:maxLength="250"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textViewNomeSala"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNomeSala"></TextView>
+                app:layout_constraintStart_toStartOf="@+id/textHoraReuniao"
+                app:layout_constraintTop_toBottomOf="@+id/textHoraReuniao"></TextView>
 
             <TextView
-                android:id="@+id/textHoraReuniao"
+                android:id="@+id/textViewNomeSala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="6dp"
-                android:text="@string/horario"
+                android:text="Nome Sala"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="@+id/textDescSala"

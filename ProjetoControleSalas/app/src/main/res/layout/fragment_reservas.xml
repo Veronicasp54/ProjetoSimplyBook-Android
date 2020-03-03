@@ -64,6 +64,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textSemReservas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Não há reuniões marcadas"
@@ -74,8 +75,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swiperefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -102,9 +102,12 @@
             android:layout_margin="8dp"
             android:foregroundGravity="bottom"
             android:src="@drawable/ic_add_black_24dp"
-            android:visibility="invisible"
+            android:visibility="visible"
+            app:layout_anchor="@id/listReservas"
+            app:layout_anchorGravity="bottom|center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

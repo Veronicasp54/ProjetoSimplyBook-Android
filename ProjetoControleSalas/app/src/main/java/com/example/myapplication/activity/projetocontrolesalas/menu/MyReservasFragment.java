@@ -37,7 +37,7 @@ import java.util.Locale;
 public class MyReservasFragment extends Fragment {
 
     private View view;
-    private TextView dataAtual, quantReunioes;
+    private TextView dataAtual, quantReunioes, textSemReunioes;
     private int contReunioes;
 
     private List<ReservaSala> reservas = new ArrayList<>();
@@ -48,6 +48,8 @@ public class MyReservasFragment extends Fragment {
     public static final String userPreferences = "userPreferences";
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private String requestReservas;
 
 
     @Nullable
@@ -73,26 +75,39 @@ public class MyReservasFragment extends Fragment {
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
 
+        textSemReunioes = view.findViewById(R.id.textSemReservas);
+
         exibirReservas();
 
         excluirReservas();
 
         atualizarReservas();
-
+        //arrumar
     }
 
     private void atualizarReservas() {
-
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.e(getClass().getSimpleName(), "refresh");
-                new RequestReservasId().execute();
+
+                listRerservas.setVisibility(View.INVISIBLE);
+
+                contReunioes = 0;
+                textSemReunioes.setVisibility(View.INVISIBLE);
+                exibirReservas();
+
+                if (requestReservas != null) {
+                    listRerservas.setVisibility(View.VISIBLE);
+                    mSwipeRefreshLayout.setRefreshing(false);
+
+                } else {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(getContext(), "Carregamento incompleto", Toast.LENGTH_LONG);
+                }
             }
         });
     }
-
-
 
 
     private void excluirReservas() {
@@ -144,7 +159,7 @@ public class MyReservasFragment extends Fragment {
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
 
-        String requestReservas = null;
+         requestReservas = null;
         try {
             requestReservas = new RequestReservasId().execute(preferences.getString("userId", null)).get();
 
@@ -155,7 +170,7 @@ public class MyReservasFragment extends Fragment {
             if (reservasJson.length() > 0) {
 
                 for (int i = 0; i < reservasJson.length(); i++) {
-                    contReunioes++;
+                    contReunioes ++;
 
                     JSONObject jsonObjectReserva = reservasJson.getJSONObject(i);
 
