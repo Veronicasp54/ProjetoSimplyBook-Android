@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="14dp"
-    android:background="@drawable/shape_alert_arrredondado">
-
-    <ImageButton
-        android:id="@+id/imageButtonBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="left"
-        android:background="@null"
-        android:contentDescription="TODO"
-        android:src="@drawable/ic_back_color_primary"
-        android:tint="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/buttonSave"
@@ -28,8 +15,8 @@
         android:layout_margin="20dp"
         android:background="@android:color/transparent"
         android:text="@string/reservar"
-        android:visibility="invisible"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,13 +35,13 @@
     <ImageView
         android:id="@+id/imageSala"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:contentDescription="@string/todo"
         android:scaleType="centerCrop"
         android:src="@drawable/conselho_jedi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonBack"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/item_pacote_divisor_top"></ImageView>
 
     <View
         android:id="@+id/item_pacote_divisor"
@@ -87,7 +74,7 @@
 
     <ImageView
         android:id="@+id/risco_desing"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="1dp"
@@ -130,7 +117,7 @@
 
     <ImageView
         android:id="@+id/risco_desing2"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="1dp"

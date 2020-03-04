@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterReservasAll;
 import com.example.myapplication.activity.projetocontrolesalas.model.Empresa;
 import com.example.myapplication.activity.projetocontrolesalas.model.ReservaSala;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasAll;
-import com.example.myapplication.activity.projetocontrolesalas.services.RequestReservasId;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,7 +52,6 @@ public class CalendarFragment extends Fragment {
     private Date data;
     private SimpleDateFormat dateFormat;
     private ListView listViewEventos;
-   // private FloatingActionButton floatingActionButton;
 
     private Spinner spinnerSalas;
 
@@ -65,6 +64,8 @@ public class CalendarFragment extends Fragment {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private String requestReservas;
 
     @Nullable
     @Override
@@ -118,25 +119,6 @@ public class CalendarFragment extends Fragment {
                 String diaMes = (String) DateFormat.format("dd/MM", date);
 
                 inicializarReservas(diaMes);
-                //for da list acompleta procurando quais tem a data selecionada
-                /*/ e colocar na lista auxiliar
-                reservasFiltradas.clear();
-                for (int i = 0; i < reservas.size(); i++) {
-
-                    if (reservas.get(i).getDataReserva().contains(diaMes)) {
-                        reservasFiltradas.add(reservas.get(i));
-                    }
-
-                    if (reservasFiltradas.size() > 0) {
-                        textContemReuniao.setVisibility(View.INVISIBLE);
-                    } else {
-                        textContemReuniao.setVisibility(View.VISIBLE);
-                    }
-                }
-
-                AdapterReservasAll adapter = new AdapterReservasAll(reservasFiltradas, getActivity());
-                listViewEventos.setAdapter(adapter);
-/*/
 
             }
 
@@ -155,41 +137,45 @@ public class CalendarFragment extends Fragment {
         mesAtual = (TextView) view.findViewById(R.id.mesAtual);
         mesAtual.setText(getMesAtual().toString().toUpperCase());
 
-      // floatingActionButton = view.findViewById(R.id.floatActionButton);
 
         textContemReuniao = view.findViewById(R.id.textContemReuniao);
 
-        //adicionarReuniao();
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+
         configurarReservas();
+        atualizarReservas();
     }
 
-    /*/
-    private void adicionarReuniao() {
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+    private void atualizarReservas() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
+            public void onRefresh() {
+                Log.e(getClass().getSimpleName(), "refresh");
 
-                Intent intent = new Intent(getActivity(), ActivityReuniao.class);
-//                Bundle dados = new Bundle();
+                listViewEventos.setVisibility(View.INVISIBLE);
 
-                intent.putExtra("dataSelecionada", dataSelecionada);
-                //intent.putExtras(dados);
+                reservas.clear();
+                configurarReservas();
 
-                startActivity(intent);
+                if (requestReservas != null) {
+                    listViewEventos.setVisibility(View.VISIBLE);
+                    swipeRefreshLayout.setRefreshing(false);
 
+                } else {
+                    swipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(getContext(), "Carregamento incompleto", Toast.LENGTH_LONG);
+                }
             }
         });
     }
 
-      /*/
 
     private void configurarReservas() {
 
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
 
-        String requestReservas = null;
+        requestReservas = null;
         try {
             requestReservas = new RequestReservasAll().execute(preferences.getString("userIdEmpresa", null)).get();
 

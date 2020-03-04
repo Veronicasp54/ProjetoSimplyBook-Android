@@ -14,8 +14,9 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".menu.Menu" />
-
         <activity android:name=".menu.ActivityReuniao" />
+        <activity android:name=".sala.SalaDetalhes" />
+
         <activity android:name=".menu.CalendarFragment" />
 
         <activity

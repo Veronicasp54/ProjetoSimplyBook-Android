@@ -2,6 +2,7 @@ package com.example.myapplication.activity.projetocontrolesalas.menu;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.adapter.AdapterListSalas;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.sala.SalaDetalhes;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
@@ -64,7 +66,7 @@ public class SalasFragment extends Fragment {
         textNomeEmpresa = view.findViewById(R.id.textViewNomeEmpresa);
         listSalas = view.findViewById(R.id.lista_salas_listview);
 
-         tinydb = new TinyDB(getContext());
+        tinydb = new TinyDB(getContext());
 
         inserirEmpresa();
         inserirSalas();
@@ -111,7 +113,7 @@ public class SalasFragment extends Fragment {
 
                 }
 
-                tinydb.putListSalaObject("salas",salas);
+                tinydb.putListSalaObject("salas", salas);
 
                 listSalas = view.findViewById(R.id.lista_salas_listview);
                 AdapterListSalas adapter = new AdapterListSalas(salas, getActivity(), getContext());
@@ -123,8 +125,6 @@ public class SalasFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void inserirEmpresa() {
@@ -161,44 +161,55 @@ public class SalasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int pos, long id) {
 
-                showDialogDetalhesSala(pos);
+                Intent intent = new Intent(getActivity(), SalaDetalhes.class);
+
+                intent.putExtra("positionSala", pos);
+
+                startActivity(intent);
+
 
             }
         });
     }
 
 
-    private void showDialogDetalhesSala(int pos) {
+    private void startClass(Class classe) {
+        Intent intent = new Intent(getContext(), classe);
+        startActivity(intent);
+        getActivity().finish();
+    }
+    /*/
+        private void showDialogDetalhesSala(int pos) {
 
-        preferences = getActivity().getSharedPreferences(salaPreferences, Context.MODE_PRIVATE);
+            preferences = getActivity().getSharedPreferences(salaPreferences, Context.MODE_PRIVATE);
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
+            LayoutInflater inflater = requireActivity().getLayoutInflater();
 
-        final View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
-        builder.setView(dialogLayout);
+            final View dialogLayout = inflater.inflate(R.layout.dialog_box_sala, null);
+            builder.setView(dialogLayout);
 
-        TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textReuniao);
+            TextView nomeSala = (TextView) dialogLayout.findViewById(R.id.textReuniao);
 
-        TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.dataSelecionada);
-        TextView textCapacidade = (TextView) dialogLayout.findViewById(R.id.textCapacidade);
+            TextView textTamanhoSala = (TextView) dialogLayout.findViewById(R.id.dataSelecionada);
+            TextView textCapacidade = (TextView) dialogLayout.findViewById(R.id.textCapacidade);
 
-        ImageView iconCheckArCondicionado = dialogLayout.findViewById(R.id.iconCheckArcond);
-        ImageView iconCheckMultimidia = dialogLayout.findViewById(R.id.iconCheckMultimidia);
+            ImageView iconCheckArCondicionado = dialogLayout.findViewById(R.id.iconCheckArcond);
+            ImageView iconCheckMultimidia = dialogLayout.findViewById(R.id.iconCheckMultimidia);
 
-        Sala salaSave = new Sala();
-        salaSave.setDimensaoSala(salas.get(pos).getDimensaoSala());
-        salaSave.setCapacidade(salas.get(pos).getCapacidade());
+            Sala salaSave = new Sala();
+            salaSave.setDimensaoSala(salas.get(pos).getDimensaoSala());
+            salaSave.setCapacidade(salas.get(pos).getCapacidade());
 
-        salvarCredenciais(salaSave);
+            salvarCredenciais(salaSave);
 
 
-        nomeSala.setText(salas.get(pos).getNomeSala());
-        textTamanhoSala.setText("Dimensão: " + salas.get(pos).getDimensaoSala());
-        textCapacidade.setText("Capacidade: " + salas.get(pos).getCapacidade());
+            nomeSala.setText(salas.get(pos).getNomeSala());
+            textTamanhoSala.setText("Dimensão: " + salas.get(pos).getDimensaoSala());
+            textCapacidade.setText("Capacidade: " + salas.get(pos).getCapacidade());
 
-        /*/check/*/
+            //check//
         String arcondiconadoCondicao = salas.get(pos).getArCondicionado();
         String multimidia = salas.get(pos).getMultimidia();
 
@@ -208,7 +219,7 @@ public class SalasFragment extends Fragment {
         check(arcondiconadoCondicao, iconCheckArCondicionado);
         check(multimidia, iconCheckMultimidia);
 
-        /*/buttonBack/*/
+        //buttonBack//
         ImageButton buttonBack = dialogLayout.findViewById(R.id.imageButtonBack);
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -216,9 +227,7 @@ public class SalasFragment extends Fragment {
             public void onClick(View v) {
 
             }
-        });
 
-        /*/buttonBack/*/
         Button buttonReserva = dialogLayout.findViewById(R.id.buttonSave);
 
         buttonReserva.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +241,6 @@ public class SalasFragment extends Fragment {
 
         dialog.show();
     }
-
     private void check(String checkVerifica, ImageView iconCheck) {
 
         if (checkVerifica.equals("true")) {
@@ -258,6 +266,6 @@ public class SalasFragment extends Fragment {
 
         editor.commit();
 
-    }
+    }/*/
 
 }

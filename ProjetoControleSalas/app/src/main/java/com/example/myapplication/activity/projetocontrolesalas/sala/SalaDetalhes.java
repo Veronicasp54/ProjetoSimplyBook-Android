@@ -3,16 +3,18 @@ package com.example.myapplication.activity.projetocontrolesalas.sala;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.menu.MainActivity;
+import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +24,20 @@ public class SalaDetalhes extends AppCompatActivity {
     private TextView textNomeSala;
     private TextView textTamanhoSala;
     private TextView textCapacidade;
-    private TextView textArCondicionado;
-    private TextView textMultimidia;
     private List<Sala> salas = new ArrayList<>();
-    private ImageButton buttonBack;
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
+    private ImageView iconCheckArCondicionado, iconCheckMultimidia;
 
+    private TinyDB tinyDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_box_sala);
 
+        getSupportActionBar().setTitle("Detalhes da Sala");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         iniciarComponentes();
 
@@ -44,27 +48,19 @@ public class SalaDetalhes extends AppCompatActivity {
         textNomeSala = findViewById(R.id.textReuniao);
         textTamanhoSala = findViewById(R.id.dataSelecionada);
         textCapacidade = findViewById(R.id.textCapacidade);
-        textArCondicionado = findViewById(R.id.textAdmReuniao);
-        textMultimidia = findViewById(R.id.textMultimidia);
-        buttonBack = findViewById(R.id.imageButtonBack);
+        iconCheckArCondicionado = findViewById(R.id.iconCheckArcond);
+        iconCheckMultimidia = findViewById(R.id.iconCheckMultimidia);
 
-        buttonBack();
+        tinyDB = new TinyDB(getApplicationContext());
+        salas = tinyDB.getListSalaObject("salas");
+
         inserirDados();
-
     }
 
-    private void buttonBack() {
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startClass(MainActivity.class);
-
-            }
-        });
-
-    }
 
     private void inserirDados() {
+
+        int pos = getIntent().getIntExtra("positionSala", 0);
 
         preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
@@ -84,21 +80,73 @@ public class SalaDetalhes extends AppCompatActivity {
             }
 
 
-            textNomeSala.setText(nomeEmpresa.concat(" "+ tipoEmpresa));
+            textNomeSala.setText(nomeEmpresa.concat(" " + tipoEmpresa));
             textTamanhoSala.setText("");
-            textArCondicionado.setText("");
             textCapacidade.setText("");
-            textMultimidia.setText("");
 
+
+            Sala salaSave = new Sala();
+
+            try {
+                salaSave.setDimensaoSala(salas.get(pos).getDimensaoSala());
+                salaSave.setCapacidade(salas.get(pos).getCapacidade());
+                salvarCredenciais(salaSave);
+
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+            }
+
+
+            textNomeSala.setText(salas.get(pos).getNomeSala());
+            textTamanhoSala.setText("Dimensão: " + salas.get(pos).getDimensaoSala());
+            textCapacidade.setText("Capacidade: " + salas.get(pos).getCapacidade());
+
+            /*/check/*/
+            String arcondiconadoCondicao = salas.get(pos).getArCondicionado();
+            String multimidia = salas.get(pos).getMultimidia();
+
+            System.out.println(arcondiconadoCondicao);
+            System.out.println(multimidia);
+
+            check(arcondiconadoCondicao, iconCheckArCondicionado);
+            check(multimidia, iconCheckMultimidia);
 
         }
     }
 
-    private void startClass(Class classe) {
-        Intent intent = new Intent(this, classe);
-        startActivity(intent);
-        this.finish();
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+
+        return true;
 
     }
 
+    private void check(String checkVerifica, ImageView iconCheck) {
+
+        if (checkVerifica.equals("true")) {
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_check_true);
+            iconCheck.setImageDrawable(drawable);
+            iconCheck.setVisibility(View.VISIBLE);
+
+        } else if (checkVerifica.equals("false")) {
+            Drawable drawable = getResources().getDrawable(R.drawable.ic_check_false);
+            iconCheck.setImageDrawable(drawable);
+            iconCheck.setVisibility(View.VISIBLE);
+
+        }
+
+    }
+
+    private void salvarCredenciais(Sala sala) {
+
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("salaDimensao", sala.getDimensaoSala());
+        editor.putString("salaCapacidade", sala.getCapacidade());
+
+        editor.commit();
+
+    }
 }
