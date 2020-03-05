@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
+import com.example.myapplication.activity.projetocontrolesalas.menu.ActivityReserva;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
 import com.example.myapplication.activity.projetocontrolesalas.utils.TinyDB;
 
@@ -21,15 +23,15 @@ import java.util.List;
 
 public class SalaDetalhes extends AppCompatActivity {
 
-    private TextView textNomeSala;
-    private TextView textTamanhoSala;
-    private TextView textCapacidade;
+    private TextView textNomeSala, textTamanhoSala, textCapacidade;
     private List<Sala> salas = new ArrayList<>();
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
     private ImageView iconCheckArCondicionado, iconCheckMultimidia;
+    private Button btnReservar;
 
     private TinyDB tinyDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +52,30 @@ public class SalaDetalhes extends AppCompatActivity {
         textCapacidade = findViewById(R.id.textCapacidade);
         iconCheckArCondicionado = findViewById(R.id.iconCheckArcond);
         iconCheckMultimidia = findViewById(R.id.iconCheckMultimidia);
+        btnReservar = findViewById(R.id.buttonSave);
 
         tinyDB = new TinyDB(getApplicationContext());
         salas = tinyDB.getListSalaObject("salas");
 
         inserirDados();
+        realizarReserva();
+    }
+
+    private void realizarReserva() {
+        btnReservar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActivityReserva.class);
+
+                String nomeSalaParam = textNomeSala.toString();
+                int pos = getIntent().getIntExtra("positionSala", 0);
+
+                intent.putExtra("nomeSala", nomeSalaParam);
+                intent.putExtra("idSala", pos + 1);
+
+                startActivity(intent);
+            }
+        });
     }
 
 

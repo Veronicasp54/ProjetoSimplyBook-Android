@@ -99,7 +99,7 @@ public class MyReservasFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), ActivityReuniao.class);
+                Intent intent = new Intent(getActivity(), ActivityReserva.class);
 
                 String data = getDataAtual();
                 intent.putExtra("dataSelecionada", data);
@@ -148,16 +148,12 @@ public class MyReservasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "position " + position, Toast.LENGTH_LONG).show();
 
                 try {
-                    JSONObject reservaJson = new JSONObject();
+                    String cancelarReserva = new RequestCancelarReserva().execute(Long.toString(reservas.get(position).getIdReserva())).get();
 
-
-                    String reservaEncoded = Base64.encodeToString(reservaJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
-                    System.out.println(reservaEncoded);
-
-                    String cancelarReserva = new RequestCancelarReserva().execute(reservaEncoded).get();
+                    System.out.println("Resultado do cancelamento da Reserva: " + cancelarReserva);
 
                     if (cancelarReserva.equals("A reserva foi cancelada com sucesso")) {
 
@@ -165,12 +161,14 @@ public class MyReservasFragment extends Fragment {
                         // adapter.clear();
                         AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
                         listRerservas.setAdapter(adapter);
+                        contReunioes -= 1;
 
                     } else {
-                        Toast.makeText(getContext(), "", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
                     }
 
                 } catch (Exception e) {
+                    Toast.makeText(getContext(), "Erro ao efetuar cadastro!", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -213,6 +211,7 @@ public class MyReservasFragment extends Fragment {
                         int idUser = jsonObjectReserva.getInt("idUsuario");
                         int idSala = jsonObjectReserva.getInt("idSala");
                         int idReserva = jsonObjectReserva.getInt("id");
+
                         String descricaoReserva = jsonObjectReserva.getString("descricao");
                         String dataHoraInicio = jsonObjectReserva.getString("dataHoraInicio");
                         String dataHoraFim = jsonObjectReserva.getString("dataHoraFim");
@@ -222,6 +221,7 @@ public class MyReservasFragment extends Fragment {
                         newReserva.setIdSala(idSala);
                         newReserva.setDescricaoReserva(descricaoReserva);
                         newReserva.setIdUser(idUser);
+                        newReserva.setIdReserva(idReserva);
 
                         newReserva.setNomeSala("Sala para reuniao");
 

@@ -2,8 +2,6 @@ package com.example.myapplication.activity.projetocontrolesalas.services;
 
 import android.os.AsyncTask;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -23,7 +21,6 @@ public class RequestCancelarReserva extends AsyncTask<String, Void, String> {
             conn.setRequestProperty("id_reserva", strings[0]);
             conn.setConnectTimeout(6000);
 
-            System.out.println("Resultado do cancelamento da Reserva: " + result.toString());
             return result.toString();
 
         } catch (Exception e) {

@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
+import com.example.myapplication.activity.projetocontrolesalas.sala.SalaDetalhes;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastroReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
@@ -36,7 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ActivityReuniao extends AppCompatActivity {
+public class ActivityReserva extends AppCompatActivity {
 
     private Spinner spinnerSalas;
     private SharedPreferences preferences;
@@ -69,6 +70,7 @@ public class ActivityReuniao extends AppCompatActivity {
         textDescReuniao = findViewById(R.id.textDescReuniao);
         spinnerSalas = findViewById(R.id.spinnerSalas);
         buscarListSalas();
+        // reservaBySala();
         createSpinner();
 
         textData = findViewById(R.id.textData);
@@ -130,13 +132,13 @@ public class ActivityReuniao extends AppCompatActivity {
 
             if (respostaMetodo.equals("Reserva realizada com sucesso")) {
 
-                Toast.makeText(ActivityReuniao.this, "Reserva realizada com sucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityReserva.this, "Reserva realizada com sucesso!", Toast.LENGTH_SHORT).show();
 
                 onBackPressed();
 
             } else {
                 Toast.makeText(
-                        ActivityReuniao.this,
+                        ActivityReserva.this,
                         "A reserva não foi realizada!",
                         Toast.LENGTH_SHORT).show();
             }
@@ -178,11 +180,17 @@ public class ActivityReuniao extends AppCompatActivity {
         Intent intent = getIntent();
         //Bundle dados = new Bundle();
         //dados = intent.getExtras();
-        String dataRecuperada = getIntent().getCharSequenceExtra("dataSelecionada").toString();
+        try {
+            String dataRecuperada = getIntent().getCharSequenceExtra("dataSelecionada").toString();
+            textData.setText(dataRecuperada);
+            System.out.println(dataRecuperada);
 
-        textData.setText(dataRecuperada);
+        } catch (Exception e) {
 
-        System.out.println(dataRecuperada);
+            textData.setText(null);
+
+        }
+
     }
 
     private void escolherData() {
@@ -196,7 +204,7 @@ public class ActivityReuniao extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
                 // date picker dialog
-                datePicker = new DatePickerDialog(ActivityReuniao.this,
+                datePicker = new DatePickerDialog(ActivityReserva.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -224,7 +232,7 @@ public class ActivityReuniao extends AppCompatActivity {
                 int hour = cldr.get(Calendar.HOUR_OF_DAY);
                 int minutes = cldr.get(Calendar.MINUTE);
 
-                timePicker = new TimePickerDialog(ActivityReuniao.this,
+                timePicker = new TimePickerDialog(ActivityReserva.this,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
@@ -243,7 +251,7 @@ public class ActivityReuniao extends AppCompatActivity {
                 int hour = cldr.get(Calendar.HOUR_OF_DAY);
                 int minutes = cldr.get(Calendar.MINUTE);
 
-                timePicker = new TimePickerDialog(ActivityReuniao.this,
+                timePicker = new TimePickerDialog(ActivityReserva.this,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
@@ -257,8 +265,37 @@ public class ActivityReuniao extends AppCompatActivity {
 
     }
 
+    public void reservaBySala() {
+        String nomeSala = getIntent().getStringExtra("nomeSala");
+        int idSala = getIntent().getIntExtra("idSala", 1);
+
+        Intent intent = new Intent(getApplicationContext(), SalaDetalhes.class);
+
+        if (getIntent().filterEquals(intent)) {
+
+            Sala salaSelecionada = new Sala();
+            salaSelecionada.setNomeSala(nomeSala);
+            salaSelecionada.setId(idSala);
+
+            listaNomesSalas.add(salaSelecionada.getNomeSala());
+            listaSalas.add(salaSelecionada);
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNomesSalas);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinnerSalas.setAdapter(adapter);
+            spinnerSalas.setVisibility(View.VISIBLE);
+            buscarListSalas();
+
+        } else {
+            buscarListSalas();
+
+        }
+    }
 
     private void buscarListSalas() {
+
         preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
         String requestSalas = null;
@@ -366,7 +403,6 @@ public class ActivityReuniao extends AppCompatActivity {
             textHorarioFinal.setError("Horários iguais");
             chave = false;
         }
-
 
         return chave;
     }

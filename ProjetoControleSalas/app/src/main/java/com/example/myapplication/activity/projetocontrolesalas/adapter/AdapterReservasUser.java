@@ -37,7 +37,7 @@ public class AdapterReservasUser extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return reservas.get(position).getIdReserva();
     }
 
     @Override
