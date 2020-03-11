@@ -23,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.activity.projetocontrolesalas.R;
 import com.example.myapplication.activity.projetocontrolesalas.model.Sala;
-import com.example.myapplication.activity.projetocontrolesalas.sala.SalaDetalhes;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestCadastroReserva;
 import com.example.myapplication.activity.projetocontrolesalas.services.RequestSalas;
 
@@ -164,6 +163,7 @@ public class ActivityReserva extends AppCompatActivity {
 
                 if (validarDados() == true) {
                     createJson(tituloReuniao, idSalaSelecionada, horarioMarcadoInicio, horarioMarcadoFinal, dataMarcada);
+
                 } else {
                     Toast.makeText(getApplication(), "Dados Invalidos", Toast.LENGTH_LONG).show();
 
@@ -265,34 +265,6 @@ public class ActivityReserva extends AppCompatActivity {
 
     }
 
-    public void reservaBySala() {
-        String nomeSala = getIntent().getStringExtra("nomeSala");
-        int idSala = getIntent().getIntExtra("idSala", 1);
-
-        Intent intent = new Intent(getApplicationContext(), SalaDetalhes.class);
-
-        if (getIntent().filterEquals(intent)) {
-
-            Sala salaSelecionada = new Sala();
-            salaSelecionada.setNomeSala(nomeSala);
-            salaSelecionada.setId(idSala);
-
-            listaNomesSalas.add(salaSelecionada.getNomeSala());
-            listaSalas.add(salaSelecionada);
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNomesSalas);
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            spinnerSalas.setAdapter(adapter);
-            spinnerSalas.setVisibility(View.VISIBLE);
-            buscarListSalas();
-
-        } else {
-            buscarListSalas();
-
-        }
-    }
 
     private void buscarListSalas() {
 
@@ -371,7 +343,8 @@ public class ActivityReserva extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-
+        new ReservasFragment();
+        //back return -> atualizar class
         return true;
 
     }
@@ -406,4 +379,33 @@ public class ActivityReserva extends AppCompatActivity {
 
         return chave;
     }
+
+   // public void reservaBySala() {
+//        String nomeSala = getIntent().getStringExtra("nomeSala");
+//        int idSala = getIntent().getIntExtra("idSala", 1);
+//
+//        Intent intent = new Intent(getApplicationContext(), SalaDetalhes.class);
+//
+//        if (getIntent().filterEquals(intent)) {
+//
+//            Sala salaSelecionada = new Sala();
+//            salaSelecionada.setNomeSala(nomeSala);
+//            salaSelecionada.setId(idSala);
+//
+//            listaNomesSalas.add(salaSelecionada.getNomeSala());
+//            listaSalas.add(salaSelecionada);
+//
+//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNomesSalas);
+//
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            spinnerSalas.setAdapter(adapter);
+//            spinnerSalas.setVisibility(View.VISIBLE);
+//            buscarListSalas();
+//
+//        } else {
+//            buscarListSalas();
+//
+//        }
+//    }
 }

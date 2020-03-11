@@ -79,5 +79,6 @@
     <string name="crie_sua_reuniao">Crie Sua Reunião</string>
     <string name="data_reserva">Data da reserva</string>
     <string name="minhas_reservas">MINHAS RESERVAS</string>
+    <string name="modo_convidado">Modo convidado</string>
 
 </resources>

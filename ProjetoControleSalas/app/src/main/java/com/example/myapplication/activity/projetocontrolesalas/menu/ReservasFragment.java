@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MyReservasFragment extends Fragment {
+public class ReservasFragment extends Fragment {
 
     private View view;
     private TextView dataAtual, quantReunioes, textSemReunioes;
