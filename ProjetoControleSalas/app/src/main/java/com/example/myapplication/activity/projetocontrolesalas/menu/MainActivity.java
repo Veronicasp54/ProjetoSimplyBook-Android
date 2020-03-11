@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
                     new ReservasFragment()).commit();
             new SalasFragment();
             new CalendarFragment();
+            new  ReservasFragment();
         }
     }
 

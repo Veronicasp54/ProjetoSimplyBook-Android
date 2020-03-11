@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,14 +62,13 @@ public class ReservasFragment extends Fragment {
 
         iniciaComponentes();
 
-
         return view;
     }
 
     private void iniciaComponentes() {
 
         dataAtual = view.findViewById(R.id.dataAtual);
-        dataAtual.setText(getData());
+        dataAtual.setText(getDataFormatSemana());
 
         quantReunioes = view.findViewById(R.id.textQuantReunioes);
         listRerservas = view.findViewById(R.id.listReservas);
@@ -81,6 +79,9 @@ public class ReservasFragment extends Fragment {
 
         textSemReunioes = view.findViewById(R.id.textSemReservas);
 
+        textSemReunioes.setVisibility(View.VISIBLE);
+//        listRerservas.setVisibility(View.INVISIBLE);
+
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
         exibirReservas();
@@ -88,7 +89,6 @@ public class ReservasFragment extends Fragment {
         excluirReservas();
 
         atualizarReservas();
-        //arrumar
 
         criarReserva();
     }
@@ -118,14 +118,14 @@ public class ReservasFragment extends Fragment {
         return dateFormat.format(data);
     }
 
-    private void atualizarReservas() {
+    public void atualizarReservas() {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.e(getClass().getSimpleName(), "refresh");
 
                 listRerservas.setVisibility(View.INVISIBLE);
-
+                reservas.clear();
                 contReunioes = 0;
                 textSemReunioes.setVisibility(View.INVISIBLE);
                 exibirReservas();
@@ -179,7 +179,7 @@ public class ReservasFragment extends Fragment {
         });
     }
 
-    private String getData() {
+    private String getDataFormatSemana() {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd',' EEEE", local);
@@ -187,7 +187,23 @@ public class ReservasFragment extends Fragment {
 
     }
 
-    private void exibirReservas() {
+    private String getDataFormatComplet() {
+        Date data = new Date();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", local);
+        return dateFormat.format(data);
+
+    }
+
+//    private String getDiaSeguinte() {
+//        Date data = new Date();
+//        Locale local = new Locale("pt", "BR");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd", local);
+//        return dateFormat.format(data);
+//
+//    }
+
+    public void exibirReservas() {
 
         preferences = getActivity().getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
         System.out.println(preferences.getString("userId", null));
@@ -230,7 +246,28 @@ public class ReservasFragment extends Fragment {
 
                         //data
                         String data = dataHoraInicio.split("T")[0];
-                        newReserva.setDataReserva(data.split("-")[2] + "/" + data.split("-")[1]);
+                        String dataSplit = (data.split("-")[2] + "/" + data.split("-")[1]);
+
+                        String dataHoje = getDataFormatComplet();
+                        String dataAmanha = getDataFormatComplet();
+
+                        if (dataSplit.equals(dataHoje)) {
+
+                            newReserva.setDataReserva("HOJE");
+
+
+                        }
+
+                        else if (dataSplit.equals(dataHoje)) {
+
+                            newReserva.setDataReserva("HOJE");
+
+                        } else {
+
+                            newReserva.setDataReserva(dataSplit);
+
+
+                        }
 
                         //hour//
                         String horarioInicioSplit = dataHoraInicio.split("T")[1];
@@ -242,7 +279,7 @@ public class ReservasFragment extends Fragment {
                         newReserva.setHorarioInicio(horarioFimStr);
                         newReserva.setHorarioFinal(horarioInicioStr);
 
-                            reservas.add(newReserva);
+                        reservas.add(newReserva);
                         itemReserva.add(descricaoReserva);
 
                     }

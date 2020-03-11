@@ -87,7 +87,6 @@ public class ActivityReserva extends AppCompatActivity {
 
         salvarReuniao();
 
-
     }
 
     private void createJson(String tituloReuniao, int idSala, String horarioMarcadoInicial, String horarioMarcadoFinal, String dataMarcada) {
@@ -343,10 +342,14 @@ public class ActivityReserva extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        new ReservasFragment();
+        new ReservasFragment().atualizarReservas();
         //back return -> atualizar class
         return true;
+    }
 
+    private void startActivity(Class classe) {
+        Intent intent = new Intent(getApplicationContext(), classe);
+        startActivity(intent);
     }
 
     public boolean validarDados() {
@@ -380,7 +383,7 @@ public class ActivityReserva extends AppCompatActivity {
         return chave;
     }
 
-   // public void reservaBySala() {
+    // public void reservaBySala() {
 //        String nomeSala = getIntent().getStringExtra("nomeSala");
 //        int idSala = getIntent().getIntExtra("idSala", 1);
 //

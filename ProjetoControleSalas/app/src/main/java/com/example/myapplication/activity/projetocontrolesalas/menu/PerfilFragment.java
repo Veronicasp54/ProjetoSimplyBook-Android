@@ -3,6 +3,7 @@ package com.example.myapplication.activity.projetocontrolesalas.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -130,6 +131,12 @@ public class PerfilFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Click modo Noite", Toast.LENGTH_LONG).show();
 
+                if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+
             }
         });
 
@@ -139,6 +146,11 @@ public class PerfilFragment extends Fragment {
                 view.getContext().setTheme(AppCompatDelegate.MODE_NIGHT_NO);
                 Toast.makeText(getContext(), "Click modo Dia", Toast.LENGTH_LONG).show();
 
+                if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
 
             }
         });

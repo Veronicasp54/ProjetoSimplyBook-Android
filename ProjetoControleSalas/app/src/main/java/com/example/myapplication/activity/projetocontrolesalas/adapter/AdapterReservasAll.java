@@ -62,7 +62,7 @@ public class AdapterReservasAll extends BaseAdapter {
         for (int i = 0; i < salas.size(); i++) {
 
             if (salas.get(i).getId() == reserva.getIdSala()) {
-                nomeSala.setText(salas.get(i).getNomeSala());
+                    nomeSala.setText(salas.get(i).getNomeSala());
 
             }
         }

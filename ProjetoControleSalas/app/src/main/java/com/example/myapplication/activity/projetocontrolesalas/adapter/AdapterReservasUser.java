@@ -1,6 +1,9 @@
 package com.example.myapplication.activity.projetocontrolesalas.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -60,16 +63,27 @@ public class AdapterReservasUser extends BaseAdapter {
 
         for (int i = 0; i < salas.size(); i++) {
 
-            if(salas.get(i).getId() == reserva.getIdSala()){
+            if (salas.get(i).getId() == reserva.getIdSala()) {
                 nomeSala.setText(salas.get(i).getNomeSala());
 
             }
         }
 
-        //   nomeSala.setText(reserva.getIdSala());
-        // nomeSala.setText(reserva.getNomeSala());
         descricao.setText(reserva.getDescricaoReserva());
         dataReuniao.setText(reserva.getDataReserva());
+
+        if (dataReuniao.getText().toString().equals("HOJE")) {
+            dataReuniao.setTextColor(Color.parseColor("#DD4993"));
+            dataReuniao.setTypeface(null, Typeface.BOLD);
+
+        }
+        
+//        else if (dataReuniao.getText().toString().equals("AMANHÃ")) {
+//            dataReuniao.setTextColor(Color.parseColor("#DD4993"));
+//            dataReuniao.setTypeface(null, Typeface.BOLD);
+//
+//        }
+
         String horarioConcatenado = reserva.getHorarioInicio().concat(" - " + reserva.getHorarioFinal());
         textViewHourReuniao.setText(horarioConcatenado);
 
