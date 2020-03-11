@@ -120,8 +120,17 @@ public class Cadastro extends AppCompatActivity {
                 startClass(Login.class);
 
 
-            } else {
-                Toast.makeText(Cadastro.this, "Campos inválidos!", Toast.LENGTH_SHORT).show();
+            } else if (respostaMetodo.equals("Erro ao criar conta, os dados enviados estão incompletos")) {
+                Toast.makeText(Cadastro.this,
+                        "Dados inválidos!", Toast.LENGTH_SHORT).show();
+
+            } else if (respostaMetodo.equals("O email informado já está cadastrado")) {
+                Toast.makeText(Cadastro.this,
+                        "Email já utilizado!", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(Cadastro.this,
+                        "Campos incompletos!", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(

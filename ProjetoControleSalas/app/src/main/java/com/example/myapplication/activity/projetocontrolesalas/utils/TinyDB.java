@@ -503,7 +503,7 @@ public class TinyDB {
     	putListString(key, objStrings);
     }
 
-    public void putListSalaObject(String key, ArrayList<Sala> objArray){
+    public void  putListSalaObject(String key, ArrayList<Sala> objArray){
         checkForNullKey(key);
         Gson gson = new Gson();
         ArrayList<String> objStrings = new ArrayList<String>();

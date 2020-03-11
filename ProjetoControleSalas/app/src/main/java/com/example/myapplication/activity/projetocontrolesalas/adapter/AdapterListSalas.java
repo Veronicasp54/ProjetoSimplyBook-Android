@@ -63,7 +63,6 @@ public class AdapterListSalas extends BaseAdapter {
                 view.findViewById(R.id.textViewDesc);
         TextView capacidade = (TextView)
                 view.findViewById(R.id.capacidade);/*/
-
         nomeSala.setText(sala.getNomeSala());
 //        dimensaoSala.setText(sala.getDimensaoSala());
 //        capacidade.setText(sala.getCapacidade());

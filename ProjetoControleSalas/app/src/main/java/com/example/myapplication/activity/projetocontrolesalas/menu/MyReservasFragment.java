@@ -151,7 +151,9 @@ public class MyReservasFragment extends Fragment {
                 Toast.makeText(getActivity(), "position " + position, Toast.LENGTH_LONG).show();
 
                 try {
-                    String cancelarReserva = new RequestCancelarReserva().execute(Long.toString(reservas.get(position).getIdReserva())).get();
+                    String idStr = String.valueOf(id);
+                    String cancelarReserva = String.valueOf(new RequestCancelarReserva().execute(idStr));
+
 
                     System.out.println("Resultado do cancelamento da Reserva: " + cancelarReserva);
 
@@ -207,7 +209,6 @@ public class MyReservasFragment extends Fragment {
 
                     if (jsonObjectReserva.has("idUsuario") && jsonObjectReserva.has("id")) {
 
-                        //I/System.out: [{"ativo":true,"dataAlteracao":"2020-02-19T17:00:15Z[UTC]","dataCriacao":"2020-02-19T17:00:15Z[UTC]","dataHoraFim":"2020-02-19T20:00:00Z[UTC]","dataHoraInicio":"2020-02-19T21:00:00Z[UTC]","descricao":"reserva","id":1,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:01:54Z[UTC]","dataCriacao":"2020-02-19T17:01:54Z[UTC]","dataHoraFim":"2020-02-19T21:01:00Z[UTC]","dataHoraInicio":"2020-02-19T22:01:00Z[UTC]","descricao":"reserva","id":2,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:04:09Z[UTC]","dataCriacao":"2020-02-19T17:04:09Z[UTC]","dataHoraFim":"2020-02-19T20:04:00Z[UTC]","dataHoraInicio":"2020-02-19T21:04:00Z[UTC]","descricao":"re","id":3,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-19T17:07:15Z[UTC]","dataCriacao":"2020-02-19T17:07:15Z[UTC]","dataHoraFim":"2020-02-19T20:07:00Z[UTC]","dataHoraInicio":"2020-02-19T21:07:00Z[UTC]","descricao":"reservar","id":4,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"},{"ativo":true,"dataAlteracao":"2020-02-20T14:16:57Z[UTC]","dataCriacao":"2020-02-20T14:16:57Z[UTC]","dataHoraFim":"2020-02-20T17:16:00Z[UTC]","dataHoraInicio":"2020-02-20T17:30:00Z[UTC]","descricao":"desc","id":5,"idSala":1,"idUsuario":7,"nomeOrganizador":"Verônica Souza"}]
                         int idUser = jsonObjectReserva.getInt("idUsuario");
                         int idSala = jsonObjectReserva.getInt("idSala");
                         int idReserva = jsonObjectReserva.getInt("id");
@@ -232,7 +233,6 @@ public class MyReservasFragment extends Fragment {
                         newReserva.setDataReserva(data.split("-")[2] + "/" + data.split("-")[1]);
 
                         //hour//
-
                         String horarioInicioSplit = dataHoraInicio.split("T")[1];
                         String horarioInicioStr = horarioInicioSplit.split(":00Z")[0];
 
@@ -242,7 +242,7 @@ public class MyReservasFragment extends Fragment {
                         newReserva.setHorarioInicio(horarioFimStr);
                         newReserva.setHorarioFinal(horarioInicioStr);
 
-                        reservas.add(newReserva);
+                            reservas.add(newReserva);
                         itemReserva.add(descricaoReserva);
 
                     }
