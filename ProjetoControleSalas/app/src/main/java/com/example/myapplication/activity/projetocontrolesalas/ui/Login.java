@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity {
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

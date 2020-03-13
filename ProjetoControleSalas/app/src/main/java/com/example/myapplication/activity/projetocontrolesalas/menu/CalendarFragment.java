@@ -63,6 +63,7 @@ public class CalendarFragment extends Fragment {
 
     private SharedPreferences preferences;
     public static final String userPreferences = "userPreferences";
+    public static final String reservasPreferences = "reservasPreferences";
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private String requestReservas;
@@ -71,7 +72,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
-
 
         createCalendar();
         iniciaComponentes();
@@ -119,6 +119,8 @@ public class CalendarFragment extends Fragment {
                 String diaMes = (String) DateFormat.format("dd/MM", date);
 
                 inicializarReservas(diaMes);
+                atualizarReservas(diaMes);
+
 
             }
 
@@ -143,35 +145,39 @@ public class CalendarFragment extends Fragment {
         swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
 
         configurarReservas();
-        atualizarReservas();
     }
 
-    private void atualizarReservas() {
+    private void atualizarReservas(final String dataMes) {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.e(getClass().getSimpleName(), "refresh");
-//
-//                if (dataSelecionada == reservasFiltradas.get().getDataReserva() ){
-//                    listViewEventos.setVisibility(View.INVISIBLE);
 
-                    reservas.clear();
-                    configurarReservas();
+                for (int i = 0; i < reservas.size(); i++) {
 
-                    if (requestReservas != null) {
-                        listViewEventos.setVisibility(View.VISIBLE);
-                        swipeRefreshLayout.setRefreshing(false);
+                    if (reservas.get(i).getDataReserva().contains(dataMes)) {
+                        reservasFiltradas.add(reservas.get(i));
 
-                    } else {
+                        reservas.clear();
+                        configurarReservas();
+
+                        if (requestReservas != null) {
+                            listViewEventos.setVisibility(View.VISIBLE);
+                            swipeRefreshLayout.setRefreshing(false);
+
+                        }
+                    }else {
                         swipeRefreshLayout.setRefreshing(false);
                         Toast.makeText(getContext(), "Carregamento incompleto", Toast.LENGTH_LONG);
                     }
                 }
+
+
 //                else{
 //                    textContemReuniao.setVisibility(View.VISIBLE);
 //                }
-//
-//            }
+
+            }
         });
     }
 
@@ -219,6 +225,10 @@ public class CalendarFragment extends Fragment {
                         String data = dataHoraInicio.split("T")[0];
                         String dataFinal = data.split("-")[2] + "/" + data.split("-")[1];
 
+                        preferences = getActivity().getSharedPreferences(reservasPreferences, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("dataReserva", dataFinal);
+                        editor.commit();
 
                         newReserva.setDataReserva(dataFinal);
 
