@@ -77,12 +77,12 @@ public class AdapterReservasUser extends BaseAdapter {
             dataReuniao.setTypeface(null, Typeface.BOLD);
 
         }
-        
-//        else if (dataReuniao.getText().toString().equals("AMANHÃ")) {
-//            dataReuniao.setTextColor(Color.parseColor("#DD4993"));
-//            dataReuniao.setTypeface(null, Typeface.BOLD);
-//
-//        }
+
+        else if (dataReuniao.getText().toString().equals("AMANHÃ")) {
+            dataReuniao.setTextColor(Color.parseColor("#DD4993"));
+            dataReuniao.setTypeface(null, Typeface.BOLD);
+
+        }
 
         String horarioConcatenado = reserva.getHorarioInicio().concat(" - " + reserva.getHorarioFinal());
         textViewHourReuniao.setText(horarioConcatenado);

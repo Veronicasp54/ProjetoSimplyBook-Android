@@ -151,21 +151,27 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Log.e(getClass().getSimpleName(), "refresh");
+//
+//                if (dataSelecionada == reservasFiltradas.get().getDataReserva() ){
+//                    listViewEventos.setVisibility(View.INVISIBLE);
 
-                listViewEventos.setVisibility(View.INVISIBLE);
+                    reservas.clear();
+                    configurarReservas();
 
-                reservas.clear();
-                configurarReservas();
+                    if (requestReservas != null) {
+                        listViewEventos.setVisibility(View.VISIBLE);
+                        swipeRefreshLayout.setRefreshing(false);
 
-                if (requestReservas != null) {
-                    listViewEventos.setVisibility(View.VISIBLE);
-                    swipeRefreshLayout.setRefreshing(false);
-
-                } else {
-                    swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(getContext(), "Carregamento incompleto", Toast.LENGTH_LONG);
+                    } else {
+                        swipeRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getContext(), "Carregamento incompleto", Toast.LENGTH_LONG);
+                    }
                 }
-            }
+//                else{
+//                    textContemReuniao.setVisibility(View.VISIBLE);
+//                }
+//
+//            }
         });
     }
 
@@ -212,6 +218,8 @@ public class CalendarFragment extends Fragment {
                         //data
                         String data = dataHoraInicio.split("T")[0];
                         String dataFinal = data.split("-")[2] + "/" + data.split("-")[1];
+
+
                         newReserva.setDataReserva(dataFinal);
 
                         //hour//

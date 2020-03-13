@@ -83,4 +83,8 @@ public class ReservaSala {
     public void setNomeOrganizador(String nomeOrganizador) {
         this.nomeOrganizador = nomeOrganizador;
     }
+
+
 }
+
+

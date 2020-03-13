@@ -1,6 +1,8 @@
 package com.example.myapplication.activity.projetocontrolesalas.menu;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,12 +32,13 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 
-public class ReservasFragment extends Fragment {
+public class ReservasUserFragment extends Fragment {
 
     private View view;
     private TextView dataAtual, quantReunioes, textSemReunioes;
@@ -53,6 +56,8 @@ public class ReservasFragment extends Fragment {
     private String requestReservas;
 
     private FloatingActionButton floatingActionButton;
+
+    private AlertDialog alerta;
 
 
     @Nullable
@@ -144,38 +149,60 @@ public class ReservasFragment extends Fragment {
 
 
     private void excluirReservas() {
-        listRerservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listRerservas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                Toast.makeText(getActivity(), "position " + position, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "position " + position, Toast.LENGTH_LONG).show();
 
                 try {
                     String idStr = String.valueOf(id);
-                    String cancelarReserva = String.valueOf(new RequestCancelarReserva().execute(idStr));
-
+                    final String cancelarReserva = new RequestCancelarReserva().execute(idStr).get();
 
                     System.out.println("Resultado do cancelamento da Reserva: " + cancelarReserva);
 
-                    if (cancelarReserva.equals("A reserva foi cancelada com sucesso")) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Excluir Reserva");
+                    builder.setMessage("Você realmente deseja deletar está reserva permanentemente?");
+                    builder.setIcon(R.drawable.ic_cancel);
 
-                        reservas.remove(position);
-                        // adapter.clear();
-                        AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
-                        listRerservas.setAdapter(adapter);
-                        contReunioes -= 1;
+                    builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Toast.makeText(getContext(), "Reserva excluida com sucesso", Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
-                    }
+                            if (cancelarReserva.equals("A reserva foi cancelada com sucesso")) {
+
+                                reservas.remove(position);
+                                // adapter.clear();
+                                AdapterReservasUser adapter = new AdapterReservasUser(reservas, getActivity());
+                                listRerservas.setAdapter(adapter);
+                                contReunioes -= 1;
+
+                            } else {
+                                Toast.makeText(getActivity(), "Click list" + position, Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Toast.makeText(getContext(), "Cancelardo com sucesso", Toast.LENGTH_SHORT).show();
+                            alerta.dismiss();
+                        }
+                    });
+
+                    alerta = builder.create();
+                    alerta.show();
 
                 } catch (Exception e) {
                     Toast.makeText(getContext(), "Erro ao efetuar cadastro!", Toast.LENGTH_SHORT).show();
 
                 }
 
-            }
 
+                return true;
+            }
         });
     }
 
@@ -187,7 +214,7 @@ public class ReservasFragment extends Fragment {
 
     }
 
-    private String getDataFormatComplet() {
+    private String getDataAtualCompleta() {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", local);
@@ -195,13 +222,25 @@ public class ReservasFragment extends Fragment {
 
     }
 
-//    private String getDiaSeguinte() {
-//        Date data = new Date();
-//        Locale local = new Locale("pt", "BR");
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd", local);
-//        return dateFormat.format(data);
+    private String getDiaSeguinte() {
+        Date hoje = new Date();
+        Calendar cal = Calendar.getInstance();
+        Locale local = new Locale("pt", "BR");
+        cal.setTime(hoje);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        Date amanha = cal.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", local);
+        return dateFormat.format(amanha);
+    }
 //
+//    private void desativarReservas(){
+//        if (datagetDataAtualCompleta()){
+//
+//        }else{
+//
+//        }
 //    }
+
 
     public void exibirReservas() {
 
@@ -248,19 +287,16 @@ public class ReservasFragment extends Fragment {
                         String data = dataHoraInicio.split("T")[0];
                         String dataSplit = (data.split("-")[2] + "/" + data.split("-")[1]);
 
-                        String dataHoje = getDataFormatComplet();
-                        String dataAmanha = getDataFormatComplet();
+                        String dataHoje = getDataAtualCompleta().toUpperCase();
+                        String dataAmanha = getDiaSeguinte().toUpperCase();
 
                         if (dataSplit.equals(dataHoje)) {
 
                             newReserva.setDataReserva("HOJE");
 
+                        } else if (dataSplit.equals(dataAmanha)) {
 
-                        }
-
-                        else if (dataSplit.equals(dataHoje)) {
-
-                            newReserva.setDataReserva("HOJE");
+                            newReserva.setDataReserva("AMANHÃ");
 
                         } else {
 
@@ -276,8 +312,8 @@ public class ReservasFragment extends Fragment {
                         String horarioFimSplit = dataHoraFim.split("T")[1];
                         String horarioFimStr = horarioFimSplit.split(":00Z")[0];
 
-                        newReserva.setHorarioInicio(horarioFimStr);
-                        newReserva.setHorarioFinal(horarioInicioStr);
+                        newReserva.setHorarioInicio(horarioInicioStr);
+                        newReserva.setHorarioFinal(horarioFimStr);
 
                         reservas.add(newReserva);
                         itemReserva.add(descricaoReserva);

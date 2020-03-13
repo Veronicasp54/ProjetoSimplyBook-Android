@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textHour">
 
         <TextView
-            android:id="@+id/textDataReserva"
+            android:id="@+id/textHourReserva"
             style="@style/EditTextFormField"
             android:layout_width="150dp"
             android:layout_height="wrap_content"

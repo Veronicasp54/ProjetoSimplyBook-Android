@@ -54,7 +54,7 @@ public class ActivityReserva extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.box_reservar);
+        setContentView(R.layout.activity_second_reservar);
 
         getSupportActionBar().setTitle("Marcar Reunião");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -77,7 +77,7 @@ public class ActivityReserva extends AppCompatActivity {
 
         escolherData();
 
-        textHorarioInicial = findViewById(R.id.textDataReserva);
+        textHorarioInicial = findViewById(R.id.textHourReserva);
         textHorarioFinal = findViewById(R.id.textViewHourFinal);
         escolherHorario();
 
@@ -91,20 +91,24 @@ public class ActivityReserva extends AppCompatActivity {
 
     private void createJson(String tituloReuniao, int idSala, String horarioMarcadoInicial, String horarioMarcadoFinal, String dataMarcada) {
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         String datHoraInicioStr = dataMarcada + " " + horarioMarcadoInicial;
         String datHoraFimStr = dataMarcada + " " + horarioMarcadoFinal;
 
         Date dateHoraFim = null, dateHoraInicio = null;
+
+        Date dataAtualizadaInicio = null, dataAtualizadaFim = null;
         try {
-            dateHoraFim = simpleDateFormat.parse(datHoraInicioStr);
-            dateHoraInicio = simpleDateFormat.parse(datHoraFimStr);
+            dateHoraFim = dateFormat.parse(datHoraFimStr);
+            dateHoraInicio = dateFormat.parse(datHoraInicioStr);
+
+            dataAtualizadaFim = atualizacaoData(dateHoraFim);
+            dataAtualizadaInicio = atualizacaoData(dateHoraInicio);
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         idSala = idSalaSelecionada;
 
@@ -113,12 +117,15 @@ public class ActivityReserva extends AppCompatActivity {
         preferences = getSharedPreferences(userPreferences, Context.MODE_PRIVATE);
 
 
+//        String dataAtualizadaFim = String.valueOf(datehoraFim);
+//        String dataAtualizadaInicio = String.valueOf(datehoraInicio);
+
         try {
             reservaJson.put("id_usuario", preferences.getString("userId", null));
             reservaJson.put("descricao", tituloReuniao);
             reservaJson.put("id_sala", idSala);
-            reservaJson.put("data_hora_inicio", dateHoraInicio.getTime());
-            reservaJson.put("data_hora_fim", dateHoraFim.getTime());
+            reservaJson.put("data_hora_inicio", dataAtualizadaInicio.getTime());
+            reservaJson.put("data_hora_fim", dataAtualizadaFim.getTime());
 
 
             System.out.println(reservaJson.toString());
@@ -148,6 +155,15 @@ public class ActivityReserva extends AppCompatActivity {
 
     }
 
+    public Date atualizacaoData(Date data) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        calendar.add(Calendar.HOUR, -3);
+        calendar.getTimeInMillis();
+
+        return calendar.getTime();
+    }
+
     private void salvarReuniao() {
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +178,6 @@ public class ActivityReserva extends AppCompatActivity {
 
                 if (validarDados() == true) {
                     createJson(tituloReuniao, idSalaSelecionada, horarioMarcadoInicio, horarioMarcadoFinal, dataMarcada);
-
                 } else {
                     Toast.makeText(getApplication(), "Dados Invalidos", Toast.LENGTH_LONG).show();
 
@@ -342,7 +357,9 @@ public class ActivityReserva extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        new ReservasFragment().atualizarReservas();
+        new ReservasUserFragment().exibirReservas();
+        startActivity(ReservasUserFragment.class);
+
         //back return -> atualizar class
         return true;
     }
@@ -350,6 +367,7 @@ public class ActivityReserva extends AppCompatActivity {
     private void startActivity(Class classe) {
         Intent intent = new Intent(getApplicationContext(), classe);
         startActivity(intent);
+        finish();
     }
 
     public boolean validarDados() {
@@ -383,32 +401,4 @@ public class ActivityReserva extends AppCompatActivity {
         return chave;
     }
 
-    // public void reservaBySala() {
-//        String nomeSala = getIntent().getStringExtra("nomeSala");
-//        int idSala = getIntent().getIntExtra("idSala", 1);
-//
-//        Intent intent = new Intent(getApplicationContext(), SalaDetalhes.class);
-//
-//        if (getIntent().filterEquals(intent)) {
-//
-//            Sala salaSelecionada = new Sala();
-//            salaSelecionada.setNomeSala(nomeSala);
-//            salaSelecionada.setId(idSala);
-//
-//            listaNomesSalas.add(salaSelecionada.getNomeSala());
-//            listaSalas.add(salaSelecionada);
-//
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaNomesSalas);
-//
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//            spinnerSalas.setAdapter(adapter);
-//            spinnerSalas.setVisibility(View.VISIBLE);
-//            buscarListSalas();
-//
-//        } else {
-//            buscarListSalas();
-//
-//        }
-//    }
 }
