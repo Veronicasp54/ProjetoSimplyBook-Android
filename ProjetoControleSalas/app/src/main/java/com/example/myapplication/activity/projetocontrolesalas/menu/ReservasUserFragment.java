@@ -232,7 +232,7 @@ public class ReservasUserFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM", local);
         return dateFormat.format(amanha);
     }
-    
+
 
     public void exibirReservas() {
 
