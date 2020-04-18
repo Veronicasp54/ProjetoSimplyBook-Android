@@ -12,18 +12,15 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 * **TELAS INICIAS**
 
-<!-- ![Image of Model Carosel](projeto-android-inicial.png =100) -->
-<p align="center">
-  <img width="460" height="300" src="(projeto-android-inicial.png ">
-</p>
+![Image of Telas iniciais](projeto-android-inicial.png)
 
 * **CALENDÁRIO DA EMPRESA**
 
-![Image of Empresa](projeto-android-calendario.png | width=100)
+![Image of Calendario](projeto-android-calendario.png)
 
 * **REERVAS DO USUÁRIO**
 
-![Image of Colaborador](projeto-android-reservas.png | width=100)
+![Image of Reservas](projeto-android-reservas.png)
 
 
 ### Pré-requisitos
