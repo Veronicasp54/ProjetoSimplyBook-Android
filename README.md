@@ -12,7 +12,7 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 * **TELAS INICIAS**
 
-![Image of Model Carosel](projeto-android-inicial.png | width=100)
+![Image of Model Carosel](projeto-android-inicial.png =100)
 
 * **CALENDÁRIO DA EMPRESA**
 
