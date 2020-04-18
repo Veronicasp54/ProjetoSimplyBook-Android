@@ -12,7 +12,10 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 * **TELAS INICIAS**
 
-![Image of Model Carosel](projeto-android-inicial.png =100)
+<!-- ![Image of Model Carosel](projeto-android-inicial.png =100) -->
+<p align="center">
+  <img width="460" height="300" src="(projeto-android-inicial.png ">
+</p>
 
 * **CALENDÁRIO DA EMPRESA**
 
