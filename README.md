@@ -30,7 +30,11 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 ### Ferramentas 
 
-* Android Studio 
+* Android Studio 3.5.3
+* [Material Desing](https://material.io/develop/android/docs/getting-started/)- Material Desing
+* [TomCat](http://tomcat.apache.org/) - Servidor
+* [TyneDB](https://tinydb.readthedocs.io/en/latest/) - Banco de transações da aplicação
+* [Horizontal-Calendar](https://github.com/Mulham-Raee/Horizontal-Calendar) - Calendário Utilizado
 
 
 ### Instalando
@@ -54,18 +58,11 @@ Ele agrupa corretamente o React no modo de produção e otimiza a construção p
 
 Seu aplicativo está pronto para ser implantado!
 
-
-## Built With
-
-<!-- * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds -->
-
 ## Contributing
 ...
 
 ## Versioning
-    2.10.9 
+   vs2.10.9 
 
 ## Authors
 
