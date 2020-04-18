@@ -12,21 +12,23 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 * **TELAS INICIAS**
 
-![Image of Model Carosel](projeto-android-inicial.png)
+![Image of Model Carosel](projeto-android-inicial.png | width=100)
 
 * **CALENDÁRIO DA EMPRESA**
 
-![Image of Empresa](projeto-android-calendario.png)
+![Image of Empresa](projeto-android-calendario.png | width=100)
 
 * **REERVAS DO USUÁRIO**
 
-![Image of Colaborador](projeto-android-reservas.png)
+![Image of Colaborador](projeto-android-reservas.png | width=100)
 
 
 ### Pré-requisitos
 
+* O nível mínimo de API suportado por esta biblioteca é API 14 (ICE_CREAM_SANDWICH) .
 * Sistema Operacional 
      Microsoft Windows 7 (CORE I5)
+
 
 ### Ferramentas 
 
@@ -38,31 +40,13 @@ Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar
 
 
 ### Instalando
-
-No diretório do projeto (frontend), você pode executar:
-
-**NPM RUN DEV**
-Iniciali-za a construção do projeto no console, e ao final será exibido:
-Executa o aplicativo no modo de desenvolvimento.
-Abra http://localhost:8080 para visualizá-lo no navegador.
-
-A página será recarregada se você fizer edições.
-Você também verá erros de no console.
-
-Inicia o corredor de teste no modo de observação interativo.
-Consulte a seção sobre a execução de testes para obter mais informações.
-
-**NPM RUN PRODUCTION**
-Cria o aplicativo para produção na pasta de compilação.
-Ele agrupa corretamente o React no modo de produção e otimiza a construção para obter o melhor desempenho.
-
-Seu aplicativo está pronto para ser implantado!
+...
 
 ## Contributing
 ...
 
 ## Versioning
-   vs2.10.9 
+   2.10.9 
 
 ## Authors
 
