@@ -6,21 +6,21 @@ Com o objetivo de centralizar todas as reuniões entre colaboradores da empresa,
 
 Tem como intuito dar a praticidade necessária para os processos. Para isto foi desenvolvida uma aplicação android com as seguintes funcões: Reserva de Salas (Marcar reuniões), Ampla vizualização do calendário da empresa e "Cardápio de Salas" e o Perfil básico.
 
-Já está aplicação WEB, ainda está sendo desenvolvida com intuito de implementar a administração da empresa criação das salas, supervisão das reuniões e demais componentes.
+Já a aplicação WEB, ainda está sendo desenvolvida com intuito de implementar a administração da empresa criação das salas, supervisão das reuniões e demais componentes.
 
 ## Background Do Projeto 
 
-* **PÁGINA INICIAL**
+* **TELAS INICIAS**
 
-![Image of Model Carosel](imagem-web-pageinicial.png)
+![Image of Model Carosel](projeto-android-inicial.png)
 
-* **EMPRESA**
+* **CALENDÁRIO DA EMPRESA**
 
-![Image of Empresa](image-web-empresa.png)
+![Image of Empresa](projeto-android-calendario.png)
 
-* **COLABORADOR**
+* **REERVAS DO USUÁRIO**
 
-![Image of Colaborador](image-web-colaborador.png)
+![Image of Colaborador](projeto-android-reservas.png)
 
 
 ### Pré-requisitos
@@ -30,11 +30,7 @@ Já está aplicação WEB, ainda está sendo desenvolvida com intuito de impleme
 
 ### Ferramentas 
 
-* IDE
-    VSCODE Visual Studio Code
-
-* Compilador 
-    CMDER
+* Android Studio 
 
 
 ### Instalando
@@ -69,11 +65,11 @@ Seu aplicativo está pronto para ser implantado!
 ...
 
 ## Versioning
-    1.10.4-beta 
+    2.10.9 
 
 ## Authors
 
-* **Verônica Souza** - [Pórtfolio de Projeto informal](https://www.instagram.com/onix.coding/)
+* **Verônica Souza** - [Pórtfolio de Projetos informal](https://www.instagram.com/onix.coding/)
 
 ## Agradecimentos
 

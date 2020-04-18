@@ -12,7 +12,7 @@ public class RequestSalas extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        String urlWS = "http://172.30.248.134:8080/ReservaDeSala/rest/sala/salas";
+        String urlWS = "http://192.168.15.6:8080/ReservaDeSala/rest/sala/salas";
 
         StringBuilder result = new StringBuilder();
         try {
